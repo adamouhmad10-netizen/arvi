@@ -1472,6 +1472,17 @@
     "settings": [
       {
         "type": "header",
+        "content": "SEO"
+      },
+      {
+        "type": "checkbox",
+        "id": "arvi_logo_h1",
+        "label": "Logo is the homepage H1",
+        "default": false,
+        "info": "Leave off when the homepage hero provides the H1 (recommended), so the page keeps a single descriptive H1."
+      },
+      {
+        "type": "header",
         "content": "Typography"
       },
       {

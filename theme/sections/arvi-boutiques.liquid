@@ -29,7 +29,8 @@
               {%- if block.settings.kicker != blank -%}
                 <p class="arvi-micro">{{ block.settings.kicker }}</p>
               {%- endif -%}
-              <h3 class="arvi-display arvi-display--m" id="Boutique-{{ block.id }}">{{ block.settings.name }}</h3>
+              {%- if section.settings.heading_tag == 'h1' -%}{%- assign name_tag = 'h2' -%}{%- else -%}{%- assign name_tag = 'h3' -%}{%- endif -%}
+              <{{ name_tag }} class="arvi-display arvi-display--m" id="Boutique-{{ block.id }}">{{ block.settings.name }}</{{ name_tag }}>
               <dl class="arvi-boutique__facts">
                 {%- if block.settings.address != blank -%}
                   <div>

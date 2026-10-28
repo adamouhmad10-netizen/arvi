@@ -16,7 +16,7 @@
       {%- for block in section.blocks -%}
         <details class="arvi-faq__item" {{ block.shopify_attributes }}{% if section.settings.open_first and forloop.first %} open{% endif %}>
           <summary>
-            <h3 class="arvi-faq__q">{{ block.settings.question }}</h3>
+            <h2 class="arvi-faq__q">{{ block.settings.question }}</h2>
             <span class="arvi-faq__icon" aria-hidden="true"></span>
           </summary>
           <div class="arvi-faq__a rte">{{ block.settings.answer }}</div>

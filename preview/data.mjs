@@ -4,6 +4,8 @@
 // Nothing here is shipped with the theme.
 import fs from 'node:fs';
 import path from 'node:path';
+import { createRequire } from 'node:module';
+const { Drop } = createRequire(path.resolve('.tooling/package.json'))('liquidjs');
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const RAW = path.join(ROOT, 'research/raw/shop');
@@ -64,8 +66,8 @@ function imageObj(img, alt) {
     presentation: { focal_point: '50% 50%' },
     __image: true,
   };
-  o.preview_image = o;
-  o.toString = () => src;
+  Object.defineProperty(o, 'preview_image', { value: o, enumerable: false });
+  Object.defineProperty(o, 'toString', { value: () => src, enumerable: false });
   return o;
 }
 
@@ -126,6 +128,7 @@ export function getProduct(handle) {
   const p = {
     id: raw.id,
     title: raw.title,
+    object_type: 'product',
     handle: raw.handle,
     url: `/products/${raw.handle}`,
     vendor: raw.vendor,
@@ -219,6 +222,8 @@ export function productHandles() {
 }
 
 // ---------------------------------------------------------------- collections
+// Counts read from the WIP collection pages for collections missing from collections.json
+const KNOWN_COUNTS = { toscana: 31 };
 const colCache = new Map();
 export function getCollection(handle) {
   if (!handle) return null;
@@ -233,7 +238,7 @@ export function getCollection(handle) {
     title: meta ? meta.title : handle,
     url: `/collections/${handle}`,
     description: '',
-    products_count: meta ? meta.products_count : all.length,
+    products_count: meta ? meta.products_count : KNOWN_COUNTS[handle] || all.length,
     all_products_count: meta ? meta.products_count : all.length,
     featured_image: null,
     image: null,
@@ -305,20 +310,14 @@ function buildFilters(c) {
   ].filter((f) => f.type !== 'list' || f.values.length > 0);
 }
 
-// Proxy so Liquid can do collections['handle'] and collections.all
-export const collectionsProxy = new Proxy(
-  {},
-  {
-    get(_, key) {
-      if (typeof key !== 'string') return undefined;
-      if (key === 'all') return getCollection('all') || allCollection();
-      return getCollection(key) || undefined;
-    },
-    has(_, key) {
-      return !!getCollection(String(key));
-    },
+// Drops so Liquid can do collections['handle'], collections.all and all_products['handle']
+class CollectionsDrop extends Drop {
+  liquidMethodMissing(key) {
+    if (key === 'all') return getCollection('all') || allCollection();
+    return getCollection(String(key)) || undefined;
   }
-);
+}
+export const collectionsProxy = new CollectionsDrop();
 
 function allCollection() {
   const all = [...productsRaw.keys()].map(getProduct).filter(Boolean);
@@ -326,7 +325,12 @@ function allCollection() {
   return Object.assign(Object.create(Object.getPrototypeOf(c)), c, { handle: 'all', title: 'Products', url: '/collections/all', __all: all, products_count: 19023 });
 }
 
-export const allProductsProxy = new Proxy({}, { get: (_, k) => (typeof k === 'string' ? getProduct(k) || undefined : undefined) });
+class ProductsDrop extends Drop {
+  liquidMethodMissing(key) {
+    return getProduct(String(key)) || undefined;
+  }
+}
+export const allProductsProxy = new ProductsDrop();
 
 export function search(q) {
   const terms = String(q || '').toLowerCase().split(/\s+/).filter(Boolean);

@@ -864,8 +864,18 @@
 .arvi-profile__grid {
   display: grid;
   gap: 4.8rem;
-  border-top: 0.1rem solid var(--arvi-hairline-strong);
+  position: relative;
   padding-top: clamp(3.2rem, 2rem + 3vw, 6.4rem);
+}
+
+.arvi-profile__grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--arvi-gutter);
+  right: var(--arvi-gutter);
+  height: 0.1rem;
+  background: var(--arvi-hairline-strong);
 }
 
 .arvi-profile__col {
@@ -901,6 +911,9 @@
 
 .arvi-critic__review {
   margin: 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
   max-width: 68ch;
   font-size: 1.6rem;
   line-height: 1.75;
@@ -984,4 +997,11 @@ html.arvi-age-open {
 
 .arvi-age .arvi-eyebrow {
   margin: 0;
+}
+
+@media screen and (max-width: 749px) {
+  /* The whole service card is the link; the label is redundant in two narrow columns */
+  .arvi-service .arvi-link {
+    display: none;
+  }
 }

@@ -181,7 +181,7 @@
     -%}
 
     {%- if section.settings.logo_position != 'middle-center' -%}
-      {%- if request.page_type == 'index' -%}
+      {%- if request.page_type == 'index' and settings.arvi_logo_h1 -%}
         <h1 class="header__heading">
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
@@ -208,7 +208,7 @@
           <span class="h2">{{ shop.name }}</span>
         {%- endif -%}
       </a>
-      {%- if request.page_type == 'index' -%}
+      {%- if request.page_type == 'index' and settings.arvi_logo_h1 -%}
         </h1>
       {%- endif -%}
     {%- endif -%}
@@ -224,7 +224,7 @@
     %}
 
     {%- if section.settings.logo_position == 'middle-center' -%}
-      {%- if request.page_type == 'index' -%}
+      {%- if request.page_type == 'index' and settings.arvi_logo_h1 -%}
         <h1 class="header__heading">
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
@@ -251,7 +251,7 @@
           <span class="h2">{{ shop.name }}</span>
         {%- endif -%}
       </a>
-      {%- if request.page_type == 'index' -%}
+      {%- if request.page_type == 'index' and settings.arvi_logo_h1 -%}
         </h1>
       {%- endif -%}
     {%- endif -%}
@@ -498,6 +498,7 @@
   </script>
 {%- endif -%}
 
+{%- comment -%} ARVI: the logo is wrapped in an H1 on the homepage only when Theme settings > ARVI > "Logo is the homepage H1" is on (default off: the hero provides a descriptive H1). {%- endcomment -%}
 {% schema %}
 {
   "name": "t:sections.header.name",

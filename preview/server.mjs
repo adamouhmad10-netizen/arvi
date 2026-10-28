@@ -4,7 +4,7 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createEngine, schemaOf, defaultsFrom, resolveSetting, globalSettings, resolveURL, THEME } from './shopify.mjs';
+import { reloadLocales, createEngine, schemaOf, defaultsFrom, resolveSetting, globalSettings, resolveURL, THEME } from './shopify.mjs';
 import * as data from './data.mjs';
 
 const PORT = Number(process.argv[2] || 9292);
@@ -111,7 +111,21 @@ async function buildSection(engine, type, id, json, scope) {
     for (const k of Object.keys(bset)) bset[k] = resolveSetting(btypes[k], await renderValue(engine, bset[k], scope), linklists);
     blocks.push({ id: bid, type: b.type, settings: bset, shopify_attributes: '' });
   }
-  return { schema, section: { id, settings, blocks, index: 1, location: 'template' } };
+  const section = { id, settings, blocks, index: 1, location: 'template' };
+  // `liquid` settings (Custom Liquid) are executed by Shopify with section/block in scope
+  for (const [k, t] of Object.entries(types)) if (t === 'liquid' && settings[k]) settings[k] = await engine.parseAndRender(settings[k], { ...scope, section });
+  for (const b of blocks) {
+    const bs = (schema.blocks || []).find((x) => x.type === b.type) || { settings: [] };
+    for (const st of bs.settings || []) {
+      if (st.type === 'liquid' && b.settings[st.id]) {
+        const prev = scope.section;
+        scope.section = section;
+        b.settings[st.id] = await engine.parseAndRender(b.settings[st.id], { ...scope, section, block: b });
+        scope.section = prev;
+      }
+    }
+  }
+  return { schema, section };
 }
 
 // Simulates the merchant connecting critic blocks to product metafields (dynamic sources) in the theme editor.
@@ -196,6 +210,7 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(200, { 'content-type': MIME[path.extname(f)] || 'application/octet-stream', 'cache-control': 'max-age=60' });
       return fs.createReadStream(f).pipe(res);
     }
+    reloadLocales(); // pick up locale edits without restarting
     const g = baseGlobals(req, url);
     const scopeRef = { scope: g };
     const engine = createEngine(g);
@@ -211,6 +226,10 @@ const server = http.createServer(async (req, res) => {
       const p = data.getProduct(m[1]);
       if (!p) throw Object.assign(new Error('Product not found'), { status: 404 });
       const vid = url.searchParams.get('variant');
+      const pick = (vid && p.variants.find((x) => String(x.id) === vid)) || p.first_available_variant || p.variants[0];
+      for (const val of p.options_with_values[0].values) val.selected = val.name === pick.option1;
+      p.selected_variant = null;
+      p.selected_or_first_available_variant = p.first_available_variant || p.variants[0];
       if (vid) {
         const v = p.variants.find((x) => String(x.id) === vid);
         if (v) {
@@ -244,10 +263,10 @@ const server = http.createServer(async (req, res) => {
       g.request.page_type = 'page';
       templateName = PAGES[m[1]].template;
     } else if (url.pathname === '/recommendations/products') {
-      const p = data.allProductsProxy[url.searchParams.get('product_handle')] || null;
+      const p = data.getProduct(url.searchParams.get('product_handle')) || null;
       const pid = url.searchParams.get('product_id');
       const prod = p || data.productHandles().map(data.getProduct).find((x) => String(x.id) === pid);
-      const same = prod ? data.productHandles().map(data.getProduct).filter((x) => x.vendor === prod.vendor && x.id !== prod.id && x.featured_media).slice(0, 8) : [];
+      const same = prod ? data.productHandles().map(data.getProduct).filter((x) => x.vendor === prod.vendor && x.id !== prod.id && x.featured_media).slice(0, Number(url.searchParams.get('limit') || 4)) : [];
       g.recommendations = { performed: true, products: same, products_count: same.length };
       const sid = url.searchParams.get('section_id') || '';
       const key = sid.split('__')[1] || 'related-products';

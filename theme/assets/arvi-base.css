@@ -398,7 +398,7 @@ details[open] > .header__menu-item span {
   padding-bottom: 5.6rem;
 }
 
-.mega-menu__link--level-2 {
+.mega-menu .mega-menu__link--level-2 {
   font-family: var(--arvi-font-ui);
   font-size: 1.1rem;
   font-weight: 500;
@@ -410,11 +410,11 @@ details[open] > .header__menu-item span {
   border-bottom: 0.1rem solid var(--arvi-hairline);
 }
 
-.mega-menu__link--level-2:not(:only-child) {
+.mega-menu .mega-menu__link--level-2:not(:only-child) {
   margin-bottom: 0.8rem;
 }
 
-.mega-menu__link {
+.mega-menu .mega-menu__link {
   font-family: var(--arvi-font-display);
   font-size: 1.8rem;
   font-weight: 350;
@@ -432,8 +432,9 @@ details[open] > .header__menu-item span {
   transform: translateX(0.3rem);
 }
 
-.mega-menu__link--level-2:hover {
+.mega-menu .mega-menu__link--level-2:hover {
   transform: none;
+  color: var(--arvi-accent-text);
 }
 
 /* Drawer (mobile navigation) */
@@ -770,6 +771,8 @@ details[open] > .header__menu-item span {
 }
 
 .arvi-pdp-vendor a {
+  display: inline-block;
+  padding: 0.6rem 0;
   color: inherit;
   text-decoration: none;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
@@ -854,8 +857,16 @@ details[open] > .header__menu-item span {
   margin-bottom: 1.2rem;
 }
 
-.product-form__buttons {
+.product .product-form__buttons,
+.product .product-form__input,
+.product .product-form__input--dropdown,
+.product__info-container .product-form__input .select,
+.product__info-container > .product-form {
   max-width: none;
+}
+
+.product-form__buttons .product-form__submit {
+  width: 100%;
 }
 
 .product__info-wrapper {
@@ -874,6 +885,10 @@ details[open] > .header__menu-item span {
 }
 
 .product__media-wrapper .product__media-item {
+  background: none;
+}
+
+.product__media-wrapper .product-media-container {
   background: radial-gradient(110% 80% at 50% 25%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 60%),
     rgb(var(--arvi-mist));
 }
@@ -1219,4 +1234,53 @@ a.arvi-vintage:hover {
 .header__heading-logo,
 .arvi-age__logo {
   mix-blend-mode: multiply;
+}
+
+/* Bottles are never cropped, at any breakpoint */
+.product__media-item .media img,
+.product-media-container .media img {
+  object-fit: contain !important;
+}
+
+@media screen and (max-width: 749px) {
+  .announcement-bar__message {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* Quick add: present but quiet. Revealed on hover/focus with a fine pointer; always visible on touch. */
+.quick-add__submit {
+  border-color: var(--arvi-hairline-strong);
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 990px) {
+  .card-wrapper .quick-add {
+    opacity: 0;
+    transform: translateY(0.4rem);
+    transition: opacity var(--arvi-dur) var(--arvi-ease), transform var(--arvi-dur) var(--arvi-ease);
+  }
+
+  .card-wrapper:hover .quick-add,
+  .card-wrapper:focus-within .quick-add {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Products without a photograph: an empty niche with the name set quietly */
+.card--text .card__inner .card__heading {
+  font-size: 1.8rem;
+  color: var(--arvi-muted);
+  text-align: center;
+}
+
+.mega-menu .mega-menu__list .mega-menu__link--level-2 {
+  font-family: var(--arvi-font-ui);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--arvi-accent-text);
+  text-decoration: none;
 }

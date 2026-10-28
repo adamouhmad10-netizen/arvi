@@ -18,7 +18,10 @@ function loadLocale(code) {
   const file = code === 'en' ? 'locales/en.default.json' : `locales/${code}.json`;
   return readJSON(file);
 }
-const enLocale = loadLocale('en');
+let enLocale = loadLocale('en');
+export function reloadLocales() {
+  enLocale = loadLocale('en');
+}
 function lookup(obj, key) {
   return key.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
 }
@@ -35,7 +38,7 @@ const kw = (args) => {
 };
 const attr = (o) =>
   Object.entries(o)
-    .filter(([, v]) => v !== null && v !== undefined && v !== false && v !== '')
+    .filter(([k, v]) => v !== null && v !== undefined && v !== false && (v !== '' || k === 'alt'))
     .map(([k, v]) => (v === true ? k : `${k}="${String(v).replace(/"/g, '&quot;')}"`))
     .join(' ');
 
