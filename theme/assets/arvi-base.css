@@ -1030,7 +1030,7 @@ a.arvi-vintage:hover {
 }
 
 .arvi-vintage--unavailable {
-  color: rgba(var(--color-foreground), 0.45);
+  color: rgba(var(--color-foreground), 0.66);
   border-style: dashed;
 }
 
@@ -1283,4 +1283,17 @@ a.arvi-vintage:hover {
   text-transform: uppercase;
   color: var(--arvi-accent-text);
   text-decoration: none;
+}
+
+#ProductCountDesktop,
+#ProductCount,
+.product-count__text,
+.product-count-vertical .product-count__text {
+  color: rgba(var(--color-foreground), 0.78);
+  opacity: 1;
+}
+
+.product-count.light,
+.product-count-vertical.light {
+  opacity: 1;
 }

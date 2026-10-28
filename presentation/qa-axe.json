@@ -1,0 +1,36 @@
+{
+ "1440 /": [],
+ "1440 /collections/champagne": [],
+ "1440 /products/maison-salon-champagne-le-mesnil-1999": [
+  {
+   "id": "label",
+   "impact": "critical",
+   "n": 1,
+   "help": "Form elements must have labels",
+   "nodes": [
+    "#Quantity-template--1__main ::   Element does not have an implicit (wrapped) <label>"
+   ]
+  }
+ ],
+ "1440 /products/chateau-latour-ex-chateau-release-2023-2015?variant=59475133137244": [],
+ "1440 /search?q=krug": [],
+ "1440 /pages/faq": [],
+ "1440 /pages/i-nostri-negozi": [],
+ "390 /": [],
+ "390 /collections/champagne": [],
+ "390 /products/maison-salon-champagne-le-mesnil-1999": [
+  {
+   "id": "label",
+   "impact": "critical",
+   "n": 1,
+   "help": "Form elements must have labels",
+   "nodes": [
+    "#Quantity-template--1__main ::   Element does not have an implicit (wrapped) <label>"
+   ]
+  }
+ ],
+ "390 /products/chateau-latour-ex-chateau-release-2023-2015?variant=59475133137244": [],
+ "390 /search?q=krug": [],
+ "390 /pages/faq": [],
+ "390 /pages/i-nostri-negozi": []
+}
