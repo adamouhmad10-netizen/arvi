@@ -1196,3 +1196,10 @@ html.arvi-age-open {
   margin-top: auto;
   align-self: flex-start;
 }
+
+/* Stats on small screens: an odd final figure spans the row instead of sitting in a half-empty cell. */
+@media screen and (max-width: 749px) {
+  .arvi-stats > .arvi-stat:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}

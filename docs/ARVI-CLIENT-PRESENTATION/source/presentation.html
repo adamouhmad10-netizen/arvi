@@ -1,0 +1,396 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>
+@font-face { font-family: Newsreader; font-weight: 200 800; font-style: normal; src: url("file:///Users/adamm/Documents/shopify/theme/assets/arvi-newsreader-normal-latin.woff2") format("woff2"); }
+@font-face { font-family: Newsreader; font-weight: 200 800; font-style: italic; src: url("file:///Users/adamm/Documents/shopify/theme/assets/arvi-newsreader-italic-latin.woff2") format("woff2"); }
+:root { --stone:#F3F0EA; --mist:#E9E4DA; --ink:#1C1A17; --bronze:#998A65; --bronze-t:#6E6246; --muted:rgba(28,26,23,.62); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--stone); }
+body { font-family: Inter, system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+@page { size: 1920px 1080px; margin: 0; }
+.page { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: var(--stone); page-break-after: always; display: grid; grid-template-columns: 470px minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); padding: 64px 96px 72px; column-gap: 72px; }
+.page.dark { background: var(--ink); color: #F2EEE6; --muted: rgba(242,238,230,.66); }
+.pg-head { grid-column: 1 / -1; display: flex; justify-content: space-between; font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding-bottom: 22px; border-bottom: 1px solid rgba(28,26,23,.14); margin-bottom: 56px; }
+.dark .pg-head { border-color: rgba(242,238,230,.16); }
+.pg-intro { align-self: center; }
+.eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--bronze-t); margin-bottom: 22px; }
+.dark .eyebrow { color: #CDBF9C; }
+h1, h2 { font-family: Newsreader, Georgia, serif; font-weight: 300; letter-spacing: -.02em; }
+h2 { font-size: 46px; line-height: 1.08; max-width: 14ch; }
+.lede { font-size: 16px; line-height: 1.75; color: var(--muted); margin-top: 26px; max-width: 40ch; }
+.notes { margin-top: 34px; display: grid; gap: 14px; max-width: 40ch; }
+.notes p { font-size: 13.5px; line-height: 1.6; color: var(--muted); padding-left: 22px; position: relative; }
+.notes p::before { content: ''; position: absolute; left: 0; top: .75em; width: 12px; height: 1px; background: var(--bronze); }
+.notes b { color: var(--ink); font-weight: 500; }
+.dark .notes b { color: #F2EEE6; }
+.pg-stage { display: flex; align-items: center; justify-content: center; gap: 44px; min-width: 0; }
+figure { display: flex; flex-direction: column; align-items: center; }
+figcaption { margin-top: 22px; text-align: center; display: grid; gap: 6px; }
+.cap-t { font-size: 10.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+.cap-s { font-size: 12.5px; color: var(--muted); }
+/* Phone */
+.ph-body { position: relative; background: linear-gradient(150deg, #4a4743 0%, #1d1c1a 22%, #2a2825 60%, #45423e 100%); box-shadow: inset 0 0 0 1.2px rgba(255,255,255,.14), 0 0 0 1px #0b0a09, 0 44px 70px -34px rgba(48,36,22,.55), 0 18px 30px -20px rgba(0,0,0,.4); }
+.dark .ph-body { box-shadow: inset 0 0 0 1.2px rgba(255,255,255,.18), 0 0 0 1px #000, 0 40px 80px -30px rgba(0,0,0,.8); }
+.ph-body::before, .ph-body::after { content: ''; position: absolute; width: 3px; border-radius: 2px; background: #2b2926; }
+.ph-body::before { left: -3px; top: 21%; height: 9%; box-shadow: 0 60px 0 #2b2926; }
+.ph-body::after { right: -3px; top: 27%; height: 14%; }
+.ph-screen { overflow: hidden; background: #000; position: relative; }
+.ph-screen img { display: block; width: 100%; object-fit: cover; object-position: top; }
+.ph-bar { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 0 8.5% 0 11%; font-weight: 600; letter-spacing: .01em; }
+.ph-island { position: absolute; left: 50%; top: 62%; transform: translate(-50%, -50%); background: #000; border-radius: 999px; }
+.ph-icons svg { width: 100%; display: block; }
+/* Browser */
+.br-body { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 0 0 1px rgba(28,26,23,.1), 0 40px 70px -34px rgba(48,36,22,.45); }
+.br-bar { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: #ECE8E1; border-bottom: 1px solid rgba(28,26,23,.08); }
+.br-bar i { width: 10px; height: 10px; border-radius: 50%; background: #D3CCC0; }
+.br-url { margin: 0 auto; transform: translateX(-20px); font-size: 11px; color: rgba(28,26,23,.55); background: #F6F3EE; padding: 4px 70px; border-radius: 6px; letter-spacing: .02em; }
+.br-view { overflow: hidden; }
+.br-view img { display: block; width: 100%; }
+/* Special layouts */
+.cover { grid-template-columns: minmax(0, 1fr) 640px; }
+.cover h1 { font-size: 76px; line-height: 1.02; margin-top: 6px; }
+.cover .lede { font-size: 18px; max-width: 34ch; }
+.cover .meta { margin-top: 64px; display: flex; gap: 48px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(242,238,230,.6); }
+.strips { display: flex; gap: 28px; align-items: flex-start; }
+.strip { width: 300px; height: auto; max-height: 820px; overflow: hidden; border-radius: 8px; box-shadow: 0 0 0 1px rgba(28,26,23,.1), 0 30px 60px -30px rgba(48,36,22,.4); background: #fff; }
+.strip img { display: block; width: 100%; }
+.detail { width: 520px; border-radius: 10px; overflow: hidden; box-shadow: 0 0 0 1px rgba(28,26,23,.1), 0 30px 60px -30px rgba(48,36,22,.4); }
+.detail img { display: block; width: 100%; }
+.pair { display: flex; align-items: flex-end; gap: 0; position: relative; }
+.pair .ph { margin-left: -96px; margin-bottom: -18px; position: relative; z-index: 2; }
+.stack { display: grid; gap: 30px; }
+.closing ul { list-style: none; display: grid; gap: 18px; margin-top: 8px; }
+.closing li { font-size: 15px; line-height: 1.6; color: rgba(242,238,230,.8); padding-left: 26px; position: relative; max-width: 52ch; }
+.closing li::before { content: ''; position: absolute; left: 0; top: .8em; width: 14px; height: 1px; background: #CDBF9C; }
+.closing h3 { font-family: Newsreader, serif; font-weight: 300; font-size: 28px; margin-bottom: 22px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-self: center; }
+</style></head><body><section class="page dark cover">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Client presentation — October 2026</span></header>
+  <div class="pg-intro"><p class="eyebrow">Shopify Dawn · Mobile-first redesign</p>
+    <h1>ARVI<br>Swiss Reserve</h1>
+    <p class="lede" style="color:rgba(242,238,230,.72)">A mobile-first storefront for fine and rare wines: calm, editorial and built entirely on Shopify's Dawn theme.</p>
+    <div class="meta"><span>Melano</span><span>Lugano</span><span>Zurich</span></div></div>
+  <div class="pg-stage" style="gap:40px"><figure class="ph " style="width:300px">
+  <div class="ph-body" style="padding:10px;border-radius:47px">
+    <div class="ph-screen" style="border-radius:37px">
+      <div class="ph-bar" style="height:33.7px;background:#ede9e1;color:#111;font-size:11.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:87px;height:25px"></span><span class="ph-icons" style="width:48px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-04-home-cellar.jpg" alt="" style="height:605.9px">
+    </div>
+  </div>
+</figure><figure class="ph lift" style="width:300px">
+  <div class="ph-body" style="padding:10px;border-radius:47px">
+    <div class="ph-screen" style="border-radius:37px">
+      <div class="ph-bar" style="height:33.7px;background:#f5f3ee;color:#111;font-size:11.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:87px;height:25px"></span><span class="ph-icons" style="width:48px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-07b-home-boutiques-rail.jpg" alt="" style="height:605.9px">
+    </div>
+  </div>
+</figure></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Mobile experience — 02</span></header>
+  <div class="pg-intro"><p class="eyebrow">Mobile homepage · Hero</p><h2>A first screen that sets the tone</h2><p class="lede">On a phone the campaign photograph leads, followed by ARVI’s promise and a single primary action. Prices in CHF and pick-up in Melano are stated before anything else.</p><div class="notes"><p><b>Real content.</b> ARVI's own autumn campaign and copy; nothing invented.</p><p><b>Keeps the bottle in frame.</b> The mobile crop is a theme-editor setting, not a fixed image.</p><p><b>Logo, search, account and cart</b> stay within thumb reach.</p></div><p style="display:none"></p></div>
+  <div class="pg-stage"><figure class="ph " style="width:360px">
+  <div class="ph-body" style="padding:12px;border-radius:57px">
+    <div class="ph-screen" style="border-radius:45px">
+      <div class="ph-bar" style="height:40.5px;background:#1c1a17;color:#fff;font-size:14.1px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:104px;height:30px"></span><span class="ph-icons" style="width:57px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-01-home-hero.jpg" alt="" style="height:727.1px">
+    </div>
+  </div><figcaption><span class="cap-t">Homepage, first screen</span><span class="cap-s">Campaign image, serif headline, one clear action</span></figcaption>
+</figure></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Mobile experience — 03</span></header>
+  <div class="pg-intro"><p class="eyebrow">Mobile navigation</p><h2>Navigation that reads like a wine list</h2><p class="lede">The menu uses the same serif as the editorial pages, with full-width rows that are easy to tap. Wines opens into the cellar’s structure: type, country, region.</p></div>
+  <div class="pg-stage"><figure class="ph " style="width:330px">
+  <div class="ph-body" style="padding:11px;border-radius:52px">
+    <div class="ph-screen" style="border-radius:41px">
+      <div class="ph-bar" style="height:37.1px;background:#1c1a17;color:#fff;font-size:12.9px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:95px;height:27px"></span><span class="ph-icons" style="width:52px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-12-nav-menu.jpg" alt="" style="height:666.5px">
+    </div>
+  </div><figcaption><span class="cap-t">Main menu</span><span class="cap-s">Serif entries, generous rows</span></figcaption>
+</figure><figure class="ph " style="width:330px">
+  <div class="ph-body" style="padding:11px;border-radius:52px">
+    <div class="ph-screen" style="border-radius:41px">
+      <div class="ph-bar" style="height:37.1px;background:#1c1a17;color:#fff;font-size:12.9px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:95px;height:27px"></span><span class="ph-icons" style="width:52px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-13-nav-wines.jpg" alt="" style="height:666.5px">
+    </div>
+  </div><figcaption><span class="cap-t">Wines</span><span class="cap-s">By type, France, Italy, Europe & New World</span></figcaption>
+</figure></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Mobile experience — 04</span></header>
+  <div class="pg-intro"><p class="eyebrow">Mobile homepage · Scrolling I</p><h2>From regions to the cellar</h2><p class="lede">The homepage reads as one story: where the wines come from, a curated selection, the cellar behind them, and the estates that define fine wine.</p></div>
+  <div class="pg-stage"><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#f5f3ee;color:#111;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-02-home-regions.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">Regions</span><span class="cap-s">1,742 to 16,792 references each</span></figcaption>
+</figure><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#f5f3ee;color:#111;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-03-home-selection.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">Selection</span><span class="cap-s">Swipe through Champagne</span></figcaption>
+</figure><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#ede9e1;color:#111;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-05-home-quote.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">Proof</span><span class="cap-s">30+ years · 10,000+ labels</span></figcaption>
+</figure><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#1c1a17;color:#fff;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-06-home-producers.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">Icons</span><span class="cap-s">Pétrus, Ausone, Lafite…</span></figcaption>
+</figure></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Mobile experience — 05</span></header>
+  <div class="pg-intro"><p class="eyebrow">Mobile homepage · Scrolling II</p><h2>Three boutiques, one house</h2><p class="lede">Long lists become horizontal rails on the phone, so the boutiques, services and selections never turn into an endless stack. The mobile homepage is 26% shorter than in the first build.</p></div>
+  <div class="pg-stage"><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#f5f3ee;color:#111;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-07-home-boutiques.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">Boutiques</span><span class="cap-s">Melano, Lugano, Zurich</span></figcaption>
+</figure><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#ede9e1;color:#111;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-08-home-values.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">Why ARVI</span><span class="cap-s">Compact two-by-two</span></figcaption>
+</figure><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#f5f3ee;color:#111;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-09-home-services.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">Services</span><span class="cap-s">Vault, En Primeur, Horeca, Events</span></figcaption>
+</figure><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#1c1a17;color:#fff;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-10-footer-top.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">Footer</span><span class="cap-s">Brand, menus side by side</span></figcaption>
+</figure></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Mobile experience — 06</span></header>
+  <div class="pg-intro"><p class="eyebrow">Mobile footer · Payments</p><h2>Closing with confidence</h2><p class="lede">Payment logos are Shopify’s own official artwork and follow the store’s payment settings automatically.</p><div class="notes"><p><b>Shown today:</b> Visa and Mastercard, the methods ARVI’s FAQ confirms for online payment.</p><p><b>American Express, TWINT and Apple Pay</b> appear here automatically once enabled in Shopify Payments. They are not shown before that, so nothing is misrepresented.</p></div><p style="display:none"></p></div>
+  <div class="pg-stage"><figure class="ph " style="width:330px">
+  <div class="ph-body" style="padding:11px;border-radius:52px">
+    <div class="ph-screen" style="border-radius:41px">
+      <div class="ph-bar" style="height:37.1px;background:#1c1a17;color:#fff;font-size:12.9px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:95px;height:27px"></span><span class="ph-icons" style="width:52px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-11-footer-payments.jpg" alt="" style="height:666.5px">
+    </div>
+  </div><figcaption><span class="cap-t">Footer, end of page</span><span class="cap-s">Language, payments, legal</span></figcaption>
+</figure><figure><div class="detail"><img src="img/payment-detail.jpg" alt=""></div><figcaption><span class="cap-t">Payment row, detail</span><span class="cap-s">Shopify’s official logos at their native proportions</span></figcaption></figure></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Mobile experience — 07</span></header>
+  <div class="pg-intro"><p class="eyebrow">Mobile product page</p><h2>The bottle, then the decision</h2><p class="lede">The packshot sits on the same warm stone as the rest of the site. Size and packaging come from ARVI’s own catalogue options, presented as “75 cl” and “Single bottle”.</p></div>
+  <div class="pg-stage"><figure class="ph " style="width:330px">
+  <div class="ph-body" style="padding:11px;border-radius:52px">
+    <div class="ph-screen" style="border-radius:41px">
+      <div class="ph-bar" style="height:37.1px;background:#1c1a17;color:#fff;font-size:12.9px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:95px;height:27px"></span><span class="ph-icons" style="width:52px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-14-product-hero.jpg" alt="" style="height:666.5px">
+    </div>
+  </div><figcaption><span class="cap-t">Product</span><span class="cap-s">Full bottle, never cropped</span></figcaption>
+</figure><figure class="ph " style="width:330px">
+  <div class="ph-body" style="padding:11px;border-radius:52px">
+    <div class="ph-screen" style="border-radius:41px">
+      <div class="ph-bar" style="height:37.1px;background:#f5f3ee;color:#111;font-size:12.9px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:95px;height:27px"></span><span class="ph-icons" style="width:52px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-15-product-buy.jpg" alt="" style="height:666.5px">
+    </div>
+  </div><figcaption><span class="cap-t">Purchase</span><span class="cap-s">Price in CHF, size, packaging, Add to cart</span></figcaption>
+</figure></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Mobile experience — 08</span></header>
+  <div class="pg-intro"><p class="eyebrow">Mobile product details</p><h2>Details a collector expects</h2><p class="lede">Every fact is read from ARVI’s product data. Critic scores appear only once they are connected to ARVI’s own metafields: nothing is shown without real data.</p></div>
+  <div class="pg-stage"><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#2c2a27;color:#fff;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-16-product-facts.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">Facts & service</span><span class="cap-s">Vintage, origin, alcohol; delivery</span></figcaption>
+</figure><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#f5f3ee;color:#111;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-17-product-vintages.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">All vintages</span><span class="cap-s">Available, sold out, viewing</span></figcaption>
+</figure><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#f5f3ee;color:#111;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-18-product-recommendations.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">You may also like</span><span class="cap-s">Other wines, never repeats</span></figcaption>
+</figure><figure class="ph " style="width:252px">
+  <div class="ph-body" style="padding:9px;border-radius:40px">
+    <div class="ph-screen" style="border-radius:31px">
+      <div class="ph-bar" style="height:28.2px;background:#f5f3ee;color:#111;font-size:9.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:73px;height:21px"></span><span class="ph-icons" style="width:40px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-19-product-price-on-request.jpg" alt="" style="height:506.4px">
+    </div>
+  </div><figcaption><span class="cap-t">Price on request</span><span class="cap-s">Enquiry instead of a CHF 0.00 price</span></figcaption>
+</figure></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Mobile experience — 09</span></header>
+  <div class="pg-intro"><p class="eyebrow">Mobile collections</p><h2>Browsing 10,000 labels on a phone</h2><p class="lede">Two-column cards keep the bottle prominent. Wines without a photograph get a designed placeholder instead of an empty tile, and the title always stays visible.</p></div>
+  <div class="pg-stage"><figure class="ph " style="width:300px">
+  <div class="ph-body" style="padding:10px;border-radius:47px">
+    <div class="ph-screen" style="border-radius:37px">
+      <div class="ph-bar" style="height:33.7px;background:#1c1a17;color:#fff;font-size:11.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:87px;height:25px"></span><span class="ph-icons" style="width:48px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-20-collection-top.jpg" alt="" style="height:605.9px">
+    </div>
+  </div><figcaption><span class="cap-t">Collection</span><span class="cap-s">Title, count, filter & sort</span></figcaption>
+</figure><figure class="ph " style="width:300px">
+  <div class="ph-body" style="padding:10px;border-radius:47px">
+    <div class="ph-screen" style="border-radius:37px">
+      <div class="ph-bar" style="height:33.7px;background:#efede8;color:#111;font-size:11.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:87px;height:25px"></span><span class="ph-icons" style="width:48px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-21-collection-grid.jpg" alt="" style="height:605.9px">
+    </div>
+  </div><figcaption><span class="cap-t">Product cards</span><span class="cap-s">Producer, name, formats, price</span></figcaption>
+</figure><figure class="ph " style="width:300px">
+  <div class="ph-body" style="padding:10px;border-radius:47px">
+    <div class="ph-screen" style="border-radius:37px">
+      <div class="ph-bar" style="height:33.7px;background:#dfddd9;color:#111;font-size:11.8px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:87px;height:25px"></span><span class="ph-icons" style="width:48px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-22-collection-filters.jpg" alt="" style="height:605.9px">
+    </div>
+  </div><figcaption><span class="cap-t">Filter & sort</span><span class="cap-s">Size, vintage, region, colour, producer</span></figcaption>
+</figure></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Mobile experience — 10</span></header>
+  <div class="pg-intro"><p class="eyebrow">Responsive comparison</p><h2>One design, every screen</h2><p class="lede">The same sections adapt rather than shrink: two columns become one, rows become rails, and type scales fluidly between 375 and 1920 pixels.</p></div>
+  <div class="pg-stage"><div class="stack"><div class="pair"><figure class="br" style="width:480px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch/pages/faq</span></div>
+  <div class="br-view" style="height:300px"><img src="img/desktop-11-faq.jpg" alt=""></div></div>
+</figure><figure class="ph " style="width:176px">
+  <div class="ph-body" style="padding:6px;border-radius:28px">
+    <div class="ph-screen" style="border-radius:22px">
+      <div class="ph-bar" style="height:19.8px;background:#1c1a17;color:#fff;font-size:6.9px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:51px;height:14px"></span><span class="ph-icons" style="width:28px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-23-faq.jpg" alt="" style="height:354.9px">
+    </div>
+  </div>
+</figure></div><p class="cap-s" style="text-align:center">FAQ · desktop and mobile</p></div><div class="stack"><div class="pair"><figure class="br" style="width:480px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch/pages/our-shops</span></div>
+  <div class="br-view" style="height:300px"><img src="img/desktop-10-boutiques-page.jpg" alt=""></div></div>
+</figure><figure class="ph " style="width:176px">
+  <div class="ph-body" style="padding:6px;border-radius:28px">
+    <div class="ph-screen" style="border-radius:22px">
+      <div class="ph-bar" style="height:19.8px;background:#1c1a17;color:#fff;font-size:6.9px">
+        <span class="ph-time">9:41</span><span class="ph-island" style="width:51px;height:14px"></span><span class="ph-icons" style="width:28px"><svg viewBox="0 0 68 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M30 3.2a10 10 0 0 1 13 0l-1.4 1.5a8 8 0 0 0-10.2 0zm2.6 2.9a6 6 0 0 1 7.8 0l-1.5 1.5a4 4 0 0 0-4.8 0zm2.6 2.8a2 2 0 0 1 2.6 0L36.5 11z"/><rect x="47" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="49" y="3" width="13" height="6" rx="1.6"/><rect x="66" y="4.2" width="1.6" height="3.6" rx=".8" fill-opacity=".45"/></g></svg></span>
+      </div>
+      <img src="img/mobile-24-boutiques-page.jpg" alt="" style="height:354.9px">
+    </div>
+  </div>
+</figure></div><p class="cap-s" style="text-align:center">Boutiques · desktop and mobile</p></div></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Desktop — 11</span></header>
+  <div class="pg-intro"><p class="eyebrow">Desktop · Homepage</p><h2>The full homepage</h2><p class="lede">The complete desktop homepage, read top to bottom in three columns: hero, regions, selection, cellar, producers, boutiques, values, services and footer.</p></div>
+  <div class="pg-stage"><div class="strips"><div class="strip"><img src="img/home-strip-0.jpg" alt=""></div><div class="strip"><img src="img/home-strip-1.jpg" alt=""></div><div class="strip"><img src="img/home-strip-2.jpg" alt=""></div></div></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Desktop — 12</span></header>
+  <div class="pg-intro"><p class="eyebrow">Desktop · Navigation</p><h2>Header, navigation and hero</h2><p class="lede">A centred logo, quiet spaced-caps navigation and a mega menu organised the way ARVI’s cellar is: by type, country and region.</p></div>
+  <div class="pg-stage"><div class="stack"><figure class="br" style="width:760px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch</span></div>
+  <div class="br-view" style="height:475px"><img src="img/desktop-01-home-hero.jpg" alt=""></div></div>
+</figure><figure class="br" style="width:760px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch</span></div>
+  <div class="br-view" style="height:290px"><img src="img/desktop-06-navigation-mega-menu.jpg" alt=""></div></div>
+</figure></div></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Desktop — 13</span></header>
+  <div class="pg-intro"><p class="eyebrow">Desktop · Shopping</p><h2>Product and collection</h2><p class="lede">On desktop the purchase column stays beside the bottle while the vintage index runs the full width below.</p></div>
+  <div class="pg-stage"><div class="stack"><figure class="br" style="width:560px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch/products/salon-le-mesnil-1999</span></div>
+  <div class="br-view" style="height:350px"><img src="img/desktop-07-product.jpg" alt=""></div></div>
+</figure><figure class="br" style="width:560px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch/products/salon-le-mesnil-1999</span></div>
+  <div class="br-view" style="height:350px"><img src="img/desktop-08-product-vintages.jpg" alt=""></div></div>
+</figure></div><figure class="br" style="width:560px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch/collections/champagne</span></div>
+  <div class="br-view" style="height:350px"><img src="img/desktop-09-collection.jpg" alt=""></div></div>
+</figure></div>
+</section><section class="page">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Desktop — 14</span></header>
+  <div class="pg-intro"><p class="eyebrow">Desktop · Editorial sections</p><h2>The brand story</h2><p class="lede">Cellar, regions, icons and boutiques: the sections that turn a catalogue into a house.</p></div>
+  <div class="pg-stage"><div class="stack"><figure class="br" style="width:560px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch</span></div>
+  <div class="br-view" style="height:350px"><img src="img/desktop-03-home-cellar-story.jpg" alt=""></div></div>
+</figure><figure class="br" style="width:560px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch</span></div>
+  <div class="br-view" style="height:350px"><img src="img/desktop-02-home-regions.jpg" alt=""></div></div>
+</figure></div><div class="stack"><figure class="br" style="width:560px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch</span></div>
+  <div class="br-view" style="height:350px"><img src="img/desktop-04-home-producers.jpg" alt=""></div></div>
+</figure><figure class="br" style="width:560px">
+  <div class="br-body"><div class="br-bar"><i></i><i></i><i></i><span class="br-url">arvi.ch</span></div>
+  <div class="br-view" style="height:350px"><img src="img/desktop-05-home-boutiques.jpg" alt=""></div></div>
+</figure></div></div>
+</section><section class="page dark closing">
+  <header class="pg-head"><span>ARVI · Swiss Reserve</span><span>Next steps — 15</span></header>
+  <div class="pg-intro"><p class="eyebrow">Delivery</p><h2>Ready to review on the store</h2>
+    <p class="lede">Every screen in this presentation is a real capture of the working theme, rendered with ARVI’s own catalogue.</p></div>
+  <div class="cols">
+    <div><h3>What ARVI receives</h3><ul>
+      <li>An installable Shopify theme built on Dawn 16.0.0, the same base as the current Shopify project.</li>
+      <li>Editable sections for every part of the homepage, product page and boutiques, in Italian, German, French and English.</li>
+      <li>A maintenance guide, QA reports and before/after screenshots.</li></ul></div>
+    <div><h3>Before launch</h3><ul>
+      <li>Upload as an unpublished theme and review it in the Shopify editor; the live store has not been touched.</li>
+      <li>Test cart, checkout and payments on the store. They are not yet verified.</li>
+      <li>Confirm payment methods, connect critic scores to ARVI’s metafields, and plan high-resolution boutique photography.</li></ul></div>
+  </div>
+</section></body></html>

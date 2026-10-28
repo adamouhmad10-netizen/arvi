@@ -38,7 +38,7 @@
 /* Product counts ("1742 products") use the same thousands separator as the rest of the site ("1,742").
    Display only; re-applied when filters re-render the count. */
 (() => {
-  const SEL = '#ProductCount, #ProductCountDesktop, .product-count__text';
+  const SEL = '#ProductCount, #ProductCountDesktop, .product-count__text, .mobile-facets__count';
   const group = (root = document) =>
     root.querySelectorAll(SEL).forEach((el) => {
       const t = el.textContent;
