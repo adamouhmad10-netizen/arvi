@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/", "destination": "/presentation/site/index.html" },
+    { "source": "/img/:path*", "destination": "/presentation/site/img/:path*" },
+    { "source": "/arvi-scroll-mobile.mp4", "destination": "/presentation/site/arvi-scroll-mobile.mp4" }
+  ]
+}
