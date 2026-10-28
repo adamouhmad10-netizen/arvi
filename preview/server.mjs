@@ -72,7 +72,7 @@ function baseGlobals(req, url) {
       available_countries: [{ iso_code: 'CH', name: 'Switzerland', currency: { iso_code: 'CHF', symbol: 'CHF' } }],
       country: { iso_code: 'CH', name: 'Switzerland', currency: { iso_code: 'CHF', symbol: 'CHF' } },
     },
-    cart: { item_count: 0, items: [], total_price: 0, items_subtotal_price: 0, note: '', attributes: {}, cart_level_discount_applications: [], 'empty?': true, requires_shipping: false, duties_included: false, taxes_included: true },
+    cart: new data.CartDrop(),
     customer: null,
     linklists,
     collections: data.collectionsProxy,
@@ -133,7 +133,10 @@ async function buildSection(engine, type, id, json, scope) {
 
 // Simulates the merchant connecting critic blocks to product metafields (dynamic sources) in the theme editor.
 // Values come from the critic data the WIP theme renders for that product.
+// Off by default: customer-facing screenshots must not show critic data the theme is not actually bound to.
+// Set PREVIEW_SIMULATE_CRITICS=1 only to check the critic block layout.
 function simulateDynamicSources(type, json, scope) {
+  if (process.env.PREVIEW_SIMULATE_CRITICS !== '1') return json;
   if (type !== 'arvi-wine-profile' || !scope.product) return json;
   const copy = JSON.parse(JSON.stringify(json));
   const critics = scope.product.__critics || [];
@@ -272,7 +275,17 @@ const server = http.createServer(async (req, res) => {
       const p = data.getProduct(url.searchParams.get('product_handle')) || null;
       const pid = url.searchParams.get('product_id');
       const prod = p || data.productHandles().map(data.getProduct).find((x) => String(x.id) === pid);
-      const same = prod ? data.productHandles().map(data.getProduct).filter((x) => x.vendor === prod.vendor && x.id !== prod.id && x.featured_media).slice(0, Number(url.searchParams.get('limit') || 4)) : [];
+      // Approximation of Shopify's related intent (the real algorithm is server-side): the producer's other
+      // wines first, then wines from the same region. The current product is always excluded, as on Shopify.
+      const all = data.productHandles().map(data.getProduct).filter((x) => prod && x.id !== prod.id && x.featured_media);
+      const region = (x) => (x.metafields.arvi.regione && x.metafields.arvi.regione.value) || '';
+      const byVendor = prod ? all.filter((x) => x.vendor === prod.vendor) : [];
+      const byRegion = prod ? all.filter((x) => x.vendor !== prod.vendor && region(x) && region(x) === region(prod)) : [];
+      const same = [];
+      for (let i = 0; same.length < Number(url.searchParams.get('limit') || 4) && (i < byVendor.length || i < byRegion.length); i++) {
+        if (byVendor[i]) same.push(byVendor[i]);
+        if (byRegion[i]) same.push(byRegion[i]);
+      }
       g.recommendations = { performed: true, products: same, products_count: same.length };
       const sid = url.searchParams.get('section_id') || '';
       const key = sid.split('__')[1] || 'related-products';

@@ -2,14 +2,16 @@
  "375 /": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
-  "smallTargets": [],
+  "smallTargets": [
+   "Champagne le Mesnil 2013 208x20"
+  ],
   "noAlt": 0,
   "h1": 1,
   "headingSkips": [],
@@ -18,12 +20,12 @@
  "375 /collections/champagne": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -34,12 +36,12 @@
  "375 /products/maison-salon-champagne-le-mesnil-1999": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -50,12 +52,12 @@
  "375 /products/chateau-latour-ex-chateau-release-2023-2015?variant=59475133137244": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -66,30 +68,28 @@
  "375 /search?q=krug": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Champagne Brut Collection 1989"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "375 /pages/faq": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -100,32 +100,32 @@
  "375 /pages/i-nostri-negozi": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Melano"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "390 /": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
-  "smallTargets": [],
+  "smallTargets": [
+   "Champagne le Mesnil 2013 217x20"
+  ],
   "noAlt": 0,
   "h1": 1,
   "headingSkips": [],
@@ -134,12 +134,12 @@
  "390 /collections/champagne": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -150,12 +150,12 @@
  "390 /products/maison-salon-champagne-le-mesnil-1999": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -166,12 +166,12 @@
  "390 /products/chateau-latour-ex-chateau-release-2023-2015?variant=59475133137244": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -182,30 +182,28 @@
  "390 /search?q=krug": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Champagne Brut Collection 1989"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "390 /pages/faq": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -216,30 +214,28 @@
  "390 /pages/i-nostri-negozi": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Melano"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "768 /": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [
    "Champagne le Mesnil 2013 332x22",
@@ -254,12 +250,12 @@
  "768 /collections/champagne": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [
    "Featured\n                      139x20",
@@ -273,12 +269,12 @@
  "768 /products/maison-salon-champagne-le-mesnil-1999": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -289,12 +285,12 @@
  "768 /products/chateau-latour-ex-chateau-release-2023-2015?variant=59475133137244": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [
    "Latour 1984 332x22",
@@ -309,39 +305,37 @@
  "768 /search?q=krug": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [
    "Champagne Brut Collection 1989 332x22",
    "Champagne Brut Vintage (Gift B 332x22",
    "Champagne Brut Rosé (Edition 2 332x22",
-   "Champagne Brut Rosé (Edition 2 312x22",
    "Champagne Brut Vintage 1971 332x22",
    "Champagne Brut Collection 1998 332x22",
    "Champagne Brut Vintage 2008 332x22",
-   "Champagne Brut Clos du Mesnil  332x22"
+   "Champagne Brut Clos du Mesnil  332x22",
+   "Champagne Brut Vintage 2006 332x22"
   ],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Champagne Brut Collection 1989"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "768 /pages/faq": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -352,30 +346,28 @@
  "768 /pages/i-nostri-negozi": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Melano"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "1024 /": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [
    "Champagne le Mesnil 2013 218x23"
@@ -388,12 +380,12 @@
  "1024 /collections/champagne": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [
    "Featured\n                      139x20",
@@ -407,12 +399,12 @@
  "1024 /products/maison-salon-champagne-le-mesnil-1999": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -423,12 +415,12 @@
  "1024 /products/chateau-latour-ex-chateau-release-2023-2015?variant=59475133137244": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -439,39 +431,37 @@
  "1024 /search?q=krug": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [
    "Champagne Brut Collection 1989 299x23",
    "Champagne Brut Rosé (Edition 2 299x23",
-   "Champagne Brut Rosé (Edition 2 279x22",
    "Champagne Brut Vintage 1971 299x23",
    "Champagne Brut Collection 1998 299x23",
    "Champagne Brut Vintage 2008 299x23",
    "Champagne Brut Clos du Mesnil  299x23",
-   "Champagne Brut Vintage 2006 299x23"
+   "Champagne Brut Vintage 2006 299x23",
+   "Champagne Brut Collection 1988 299x23"
   ],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Champagne Brut Collection 1989"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "1024 /pages/faq": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -482,30 +472,28 @@
  "1024 /pages/i-nostri-negozi": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Melano"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "1440 /": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -516,17 +504,16 @@
  "1440 /collections/champagne": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [
    "Featured\n                      139x20",
-   " 16x16",
-   "Champagne Brut Dom Pérignon 20 297x22"
+   " 16x16"
   ],
   "noAlt": 0,
   "h1": 1,
@@ -536,12 +523,12 @@
  "1440 /products/maison-salon-champagne-le-mesnil-1999": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -552,12 +539,12 @@
  "1440 /products/chateau-latour-ex-chateau-release-2023-2015?variant=59475133137244": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -568,34 +555,28 @@
  "1440 /search?q=krug": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
-  "smallTargets": [
-   "Champagne Brut Rosé (Edition 2 393x22",
-   "Champagne Brut Clos du Mesnil  393x22",
-   "Champagne Brut Grande Cuvée (E 393x22"
-  ],
+  "smallTargets": [],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Champagne Brut Collection 1989"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "1440 /pages/faq": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -606,30 +587,28 @@
  "1440 /pages/i-nostri-negozi": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Melano"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "1920 /": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -640,17 +619,16 @@
  "1920 /collections/champagne": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [
    "Featured\n                      139x20",
-   " 16x16",
-   "Champagne Brut Dom Pérignon 20 297x22"
+   " 16x16"
   ],
   "noAlt": 0,
   "h1": 1,
@@ -660,12 +638,12 @@
  "1920 /products/maison-salon-champagne-le-mesnil-1999": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -676,12 +654,12 @@
  "1920 /products/chateau-latour-ex-chateau-release-2023-2015?variant=59475133137244": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -692,34 +670,28 @@
  "1920 /search?q=krug": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
-  "smallTargets": [
-   "Champagne Brut Rosé (Edition 2 393x22",
-   "Champagne Brut Clos du Mesnil  393x22",
-   "Champagne Brut Grande Cuvée (E 393x22"
-  ],
+  "smallTargets": [],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Champagne Brut Collection 1989"
-  ],
+  "headingSkips": [],
   "textClip": []
  },
  "1920 /pages/faq": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
@@ -730,19 +702,17 @@
  "1920 /pages/i-nostri-negozi": {
   "overflowPx": 0,
   "wide": [
-   "drawer__header",
-   "drawer__heading",
+   "cart-drawer__warnings center",
+   "cart-drawer__empty-content",
+   "cart__empty-text",
    "drawer__close",
    "svg-wrapper",
-   "[object SVGAnimatedString]",
-   "CART-DRAWER-ITEMS"
+   "[object SVGAnimatedString]"
   ],
   "smallTargets": [],
   "noAlt": 0,
   "h1": 1,
-  "headingSkips": [
-   "H3:Melano"
-  ],
+  "headingSkips": [],
   "textClip": []
  }
 }

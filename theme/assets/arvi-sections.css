@@ -375,17 +375,18 @@
 
 @media screen and (min-width: 990px) {
   .arvi-heritage__grid {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
     gap: clamp(4.8rem, 2rem + 5vw, 12rem);
     align-items: center;
   }
 
   .arvi-heritage__media {
     margin: 0;
+    max-width: 52rem;
   }
 
   .arvi-heritage__img {
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 4 / 5;
   }
 
   .arvi-heritage__caption {
@@ -662,9 +663,6 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .arvi-boutique:nth-child(3n + 2) {
-    margin-top: 6.4rem;
-  }
 }
 
 /* Values ------------------------------------------------------------------------- */
@@ -936,6 +934,22 @@
     grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
     gap: 9.6rem;
   }
+
+  /* No critic or producer text: the vintage index spans the row, title left, years right */
+  .arvi-profile__grid--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .arvi-profile__grid--single .arvi-vintages {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    gap: 9.6rem;
+    align-items: start;
+  }
+
+  .arvi-profile__grid--single .arvi-vintages .arvi-eyebrow {
+    margin: 1.4rem 0 0;
+  }
 }
 
 /* Age gate --------------------------------------------------------------------------- */
@@ -1003,4 +1017,182 @@ html.arvi-age-open {
   .arvi-service .arvi-link {
     display: none;
   }
+}
+
+/* =====================================================================================
+   Refinement pass (v2): composition, mobile rhythm, carousels.
+   ===================================================================================== */
+
+/* Hero: text block centred in its panel; mobile crop follows the section's focus setting. */
+.arvi-hero__media img {
+  object-position: var(--arvi-focal-mobile, 50% 50%);
+}
+
+@media screen and (max-width: 749px) {
+  .arvi-hero__media {
+    aspect-ratio: 1 / 1;
+  }
+
+  .arvi-hero__content {
+    padding: 3.6rem var(--arvi-gutter) 4.4rem;
+  }
+
+  .arvi-hero .arvi-actions {
+    margin-top: 2.8rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .arvi-hero__media img {
+    object-position: 50% 50%;
+  }
+
+  .arvi-hero__content {
+    align-items: center;
+  }
+
+  .arvi-hero__caption {
+    left: 2.4rem;
+    bottom: 2.4rem;
+  }
+}
+
+/* Chairman's quote: a centred pull quote with its attribution directly beneath. */
+.arvi-quote {
+  justify-items: center;
+  text-align: center;
+}
+
+.arvi-quote blockquote {
+  max-width: 30ch;
+}
+
+.arvi-display--quote::before {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.arvi-quote figcaption {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--arvi-accent-text);
+}
+
+@media screen and (min-width: 990px) {
+  .arvi-quote {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3.2rem;
+  }
+
+  .arvi-quote blockquote,
+  .arvi-quote figcaption {
+    grid-column: 1;
+    align-self: auto;
+  }
+}
+
+/* Mobile: horizontally scrolling rails (with a visible peek of the next card) replace tall stacks
+   for boutiques, services and the featured selection. Native scroll-snap; no JavaScript. */
+@media screen and (max-width: 749px) {
+  .arvi-boutiques__grid,
+  .arvi-services__grid,
+  .arvi-shelf.grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-auto-columns: 80%;
+    gap: 1.6rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--arvi-gutter);
+    margin-inline: calc(var(--arvi-gutter) * -1);
+    padding-inline: var(--arvi-gutter);
+    padding-bottom: 0.4rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .arvi-shelf.grid {
+    grid-auto-columns: 62%;
+  }
+
+  .arvi-boutiques__grid::-webkit-scrollbar,
+  .arvi-services__grid::-webkit-scrollbar,
+  .arvi-shelf.grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .arvi-boutiques__grid > li,
+  .arvi-services__grid > li,
+  .arvi-shelf.grid > .grid__item {
+    scroll-snap-align: start;
+    width: auto;
+    max-width: none;
+  }
+
+  .arvi-boutique__media {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Values: a compact two-by-two grid */
+  .arvi-values__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.6rem;
+  }
+
+  .arvi-value {
+    padding: 2rem 0 2.4rem;
+    gap: 0.8rem;
+  }
+
+  .arvi-value__top {
+    margin-bottom: 0.4rem;
+  }
+
+  .arvi-value .arvi-body,
+  .arvi-value p {
+    font-size: 1.35rem;
+    line-height: 1.55;
+  }
+
+  .arvi-head {
+    margin-bottom: 2.8rem;
+    gap: 1.6rem;
+  }
+}
+
+/* Card endings line up across a row: the closing link sits at the foot of each card. */
+.arvi-boutique,
+.arvi-boutique article,
+.arvi-service,
+.arvi-service__link {
+  height: 100%;
+}
+
+.arvi-boutique article {
+  grid-template-rows: auto 1fr;
+}
+
+.arvi-boutique__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.arvi-boutique__body > .arvi-link:last-child {
+  margin-top: auto;
+}
+
+.arvi-service__link {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.arvi-service__link > .arvi-link:last-child {
+  margin-top: auto;
+  align-self: flex-start;
 }

@@ -12,6 +12,10 @@
 - [ ] Footer menus `footer-wines` / `footer`, and whether to show "Powered by Shopify" (edit in *Edit default theme content*).
 - [ ] Legal review of the age-gate wording (18+), and of whether spirits require 18+ while wine and beer could be 16+ under Swiss law. The current gate uses 18+ for the whole site, matching the WIP.
 
+- [ ] **Payment methods:** confirm which methods are enabled in Shopify Payments. ARVI's FAQ lists Visa and Mastercard; American Express, TWINT and Apple Pay are unverified. The footer shows exactly what Shopify reports.
+- [ ] **Search & Discovery:** enable *Sold-out products: show last*; review filter order (sizes start with 4 cl and 7 cl).
+- [ ] **Critic scores:** connect the critic blocks to ARVI's critic metafields; nothing is shown until then.
+
 ## Content and assets
 - [ ] **High-resolution boutique photography** (≥ 2000 px). The current originals are 660 px.
 - [ ] Product photos for products without images (≈16% of the sampled catalogue), and vintage-specific labels where one photo is reused.

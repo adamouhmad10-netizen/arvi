@@ -23,8 +23,10 @@
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <product-recommendations
     class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_to_show }}"
+    data-url="{{ routes.product_recommendations_url }}?limit=10"
     data-section-id="{{ section.id }}"
+    data-arvi-wine="{% render 'arvi-wine-key', product: product %}"
+    data-arvi-show="{{ section.settings.products_to_show }}"
     data-product-id="{{ product.id }}"
   >
     {% if recommendations.performed and recommendations.products_count > 0 %}
@@ -36,8 +38,14 @@
         role="list"
       >
         {% assign skip_card_product_styles = false %}
+        {%- comment -%} ARVI: one card per wine; other vintages of the viewed wine are removed by arvi-product.js {%- endcomment -%}
+        {%- assign arvi_seen = '|' -%}
         {% for recommendation in recommendations.products %}
-          <li class="grid__item">
+          {%- capture arvi_key %}{% render 'arvi-wine-key', product: recommendation %}{% endcapture -%}
+          {%- assign arvi_probe = '|' | append: arvi_key | append: '|' -%}
+          {%- if arvi_seen contains arvi_probe -%}{%- continue -%}{%- endif -%}
+          {%- assign arvi_seen = arvi_seen | append: arvi_key | append: '|' -%}
+          <li class="grid__item" data-arvi-wine="{{ arvi_key }}">
             {% render 'card-product',
               card_product: recommendation,
               media_aspect_ratio: section.settings.image_ratio,

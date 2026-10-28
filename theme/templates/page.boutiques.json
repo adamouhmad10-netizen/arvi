@@ -133,7 +133,8 @@
         "heading": "Trust, passion, expertise, respect",
         "color_scheme": "scheme-2",
         "padding": "l"
-      }
+      },
+      "disabled": true
     }
   },
   "order": [

@@ -61,3 +61,27 @@ if (!customElements.get('arvi-request-price')) {
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', name) : name();
   document.addEventListener('product-info:loaded', name);
 })();
+
+/* ARVI: related products show other wines, not other vintages of the wine being viewed (those are listed
+   under "All vintages"). The section dedupes by wine in Liquid; this removes the viewed wine's siblings
+   and trims to the configured count. Hides the section when nothing distinct remains. */
+(() => {
+  const prune = (host) => {
+    const items = [...host.querySelectorAll('li[data-arvi-wine]')];
+    if (!items.length) return;
+    const show = Number(host.dataset.arviShow) || 4;
+    let kept = 0;
+    items.forEach((li) => {
+      const keep = li.dataset.arviWine !== host.dataset.arviWine && kept < show;
+      if (keep) kept += 1;
+      else li.remove();
+    });
+    if (!kept) host.closest('.shopify-section')?.classList.add('hidden');
+  };
+  const start = () =>
+    document.querySelectorAll('product-recommendations[data-arvi-wine]').forEach((host) => {
+      prune(host);
+      new MutationObserver(() => prune(host)).observe(host, { childList: true });
+    });
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', start) : start();
+})();

@@ -34,3 +34,21 @@
   };
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', start) : start();
 })();
+
+/* Product counts ("1742 products") use the same thousands separator as the rest of the site ("1,742").
+   Display only; re-applied when filters re-render the count. */
+(() => {
+  const SEL = '#ProductCount, #ProductCountDesktop, .product-count__text';
+  const group = (root = document) =>
+    root.querySelectorAll(SEL).forEach((el) => {
+      const t = el.textContent;
+      const f = t.replace(/\b\d{4,}\b/g, (d) => d.replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+      if (f !== t) el.textContent = f;
+    });
+  const start = () => {
+    group();
+    const host = document.querySelector('.facets-container, #main-collection-filters, .template-search');
+    if (host) new MutationObserver(() => group()).observe(host, { childList: true, subtree: true, characterData: true });
+  };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', start) : start();
+})();

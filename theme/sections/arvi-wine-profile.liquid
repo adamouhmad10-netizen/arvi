@@ -12,28 +12,7 @@
   assign producer = collections[producer_handle]
 -%}
 
-<div class="arvi-profile color-{{ section.settings.color_scheme }} gradient arvi-pad--{{ section.settings.padding }}">
-  <div class="page-width arvi-profile__grid">
-    <div class="arvi-profile__col">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'vintages' -%}
-            <div class="arvi-profile__block" {{ block.shopify_attributes }}>
-              {%- render 'arvi-sibling-vintages', product: product, heading: block.settings.heading -%}
-            </div>
-          {%- when 'facts' -%}
-            {%- capture facts -%}{% render 'arvi-wine-facts', product: product, mode: 'list' %}{%- endcapture -%}
-            {%- if facts != blank -%}
-              <div class="arvi-profile__block" {{ block.shopify_attributes }}>
-                <h2 class="arvi-eyebrow">{{ block.settings.heading }}</h2>
-                {{ facts }}
-              </div>
-            {%- endif -%}
-        {%- endcase -%}
-      {%- endfor -%}
-    </div>
-
-    <div class="arvi-profile__col arvi-profile__col--wide">
+{%- capture wide -%}
       {%- if has_critic -%}
         <section class="arvi-profile__block arvi-critics" aria-labelledby="Critics-{{ section.id }}">
           <h2 class="arvi-eyebrow" id="Critics-{{ section.id }}">{{ section.settings.critics_heading }}</h2>
@@ -77,7 +56,34 @@
           {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
+{%- endcapture -%}
+
+<div class="arvi-profile color-{{ section.settings.color_scheme }} gradient arvi-pad--{{ section.settings.padding }}">
+  <div class="page-width arvi-profile__grid{% if wide == blank %} arvi-profile__grid--single{% endif %}">
+    <div class="arvi-profile__col">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'vintages' -%}
+            <div class="arvi-profile__block" {{ block.shopify_attributes }}>
+              {%- render 'arvi-sibling-vintages', product: product, heading: block.settings.heading -%}
+            </div>
+          {%- when 'facts' -%}
+            {%- capture facts -%}{% render 'arvi-wine-facts', product: product, mode: 'list' %}{%- endcapture -%}
+            {%- if facts != blank -%}
+              <div class="arvi-profile__block" {{ block.shopify_attributes }}>
+                <h2 class="arvi-eyebrow">{{ block.settings.heading }}</h2>
+                {{ facts }}
+              </div>
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
     </div>
+
+    {%- if wide != blank -%}
+      <div class="arvi-profile__col arvi-profile__col--wide">
+        {{- wide -}}
+      </div>
+    {%- endif -%}
   </div>
 </div>
 

@@ -6,7 +6,7 @@ Everything below is edited in **Online Store › Themes › Customize**.
 ### Homepage sections (in order)
 | Section | What you can change |
 |---|---|
-| **ARVI · Editorial hero** | Layout (text left/right, full-bleed overlay), height, colour scheme, desktop image + separate mobile image, alt text, caption, eyebrow (used as the page H1), headline, text, two links. Set a **focal point** on images in Content › Files so crops stay on the bottle. |
+| **ARVI · Editorial hero** | *Mobile crop: horizontal focus* keeps the bottle in frame on phones. Layout (text left/right, full-bleed overlay), height, colour scheme, desktop image + separate mobile image, alt text, caption, eyebrow (used as the page H1), headline, text, two links. Set a **focal point** on images in Content › Files so crops stay on the bottle. |
 | **ARVI · Collections** | Up to 7 collections. The first is the large tile. Per tile: title, kicker (e.g. "France"), featured bottle, or an editorial photo instead. The reference count can be toggled. |
 | **ARVI · Featured wines** | A collection, or hand-picked wines (up to 12), with the number shown and the collection link label. |
 | **ARVI · Heritage & cellar** | Image, eyebrow, heading, text, link. Up to 4 **Key figure** blocks and 1 **Quote** block. |
@@ -24,6 +24,8 @@ All sections have **colour scheme** and **vertical spacing** options and can be 
 - **Show bottle format on cards** (e.g. "75 cl · 150 cl · OWC").
 - **Product image note** (the illustrative-image disclaimer).
 - **Logo is the homepage H1** (leave off).
+- **Designed placeholder for wines without a photo** (on).
+- **Show "Powered by Shopify"** (off).
 
 ### Product page (template "product")
 The blocks are Dawn's, plus Custom Liquid blocks for the producer line, origin line, price on request, wine facts and the image note. The facts read the store's `arvi.*` metafields automatically. The **ARVI · Wine profile** section below adds:
@@ -46,19 +48,24 @@ This is the "ARVI · Age confirmation" section in the footer group. Its cookie (
 ### Customisation map (vs upstream Dawn 16.0.0, commit `7097aaf`)
 Run `git diff 7097aaf -- theme` for the exact diff.
 
-**New files (69).** All are prefixed `arvi-`:
+**New files (72).** All are prefixed `arvi-`:
 - sections: `arvi-hero`, `arvi-collection-tiles`, `arvi-product-showcase`, `arvi-heritage`, `arvi-producers`, `arvi-boutiques`, `arvi-values`, `arvi-services`, `arvi-faq`, `arvi-wine-profile`, `arvi-breadcrumbs`, `arvi-age-gate`
-- snippets: `arvi-head`, `arvi-image`, `arvi-icon`, `arvi-section-header`, `arvi-card-meta`, `arvi-wine-facts`, `arvi-sibling-vintages`, `arvi-request-price`, `arvi-pdp-vendor`, `arvi-pdp-scripts`, `arvi-number`
+- snippets: `arvi-head`, `arvi-image`, `arvi-icon`, `arvi-section-header`, `arvi-card-meta`, `arvi-card-fallback`, `arvi-wine-facts`, `arvi-sibling-vintages`, `arvi-wine-key`, `arvi-option-label`, `arvi-request-price`, `arvi-pdp-vendor`, `arvi-pdp-scripts`, `arvi-number`
 - assets: `arvi-base.css`, `arvi-sections.css`, `arvi.js`, `arvi-product.js`, `arvi-age-gate.js`, `arvi-variant-formato.js` (from the WIP theme), fonts, images
 - templates: `page.faq.json`, `page.boutiques.json`
 
-**Modified Dawn files (16).** Each Liquid edit is a small hook:
+**Modified Dawn files (20).** Each Liquid edit is a small hook:
 | File | Change |
 |---|---|
 | `layout/theme.liquid` | +2 lines: `{% render 'arvi-head' %}` after `base.css` |
 | `snippets/card-product.liquid` | +2 lines: `{% render 'arvi-card-meta' %}` after the vendor |
 | `snippets/price.liquid` | +27 lines: zero price → "Price on request" / "From <lowest published price>" |
 | `sections/header.liquid` | 4 conditions gain `and settings.arvi_logo_h1` |
+| `snippets/card-product.liquid` (v2) | `arvi_fallback` flag: designed stand-in for products without photos, keeps the media layout |
+| `snippets/product-variant-picker.liquid` | Option label via `arvi-option-label` (3 places) |
+| `sections/related-products.liquid` | Requests 10, one card per wine (`arvi-wine-key`), `data-arvi-*` for client pruning |
+| `sections/main-search.liquid` | +2 lines: visually hidden H2 |
+| `sections/footer.liquid` | `powered_by_link` behind `settings.arvi_show_powered_by` |
 | `config/settings_schema.json` | Appended "ARVI" group |
 | `config/settings_data.json`, `sections/*-group.json`, `templates/*.json` | Configuration |
 | `locales/{en.default,it,de,fr}.json` | Appended `arvi.*` keys |

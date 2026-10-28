@@ -48,3 +48,7 @@ Manual: keyboard tab order and visible focus checked (`presentation/screens/a11y
 - The mobile Lighthouse LCP target (≤ 2.5 s) **is not met in the local harness** (median 3.7–4.4 s). See SEO-PERFORMANCE-REPORT.md.
 - Products without images render as a named empty niche (data issue).
 - Long product titles with release notes (e.g. "Latour (Ex-Château) - Release 2023 2015") wrap to two lines; this is acceptable but would benefit from cleaner titles.
+
+
+## Refinement pass (v2), 28 Oct 2026
+See `REFINEMENT-PASS.md`. Theme Check 0 errors; axe 0 violations (14/14); responsive 0 overflow (42/42); interactions 14/14 (`presentation/qa-interactions.json`). Cart was tested by intercepting `/cart/add` in the browser only; Shopify cart and checkout remain untested.

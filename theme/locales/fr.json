@@ -554,12 +554,15 @@
       "grapes": "Cépages",
       "alcohol": "Alcool",
       "all_from_producer": "Tous les vins de {{ producer }}",
-      "owc_short": "CBO"
+      "owc_short": "CBO",
+      "vintage_current": "Sélectionné",
+      "vintage_available": "Disponible"
     },
     "formato": {
       "packaging": "Conditionnement",
       "single_bottle": "Bouteille seule",
-      "case_of": "Caisse bois d'origine de %n%"
+      "case_of": "Caisse bois d'origine de %n%",
+      "size": "Format"
     },
     "collections": {
       "references": "{{ number }} références"
@@ -583,6 +586,12 @@
       "denied_title": "Nous sommes désolés",
       "denied_text": "Vous devez avoir l'âge légal de consommation d'alcool pour visiter ce site.",
       "back": "Retour"
+    },
+    "card": {
+      "no_image": "Photo à venir"
+    },
+    "search": {
+      "results_heading": "Résultats"
     }
   }
 }

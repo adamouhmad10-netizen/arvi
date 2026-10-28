@@ -27,9 +27,9 @@
   --arvi-space-4: 3.2rem;
   --arvi-space-5: 4.8rem;
   --arvi-space-6: 6.4rem;
-  --arvi-section-s: clamp(3.2rem, 2rem + 3vw, 5.6rem);
-  --arvi-section-m: clamp(4.8rem, 3rem + 4.5vw, 9.6rem);
-  --arvi-section-l: clamp(6.4rem, 3.6rem + 7vw, 14.4rem);
+  --arvi-section-s: clamp(2.8rem, 1.6rem + 3vw, 5.6rem);
+  --arvi-section-m: clamp(4rem, 2.2rem + 4.5vw, 9.6rem);
+  --arvi-section-l: clamp(4.8rem, 2.2rem + 7vw, 12.8rem);
 
   --arvi-fs-xl: clamp(4.4rem, 2.6rem + 4.6vw, 9.6rem);
   --arvi-fs-l: clamp(3.4rem, 2.4rem + 2.6vw, 6.4rem);
@@ -67,6 +67,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   letter-spacing: 0.005em;
+  /* Body copy a touch darker than Dawn's 75% for long-form legibility on stone */
+  color: rgba(var(--color-foreground), 0.82);
 }
 
 .page-width {
@@ -309,6 +311,34 @@ a:not([href]) {
   text-transform: uppercase;
   padding: 0.9rem 0;
   min-height: auto;
+}
+
+.announcement-bar__message {
+  text-wrap: balance;
+}
+
+@media screen and (min-width: 990px) {
+  /* One line on desktop: the message may use the full centre column. */
+  .utility-bar .announcement-bar,
+  .utility-bar .announcement-bar__message {
+    max-width: none;
+  }
+
+  .utility-bar__grid .announcement-bar {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .utility-bar__grid .localization-wrapper {
+    grid-column: 3;
+    grid-row: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .announcement-bar__message {
+    white-space: nowrap;
+  }
 }
 
 .utility-bar {
@@ -622,6 +652,76 @@ details[open] > .header__menu-item span {
   }
 }
 
+/* Card rhythm: titles reserve two lines so format and price rows align across a row. Never truncated:
+   the vintage sits at the end of the name. */
+.card__information .card__heading {
+  min-height: calc(2 * 1.22em);
+}
+
+.card-information .price,
+.card-information .price .price-item--regular {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* Sold out: a quiet label set on the niche, not a boxed sticker. */
+.card__badge .badge {
+  border: 0;
+  padding: 0.5rem 0.9rem;
+  background: rgba(var(--arvi-stone), 0.86);
+  color: rgba(var(--arvi-ink), 0.72);
+}
+
+/* Designed stand-in for wines without photography (snippet arvi-card-fallback). */
+.card .card__media .media > .arvi-fallback {
+  display: flex;
+}
+
+.arvi-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  padding: 12% 0 9%;
+}
+
+.arvi-fallback__bottle {
+  position: static;
+  flex: 0 0 auto;
+  display: block;
+  height: 62%;
+  width: auto;
+  max-width: none;
+  fill: rgba(var(--arvi-ink), 0.085);
+  filter: drop-shadow(0 1.6rem 1.4rem rgba(var(--arvi-ink), 0.06));
+}
+
+.arvi-fallback__foil {
+  fill: rgba(var(--arvi-ink), 0.06);
+}
+
+.arvi-fallback__label {
+  fill: rgba(var(--arvi-stone), 0.55);
+}
+
+.arvi-fallback__note {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--arvi-muted);
+}
+
+/* Touch screens: the whole card opens the wine; no stacked cart buttons under every bottle. */
+@media screen and (max-width: 989px), (hover: none) {
+  .card-wrapper .quick-add {
+    display: none;
+  }
+}
+
 /* 7. Price ----------------------------------------------------------------- */
 .price {
   font-family: var(--arvi-font-ui);
@@ -643,9 +743,17 @@ details[open] > .header__menu-item span {
 }
 
 .collection-hero__inner {
-  align-items: flex-end;
+  align-items: flex-start;
   padding-bottom: clamp(2.4rem, 1.6rem + 2vw, 4.8rem);
-  border-bottom: 0.1rem solid var(--arvi-hairline);
+  border-bottom: 0;
+  /* Hairline drawn inside the page gutters so it aligns with the content edge */
+  background: linear-gradient(var(--arvi-hairline), var(--arvi-hairline)) center bottom / calc(100% - 2 * var(--arvi-gutter)) 0.1rem no-repeat;
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero__inner {
+    align-items: flex-end;
+  }
 }
 
 .collection-hero__title {
@@ -895,7 +1003,7 @@ details[open] > .header__menu-item span {
 
 .product__media-item .product-media-container .media img {
   object-fit: contain;
-  padding: 7% 18% 6%;
+  padding: 5% 14% 4%;
   filter: drop-shadow(0 2.4rem 2rem rgba(var(--arvi-ink), 0.16));
 }
 
@@ -905,7 +1013,7 @@ details[open] > .header__menu-item span {
 
 @media screen and (max-width: 749px) {
   .product__media-item .product-media-container .media img {
-    padding: 8% 22% 6%;
+    padding: 4% 12% 3%;
   }
 }
 
@@ -992,46 +1100,88 @@ product-info:has(arvi-request-price:not(.hidden)) .product-form__quantity {
   display: none;
 }
 
-/* Sibling vintages — also styles the WIP `arvi-vintage-grid` section if merged */
+/* Sibling vintages: an editorial year index. Each year carries a quiet status line instead of
+   boxes; sold-out years stay legible but recede. Also styles the WIP `arvi-vintage-grid` if merged. */
 .arvi-vintages__list,
 .arvi-vintages__grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.2rem, 1fr));
+  gap: 0 2.4rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .arvi-vintage {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 6.4rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
   min-height: 4.4rem;
-  padding: 0 1.4rem;
-  font-size: 1.4rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
+  padding: 1.2rem 0 1.1rem;
   text-decoration: none;
   color: rgb(var(--color-foreground));
-  border: 0.1rem solid var(--arvi-hairline-strong);
-  transition: border-color var(--arvi-dur), background-color var(--arvi-dur), color var(--arvi-dur);
+  border-top: 0.1rem solid var(--arvi-hairline);
+  transition: color var(--arvi-dur) var(--arvi-ease);
 }
 
-a.arvi-vintage:hover {
-  border-color: rgb(var(--color-foreground));
+.arvi-vintage::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -0.1rem;
+  width: 100%;
+  height: 0.1rem;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--arvi-dur-slow) var(--arvi-ease-out);
 }
 
-.arvi-vintage--selected {
-  background: rgb(var(--color-foreground));
-  color: rgb(var(--color-background));
-  border-color: rgb(var(--color-foreground));
+a.arvi-vintage:hover::after,
+a.arvi-vintage:focus-visible::after,
+.arvi-vintage--selected::after {
+  transform: scaleX(1);
 }
 
-.arvi-vintage--unavailable {
-  color: rgba(var(--color-foreground), 0.66);
-  border-style: dashed;
+.arvi-vintage__year {
+  font-family: var(--arvi-font-display);
+  font-size: 2.2rem;
+  font-weight: 350;
+  line-height: 1.1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.arvi-vintage__state {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--arvi-muted);
+}
+
+.arvi-vintage--selected .arvi-vintage__state {
+  color: var(--arvi-accent-text, #6e6246);
+}
+
+.arvi-vintage--selected::after {
+  height: 0.2rem;
+  top: -0.15rem;
+  background: var(--arvi-accent, #998a65);
+}
+
+.arvi-vintage--unavailable .arvi-vintage__year {
+  color: rgba(var(--color-foreground), 0.62);
+}
+
+.arvi-vintage--unavailable:hover .arvi-vintage__year {
+  color: rgb(var(--color-foreground));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arvi-vintage::after {
+    transition: none;
+  }
 }
 
 /* Critic scores — also styles the WIP `arvi-vintage` section if merged */
@@ -1262,9 +1412,12 @@ a.arvi-vintage:hover {
   mix-blend-mode: multiply;
 }
 
-/* Bottles are never cropped, at any breakpoint */
+/* Bottles are never cropped, at any breakpoint. The breathing room is padding, so it must sit inside the
+   frame (border-box); with Dawn's default content-box the padded image overflowed and was clipped on mobile. */
 .product__media-item .media img,
-.product-media-container .media img {
+.product-media-container .media img,
+.card .card__media .media img {
+  box-sizing: border-box;
   object-fit: contain !important;
 }
 
@@ -1322,4 +1475,127 @@ a.arvi-vintage:hover {
 .product-count.light,
 .product-count-vertical.light {
   opacity: 1;
+}
+
+/* Price on request already says the wine is offered by enquiry; a second "Sold out" sticker contradicts it. */
+product-info:has(arvi-request-price:not(.hidden)) .price .badge {
+  display: none;
+}
+
+/* Collection title: left-aligned at every width, in line with the breadcrumb. */
+.collection-hero__title,
+.collection-hero__text-wrapper {
+  text-align: left;
+}
+
+/* Footer on small screens: page gutter, menus side by side, a compact newsletter. */
+@media screen and (max-width: 749px) {
+  .footer .page-width {
+    padding-left: var(--arvi-gutter);
+    padding-right: var(--arvi-gutter);
+  }
+
+  .footer .footer__blocks-wrapper.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.6rem;
+    row-gap: 4rem;
+  }
+
+  .footer__blocks-wrapper > .footer-block {
+    width: auto;
+    max-width: none;
+    grid-column: 1 / -1;
+  }
+
+  .footer__blocks-wrapper > .footer-block--menu {
+    grid-column: auto;
+  }
+
+  .footer .footer-block--menu .footer-block__details-content .list-menu__item--link {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .footer-block__details-content > li {
+    margin-bottom: 0;
+  }
+
+  .footer__content-top .footer-block--newsletter,
+  .footer .footer-block--newsletter .footer-block__heading {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer .footer-block--newsletter .newsletter-form,
+  .footer .footer-block--newsletter .newsletter-form__field-wrapper {
+    max-width: none;
+    width: 100%;
+  }
+
+  .footer .footer__list-social {
+    justify-content: flex-start;
+    margin-left: -1.1rem;
+  }
+
+  .footer .footer-block__details-content {
+    margin-bottom: 0;
+  }
+
+  .footer .footer__content-bottom-wrapper,
+  .footer .footer__column--info,
+  .footer .footer__localization,
+  .footer .localization-form {
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer .list-payment {
+    justify-content: flex-start;
+  }
+
+  .footer .footer__copyright {
+    text-align: left;
+  }
+}
+
+/* Search: the page title uses the same display treatment as collection titles. */
+.template-search__header h1 {
+  font-family: var(--arvi-font-display);
+  font-weight: 300;
+  font-size: var(--arvi-fs-l);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 3.2rem;
+}
+
+/* Micro-interactions: a short, subtle press on buttons; respects reduced motion. */
+.button,
+.quantity__button {
+  font-family: var(--arvi-font-ui);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .button:not([disabled]) {
+    transition: background-color var(--arvi-dur) var(--arvi-ease), color var(--arvi-dur) var(--arvi-ease),
+      transform 120ms var(--arvi-ease);
+  }
+
+  .button:not([disabled]):active {
+    transform: scale(0.985);
+  }
+}
+
+.button:focus-visible,
+.arvi-link:focus-visible,
+.arvi-vintage:focus-visible {
+  outline: 0.1rem solid rgb(var(--color-foreground));
+  outline-offset: 0.4rem;
+  box-shadow: none;
+}
+
+/* Sort control: a full 44 px target (Dawn resets it to a 20 px text-height select). */
+.facet-filters__field .select__select.facet-filters__sort {
+  min-height: 4.4rem;
 }

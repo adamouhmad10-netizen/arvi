@@ -1554,6 +1554,13 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "arvi_card_fallback",
+        "label": "Designed placeholder for wines without a photo",
+        "info": "Shows a bottle silhouette and keeps the title below the image.",
+        "default": true
+      },
+      {
         "type": "header",
         "content": "Product page"
       },
@@ -1562,6 +1569,16 @@
         "id": "arvi_image_disclaimer",
         "label": "Product image note",
         "default": "<p>The product image is for illustrative purposes only and may not exactly reflect the actual characteristics of the wine.</p>"
+      },
+      {
+        "type": "header",
+        "content": "Footer"
+      },
+      {
+        "type": "checkbox",
+        "id": "arvi_show_powered_by",
+        "label": "Show \"Powered by Shopify\"",
+        "default": false
       }
     ]
   }

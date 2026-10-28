@@ -370,3 +370,14 @@ export function linklists() {
     'customer-account-main-menu': { handle: 'customer-account-main-menu', links: [] },
   };
 }
+
+// An empty cart: Shopify treats it as `empty` (header hides the count bubble). LiquidJS compares Drops via valueOf().
+export class CartDrop extends Drop {
+  constructor() {
+    super();
+    Object.assign(this, { item_count: 0, items: [], total_price: 0, items_subtotal_price: 0, note: '', attributes: {}, cart_level_discount_applications: [], 'empty?': true, requires_shipping: false, duties_included: false, taxes_included: true });
+  }
+  valueOf() {
+    return this.item_count ? 'cart' : [];
+  }
+}

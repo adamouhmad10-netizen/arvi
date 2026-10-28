@@ -36,6 +36,8 @@ Useful URLs:
 - `/products/chateau-latour-ex-chateau-release-2023-2015?variant=59475133137244` (price on request)
 - `/search?q=krug`, `/pages/faq`, `/pages/i-nostri-negozi`
 
+Preview options (environment variables): `PREVIEW_PAYMENT_TYPES=visa,master,…` (default: the two methods verified in ARVI's FAQ) and `PREVIEW_SIMULATE_CRITICS=1` (fills critic blocks with data scraped from the WIP store, for layout checks only; off by default).
+
 The harness needs the captured catalogue in `research/raw/shop/`. That folder is git-ignored; re-create it with `scripts/shopfetch.py` and the storefront password. Cart, checkout, accounts and filtering logic are not functional in the harness.
 
 ## C. Regenerate screenshots and QA

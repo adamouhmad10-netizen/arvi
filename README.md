@@ -14,6 +14,7 @@ A luxury redesign of ARVI SA's Shopify storefront, built as an Online Store 2.0 
 | H. Maintenance guide | `docs/MAINTENANCE-GUIDE.md` |
 | I. Preview & installation | `docs/INSTALL-PREVIEW.md` |
 | J. Remaining requirements | `docs/REMAINING-REQUIREMENTS.md` |
+| Refinement pass (v2) | `docs/REFINEMENT-PASS.md`, `presentation/screens/before/`, `presentation/screens/after/` |
 
 Local preview: `node preview/server.mjs` → http://localhost:9292 (see INSTALL-PREVIEW.md).
 

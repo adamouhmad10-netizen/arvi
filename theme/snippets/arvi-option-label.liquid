@@ -1,0 +1,15 @@
+{%- comment -%}
+  Storefront label for a product option. The catalogue's Italian option name "Formato" is shown in the
+  visitor's language (locales: arvi.formato.size); every other option name is shown as entered.
+
+  Accepts:
+  - name: {String} option name
+{%- endcomment -%}
+{%- liquid
+  assign n = name | downcase | strip
+  if n == 'formato' or n == 'format' or n == 'size' or n == 'grösse' or n == 'taille'
+    echo 'arvi.formato.size' | t
+  else
+    echo name
+  endif
+-%}

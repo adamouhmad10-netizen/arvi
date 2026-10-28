@@ -1,0 +1,32 @@
+{%- comment -%}
+  Designed stand-in for a product without photography: a quiet bottle silhouette (Champagne or still-wine
+  shape) on the same stone ground as real packshots, with a discreet note. The product title stays below
+  the image like every other card. Enabled in Theme settings > ARVI.
+
+  Accepts:
+  - product: {Object}
+  - class: {String} extra classes (optional)
+{%- endcomment -%}
+{%- liquid
+  assign colour = product.metafields.arvi.colore.value | append: '' | downcase
+  assign sparkling = false
+  if product.title contains 'Champagne' or colour contains 'sparkling' or colour contains 'spumante' or colour contains 'mousseux' or colour contains 'schaum' or colour contains 'champagne'
+    assign sparkling = true
+  endif
+-%}
+<div class="arvi-fallback {{ class }}" role="img" aria-label="{{ 'arvi.card.no_image' | t | escape }}">
+  {%- if sparkling -%}
+    <svg class="arvi-fallback__bottle" viewBox="0 0 60 220" aria-hidden="true" focusable="false">
+      <path d="M25 4h10v30c0 8 4 14 9 26 5 12 8 24 8 40v104c0 7-4 12-11 12H19c-7 0-11-5-11-12V100c0-16 3-28 8-40 5-12 9-18 9-26z"/>
+      <path class="arvi-fallback__foil" d="M25 4h10v44c0 0-2 4-5 4s-5-4-5-4z"/>
+      <rect class="arvi-fallback__label" x="13" y="132" width="34" height="42" rx="1"/>
+    </svg>
+  {%- else -%}
+    <svg class="arvi-fallback__bottle" viewBox="0 0 60 220" aria-hidden="true" focusable="false">
+      <path d="M25 4h10v52c0 6 3 9 8 12 6 4 9 10 9 18v118c0 7-4 12-11 12H19c-7 0-11-5-11-12V86c0-8 3-14 9-18 5-3 8-6 8-12z"/>
+      <path class="arvi-fallback__foil" d="M25 4h10v28H25z"/>
+      <rect class="arvi-fallback__label" x="13" y="120" width="34" height="44" rx="1"/>
+    </svg>
+  {%- endif -%}
+  <span class="arvi-fallback__note" aria-hidden="true">{{ 'arvi.card.no_image' | t }}</span>
+</div>

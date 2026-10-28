@@ -193,7 +193,9 @@
     "arvi_request_price_enabled": true,
     "arvi_request_price_email": "info@arvi.ch",
     "arvi_card_show_format": true,
-    "arvi_image_disclaimer": "<p>The product image is for illustrative purposes only and may not exactly reflect the actual characteristics of the wine.</p>"
+    "arvi_image_disclaimer": "<p>The product image is for illustrative purposes only and may not exactly reflect the actual characteristics of the wine.</p>",
+    "arvi_card_fallback": true,
+    "arvi_show_powered_by": false
   },
   "presets": {
     "Dawn": {

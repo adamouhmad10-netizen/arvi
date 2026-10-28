@@ -11,7 +11,10 @@
   class="arvi-hero arvi-hero--{{ section.settings.layout }} arvi-hero--{{ section.settings.height }} color-{{ section.settings.color_scheme }} gradient"
   aria-labelledby="ArviHeroHeading-{{ section.id }}"
 >
-  <div class="arvi-hero__media{% if section.settings.image_mobile != blank %} arvi-hero__media--has-mobile{% endif %}">
+  <div
+    class="arvi-hero__media{% if section.settings.image_mobile != blank %} arvi-hero__media--has-mobile{% endif %}"
+    style="--arvi-focal-mobile: {{ section.settings.mobile_focal_x | default: 50 }}% 50%;"
+  >
     <div class="arvi-hero__media-desktop">
       {%- render 'arvi-image',
         image: section.settings.image,
@@ -151,6 +154,13 @@
       "id": "image_alt",
       "label": "Image description (alt text)",
       "default": "A bottle of Barolo resting against an old tree above autumn vineyards"
+    },
+    {
+      "type": "range",
+      "id": "mobile_focal_x",
+      "label": "Mobile crop: horizontal focus",
+      "info": "Moves the mobile crop left (0) or right (100) so the bottle stays in frame. Ignored when a separate mobile image is set.",
+      "min": 0, "max": 100, "step": 2, "unit": "%", "default": 50
     },
     {
       "type": "text",

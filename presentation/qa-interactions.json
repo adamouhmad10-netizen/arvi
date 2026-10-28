@@ -1,0 +1,72 @@
+[
+ {
+  "test": "Option label translated (no \"Formato\" on EN)",
+  "pass": true,
+  "detail": "['Size', 'Size', 'Packaging', 'Quantity\\n                      \\n\\n\\n  \\n\\n\\n(0 in cart)']"
+ },
+ {
+  "test": "Add to cart POSTs /cart/add with the selected variant",
+  "pass": true,
+  "detail": "http://localhost:9292/cart/add variant 59474189680988"
+ },
+ {
+  "test": "Add to cart sends quantity 1",
+  "pass": true,
+  "detail": "multipart/form-data; boundary=----WebKit"
+ },
+ {
+  "test": "Cart drawer opens after the (intercepted) add",
+  "pass": true,
+  "detail": "cart-drawer.active=True"
+ },
+ {
+  "test": "Vintage index renders states",
+  "pass": true,
+  "detail": "AAUAAAUSAUUUU"
+ },
+ {
+  "test": "No dashed \"broken\" vintage boxes",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "No unbound critic data on the page",
+  "pass": true,
+  "detail": "0 critic blocks"
+ },
+ {
+  "test": "Recommendations: no repeats, no other vintage of this wine",
+  "pass": true,
+  "detail": "4 cards"
+ },
+ {
+  "test": "Price on request: enquiry shown, no conflicting badge, no add-to-cart",
+  "pass": true,
+  "detail": "[True, 0, False]"
+ },
+ {
+  "test": "Missing-photo card keeps its title and media layout",
+  "pass": true,
+  "detail": "['block', 'Champagne Brut Dom P\u00e9rignon 20', True]"
+ },
+ {
+  "test": "Mega menu opens",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Mobile menu drawer opens",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Account access visible on mobile (Dawn 16 has no drawer account link)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Mobile boutiques rail scrolls horizontally",
+  "pass": true,
+  "detail": "['auto', True]"
+ }
+]

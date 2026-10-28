@@ -30,8 +30,15 @@
 {%- endunless -%}
 {%- if card_product and card_product != empty -%}
   {%- liquid
+    # ARVI: products without photography get a designed stand-in and keep the standard media layout
+    assign arvi_fallback = false
+    if card_product.featured_media == blank and settings.arvi_card_fallback
+      assign arvi_fallback = true
+    endif
     assign ratio = 1
-    if card_product.featured_media and media_aspect_ratio == 'portrait'
+    if arvi_fallback and media_aspect_ratio == 'portrait'
+      assign ratio = 0.8
+    elsif card_product.featured_media and media_aspect_ratio == 'portrait'
       assign ratio = 0.8
     elsif card_product.featured_media and media_aspect_ratio == 'adapt'
       assign ratio = card_product.featured_media.aspect_ratio
@@ -46,7 +53,7 @@
       <div
         class="
           card card--{{ settings.card_style }}
-          {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
+          {% if card_product.featured_media or arvi_fallback %} card--media{% else %} card--text{% endif %}
           {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
           {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
           {% if extend_height %} card--extend-height{% endif %}
@@ -56,7 +63,7 @@
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         <div
-          class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
+          class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or arvi_fallback or settings.card_style == 'standard' %} ratio{% endif %}"
           style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
         >
           {%- if card_product.featured_media -%}
@@ -107,12 +114,18 @@
                 {%- endif -%}
               </div>
             </div>
+          {%- elsif arvi_fallback -%}
+            <div class="card__media">
+              <div class="media media--transparent">
+                {%- render 'arvi-card-fallback', product: card_product -%}
+              </div>
+            </div>
           {%- endif -%}
           <div class="card__content">
             <div class="card__information">
               <h3
                 class="card__heading"
-                {% if card_product.featured_media == null and settings.card_style == 'standard' %}
+                {% if card_product.featured_media == null and arvi_fallback == false and settings.card_style == 'standard' %}
                   id="title-{{ section_id }}-{{ card_product.id }}"
                 {% endif %}
               >
@@ -148,8 +161,8 @@
         <div class="card__content">
           <div class="card__information">
             <h3
-              class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
-              {% if card_product.featured_media or settings.card_style == 'card' %}
+              class="card__heading{% if card_product.featured_media or arvi_fallback or settings.card_style == 'standard' %} h5{% endif %}"
+              {% if card_product.featured_media or arvi_fallback or settings.card_style == 'card' %}
                 id="title-{{ section_id }}-{{ card_product.id }}"
               {% endif %}
             >

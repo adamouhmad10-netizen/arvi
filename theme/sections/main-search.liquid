@@ -227,6 +227,8 @@
           {%- endif -%}
         {%- endif -%}
         <div class="product-grid-container" id="ProductGridContainer">
+          {%- comment -%} ARVI: keeps the heading outline H1 > H2 > H3 (card titles) {%- endcomment -%}
+          <h2 class="visually-hidden">{{ 'arvi.search.results_heading' | t }}</h2>
           {%- if search.results.size == 0 and search.filters != empty -%}
             <div
               class="template-search__results collection collection--empty{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"

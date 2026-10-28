@@ -17,7 +17,8 @@
         "button_label_1": "Explore Piedmont",
         "button_link_1": "shopify://collections/piemonte",
         "button_label_2": "Visit our boutiques",
-        "button_link_2": "shopify://pages/i-nostri-negozi"
+        "button_link_2": "shopify://pages/i-nostri-negozi",
+        "mobile_focal_x": 12
       }
     },
     "regions": {
@@ -46,15 +47,17 @@
           "settings": {
             "collection": "burgundy",
             "kicker": "France",
-            "title": "Burgundy"
+            "title": "Burgundy",
+            "product": "remoissenet-pere-fils-chambertin-2006"
           }
         },
         "c4": {
           "type": "collection",
           "settings": {
-            "collection": "toscana",
-            "kicker": "Italy",
-            "title": "Tuscany"
+            "collection": "italy",
+            "kicker": "All regions",
+            "title": "Italy",
+            "product": "tenuta-san-guido-le-difese-2022"
           }
         },
         "c5": {
@@ -148,9 +151,9 @@
         "text": "<p>All wines we offer are owned by our company and stored in our temperature- and humidity-controlled cellars. Every single case is checked upon receipt by our professional staff, photographed and registered, which guarantees full traceability.</p>",
         "link_label": "About ARVI",
         "link_url": "shopify://pages/chi-siamo",
-        "fallback_image": "arvi-cellar",
-        "image_alt": "Original wooden wine cases stacked on shelves in the ARVI cellar",
-        "caption": "The ARVI cellar, Melano",
+        "fallback_image": "arvi-bottles",
+        "image_alt": "Bottles of fine wine resting on their sides, red capsules in soft light",
+        "caption": "",
         "color_scheme": "scheme-2",
         "padding": "l"
       }

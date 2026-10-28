@@ -1,0 +1,17 @@
+{%- comment -%}
+  Outputs a product's wine identity: producer + title without the trailing vintage ("2015", "NV").
+  Used to recognise other vintages of the same wine (recommendations, vintage index).
+
+  Accepts:
+  - product: {Object}
+{%- endcomment -%}
+{%- liquid
+  assign last_word = product.title | split: ' ' | last
+  assign last_num = last_word | plus: 0
+  if last_word == 'NV' or last_num > 1800
+    assign base = product.title | remove_last: last_word | strip
+  else
+    assign base = product.title
+  endif
+  echo product.vendor | append: '|' | append: base | handleize
+-%}

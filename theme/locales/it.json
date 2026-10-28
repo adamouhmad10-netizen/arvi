@@ -554,12 +554,15 @@
       "grapes": "Uvaggio",
       "alcohol": "Alcol",
       "all_from_producer": "Tutti i vini di {{ producer }}",
-      "owc_short": "Cassa originale"
+      "owc_short": "Cassa originale",
+      "vintage_current": "In visione",
+      "vintage_available": "Disponibile"
     },
     "formato": {
       "packaging": "Confezione",
       "single_bottle": "Bottiglia singola",
-      "case_of": "Cassa da %n%"
+      "case_of": "Cassa da %n%",
+      "size": "Formato"
     },
     "collections": {
       "references": "{{ number }} referenze"
@@ -583,6 +586,12 @@
       "denied_title": "Ci dispiace",
       "denied_text": "Per visitare questo sito devi avere l'età legale per il consumo di alcolici.",
       "back": "Indietro"
+    },
+    "card": {
+      "no_image": "Fotografia in arrivo"
+    },
+    "search": {
+      "results_heading": "Risultati"
     }
   }
 }
