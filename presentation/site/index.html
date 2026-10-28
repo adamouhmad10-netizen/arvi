@@ -1,0 +1,271 @@
+<title>ARVI Swiss Reserve</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Inter:wght@400;500&display=swap">
+<style>
+/* Layout: a single editorial column of "plates" — framed screenshots on stone, captions in tracked micro-caps, like a gallery catalogue. */
+:root {
+  --stone: #F5F3EE;
+  --mist: #EDE9E1;
+  --linen: #DDD6C8;
+  --ink: #1C1A17;
+  --muted: #5E584E;
+  --bronze: #6E6246;
+  --bronze-deco: #998A65;
+  --plate: #FFFFFF;
+  --hair: rgba(28, 26, 23, 0.14);
+  --display: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --ui: 'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --stone: #1C1A17; --mist: #242019; --linen: #3A342B; --ink: #F2EEE6; --muted: #B9B0A1;
+    --bronze: #CDBF9C; --bronze-deco: #B3A27A; --plate: #2B241E; --hair: rgba(242, 238, 230, 0.16);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --stone: #1C1A17; --mist: #242019; --linen: #3A342B; --ink: #F2EEE6; --muted: #B9B0A1;
+  --bronze: #CDBF9C; --bronze-deco: #B3A27A; --plate: #2B241E; --hair: rgba(242, 238, 230, 0.16);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--stone);
+  color: var(--ink);
+  font: 400 16px/1.65 var(--ui);
+  -webkit-font-smoothing: antialiased;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1240px; margin: 0 auto; }
+.narrow { max-width: 68ch; }
+section { padding-block: clamp(56px, 8vw, 120px); border-top: 1px solid var(--hair); }
+section:first-of-type { border-top: 0; }
+.eyebrow { font: 500 11px/1.4 var(--ui); letter-spacing: .18em; text-transform: uppercase; color: var(--bronze); margin: 0 0 18px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 300; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(48px, 9vw, 128px); line-height: .95; letter-spacing: -0.035em; }
+h2 { font-size: clamp(34px, 5vw, 64px); line-height: 1.02; }
+h3 { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.15; font-weight: 400; }
+p { margin: 0 0 1em; }
+.lede { font-size: clamp(17px, 1.6vw, 21px); line-height: 1.6; color: var(--muted); max-width: 58ch; }
+.head { display: grid; gap: 24px; margin-bottom: clamp(32px, 4vw, 56px); }
+@media (min-width: 900px) { .head { grid-template-columns: 7fr 5fr; align-items: end; gap: 64px; } }
+.head .lede { margin: 0; }
+figure { margin: 0; }
+figcaption { font: 500 11px/1.5 var(--ui); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 14px; }
+.plate { background: var(--plate); border: 1px solid var(--hair); padding: clamp(8px, 1.2vw, 16px); }
+.plate img, .plate video { display: block; width: 100%; height: auto; }
+.scroller { max-height: min(78vh, 900px); overflow-y: auto; overscroll-behavior: contain; }
+.grid-2 { display: grid; gap: clamp(20px, 3vw, 40px); }
+@media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+.split { display: grid; gap: clamp(20px, 3vw, 40px); align-items: start; }
+@media (min-width: 900px) { .split { grid-template-columns: 8fr 3fr; } }
+.phones { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
+.hero { padding-top: clamp(48px, 9vw, 140px); }
+.hero .meta { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 40px; font: 500 11px/1.4 var(--ui); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.thesis { margin-top: 48px; display: grid; gap: 24px; }
+@media (min-width: 900px) { .thesis { grid-template-columns: 1fr 1fr; gap: 64px; } }
+.compare { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+.compare .tag { display: inline-block; font: 500 10px/1 var(--ui); letter-spacing: .16em; text-transform: uppercase; padding: 6px 8px; border: 1px solid var(--hair); margin-bottom: 10px; color: var(--muted); }
+.compare .tag.new { border-color: var(--bronze-deco); color: var(--bronze); }
+.dirs { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+.dirs figure.chosen .plate { border-color: var(--bronze-deco); box-shadow: 0 0 0 1px var(--bronze-deco); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); border-top: 1px solid var(--hair); margin-top: 8px; }
+.facts div { padding: 22px 20px 22px 0; border-bottom: 1px solid var(--hair); }
+.facts dt { font: 500 11px/1.4 var(--ui); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 8px 0 0; font: 300 clamp(30px, 3.6vw, 46px)/1 var(--display); letter-spacing: -0.02em; font-variant-numeric: lining-nums tabular-nums; }
+.facts small { display: block; font: 400 13px/1.5 var(--ui); color: var(--muted); margin-top: 8px; letter-spacing: 0; }
+.swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 16px; }
+.sw i { display: block; aspect-ratio: 4/3; border: 1px solid var(--hair); margin-bottom: 10px; }
+.sw b { display: block; font: 500 13px var(--ui); }
+.sw span { font: 400 12px var(--ui); color: var(--muted); font-variant-numeric: tabular-nums; }
+.typespec { display: grid; gap: 8px; margin-top: 32px; }
+.typespec .d { font: 300 clamp(40px, 6vw, 80px)/1 var(--display); letter-spacing: -0.03em; }
+.typespec .u { font: 500 12px var(--ui); letter-spacing: .18em; text-transform: uppercase; color: var(--bronze); }
+ul.plain { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; border-top: 1px solid var(--hair); }
+ul.plain li { padding: 16px 0; border-bottom: 1px solid var(--hair); display: grid; gap: 4px; }
+@media (min-width: 760px) { ul.plain li { grid-template-columns: 220px 1fr; gap: 24px; } }
+ul.plain b { font: 500 12px/1.6 var(--ui); letter-spacing: .12em; text-transform: uppercase; }
+.wide-scroll { overflow-x: auto; }
+.wide-scroll img { max-width: none; width: 1600px; display: block; }
+.note { font-size: 13px; color: var(--muted); max-width: 70ch; }
+a { color: inherit; text-underline-offset: 3px; }
+footer { padding-block: 48px 80px; border-top: 1px solid var(--hair); font-size: 13px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1, .hero .lede { animation: rise .9s cubic-bezier(.16,1,.3,1) both; }
+  .hero .lede { animation-delay: .1s; }
+  @keyframes rise { from { transform: translateY(14px); opacity: .001; } to { transform: none; opacity: 1; } }
+}
+</style>
+
+<div class="wrap">
+
+<section class="hero">
+  <p class="eyebrow">ARVI SA · Shopify redesign proposal · October 2026</p>
+  <h1>Swiss Reserve</h1>
+  <div class="thesis">
+    <p class="lede">The Arvino boutiques in Melano, Lugano and Zurich are pale oak galleries in which every bottle sits in its own lit niche. This proposal brings that room online, built on Shopify Dawn&nbsp;16 and ARVI's real catalogue.</p>
+    <p class="lede">Every screen below is an actual rendering of the theme files with ARVI's live products, prices and photographs. There are no mock-ups.</p>
+  </div>
+  <div class="meta"><span>Shopify Dawn 16.0.0</span><span>12 custom sections</span><span>IT · DE · FR · EN</span><span>0 accessibility violations (axe, WCAG 2.2 AA)</span></div>
+</section>
+
+<section id="before">
+  <div class="head">
+    <div><p class="eyebrow">The gap</p><h2>From a basic shop to the boutique online</h2></div>
+    <p class="lede">Customers told ARVI the website feels more basic than the stores. Here are the current site, the Shopify work in progress, and the proposed first screen at the same size.</p>
+  </div>
+  <div class="compare">
+    <figure><span class="tag">arvi.ch today</span><div class="plate"><img src="img/before-arvi.webp" width="900" height="562" alt="Current arvi.ch homepage with a pill search bar and an autumn banner"></div></figure>
+    <figure><span class="tag">Shopify WIP</span><div class="plate"><img src="img/before-wip.webp" width="900" height="562" alt="Shopify work in progress with default Dawn layout"></div></figure>
+    <figure><span class="tag new">Proposed</span><div class="plate"><img src="img/after-home.webp" width="900" height="562" alt="Proposed homepage with an editorial split hero"></div></figure>
+  </div>
+</section>
+
+<section id="direction">
+  <div class="head">
+    <div><p class="eyebrow">Art direction</p><h2>Three directions, one chosen</h2></div>
+    <p class="lede">Direction A is built from ARVI's own colour tokens and the boutiques' materials. B was too generic for a house with thirty years of history. C was cellar-dark, which contradicts the bright stores and leans on gold-on-black, a wine-site cliché.</p>
+  </div>
+  <div class="dirs">
+    <figure class="chosen"><div class="plate"><img src="img/dir-A.webp" width="1100" height="1228" loading="lazy" alt="Direction A, Swiss Reserve: stone, ink and bronze palette with Newsreader and Inter"></div><figcaption>A · Swiss Reserve · selected</figcaption></figure>
+    <figure><div class="plate"><img src="img/dir-B.webp" width="1100" height="1185" loading="lazy" alt="Direction B, Modern Connoisseur: white grotesk layout"></div><figcaption>B · The Modern Connoisseur</figcaption></figure>
+    <figure><div class="plate"><img src="img/dir-C.webp" width="1100" height="1188" loading="lazy" alt="Direction C, Heritage Wine Maison: dark cellar palette"></div><figcaption>C · Heritage Wine Maison</figcaption></figure>
+  </div>
+</section>
+
+<section id="homepage">
+  <div class="head">
+    <div><p class="eyebrow">Homepage · 1440 px</p><h2>An editorial narrative in eight movements</h2></div>
+    <p class="lede">Campaign hero, the great regions, Champagne selection, the ARVI cellar, the Icons index, the three boutiques, why buy from ARVI, and services. Scroll inside the frame to see the full page.</p>
+  </div>
+  <div class="split">
+    <figure><div class="plate scroller" tabindex="0" aria-label="Full homepage, scrollable"><img src="img/home-desktop.webp" width="1200" height="8624" loading="lazy" alt="Full proposed homepage at desktop width"></div><figcaption>Rendered from the theme with ARVI's live catalogue</figcaption></figure>
+    <figure><div class="plate scroller" tabindex="0" aria-label="Full mobile homepage, scrollable"><img src="img/home-mobile.webp" width="440" height="14817" loading="lazy" alt="Full proposed homepage at 390 px"></div><figcaption>Same page at 390 px</figcaption></figure>
+  </div>
+</section>
+
+<section id="video">
+  <div class="head">
+    <div><p class="eyebrow">In motion</p><h2>The running theme</h2></div>
+    <p class="lede">These are screen recordings of the theme in a browser. Motion stays quiet: a single settle on the hero, short reveals, and bottles lifting slightly on hover.</p>
+  </div>
+  <div class="split">
+    <figure><div class="plate"><video src="arvi-scroll-desktop.webm" controls muted playsinline preload="metadata" width="1440" height="900"></video></div><figcaption>Desktop · homepage and product page</figcaption></figure>
+    <figure><div class="plate"><video src="arvi-scroll-mobile.webm" controls muted playsinline preload="metadata" width="390" height="844"></video></div><figcaption>Mobile · homepage</figcaption></figure>
+  </div>
+</section>
+
+<section id="product">
+  <div class="head">
+    <div><p class="eyebrow">Product page</p><h2>Facts first, every vintage one tap away</h2></div>
+    <p class="lede">Producer, origin, price, size and packaging, then a clean facts table drawn from ARVI's metafields. Below sit all thirteen Salon vintages, with sold-out years marked, and the Robert Parker score with its review.</p>
+  </div>
+  <div class="split">
+    <figure><div class="plate"><img src="img/pdp-desktop.webp" width="1200" height="2417" loading="lazy" alt="Product page for Salon Le Mesnil 1999 with facts, vintages and critic score"></div><figcaption>Champagne le Mesnil 1999 · Maison Salon</figcaption></figure>
+    <figure><div class="plate scroller" tabindex="0" aria-label="Mobile product page, scrollable"><img src="img/pdp-mobile.webp" width="440" height="2482" loading="lazy" alt="Product page on mobile"></div><figcaption>390 px</figcaption></figure>
+  </div>
+  <div style="margin-top:40px" class="grid-2">
+    <figure><div class="plate"><img src="img/request.webp" width="1200" height="750" loading="lazy" alt="Price on request state with an enquiry button"></div><figcaption>New · price on request for CHF 0.00 variants</figcaption></figure>
+    <div class="narrow">
+      <h3>Price on request</h3>
+      <p>Many rare bottles in the catalogue carry no published price. Instead of showing "CHF 0.00", the theme reads "Price on request", hides Add to cart, and offers a prefilled enquiry to ARVI's consultants.</p>
+      <p class="note">The size and packaging selectors are the work-in-progress team's own script, reused unchanged. The theme only relabels "75.00" as "75 cl".</p>
+    </div>
+  </div>
+</section>
+
+<section id="collection">
+  <div class="head">
+    <div><p class="eyebrow">Collections &amp; search</p><h2>A calm way through 19,000 references</h2></div>
+    <p class="lede">These are the store's real filters (size, vintage, region, colour, producer and price) in a quiet left rail, with bottles shown like lit niches. Quick add appears on hover, and formats read "75 cl · 150 cl · OWC".</p>
+  </div>
+  <div class="split">
+    <figure><div class="plate"><img src="img/collection.webp" width="1200" height="1500" loading="lazy" alt="Champagne collection with vertical filters and a three-column grid"></div><figcaption>/collections/champagne · 1,742 references</figcaption></figure>
+    <figure><div class="plate scroller" tabindex="0" aria-label="Mobile collection, scrollable"><img src="img/collection-mobile.webp" width="440" height="1918" loading="lazy" alt="Collection on mobile"></div><figcaption>390 px</figcaption></figure>
+  </div>
+</section>
+
+<section id="navigation">
+  <div class="head">
+    <div><p class="eyebrow">Navigation</p><h2>Mega menu, drawer, and the age check</h2></div>
+    <p class="lede">The menu lists regions in a serif under tracked labels. The mobile drawer reads like a contents page. The age check keeps the existing cookie, so returning visitors are not asked again.</p>
+  </div>
+  <figure><div class="plate"><img src="img/mega.webp" width="1200" height="533" loading="lazy" alt="Desktop mega menu for Wines"></div><figcaption>Desktop mega menu</figcaption></figure>
+  <div class="phones" style="margin-top:32px">
+    <figure><div class="plate"><img src="img/drawer.webp" width="440" height="952" loading="lazy" alt="Mobile menu drawer"></div><figcaption>Mobile drawer</figcaption></figure>
+    <figure><div class="plate"><img src="img/drawer-sub.webp" width="440" height="952" loading="lazy" alt="Mobile submenu for Wines"></div><figcaption>Submenu</figcaption></figure>
+    <figure style="grid-column: span 2 / auto"><div class="plate"><img src="img/age.webp" width="1200" height="750" loading="lazy" alt="Age confirmation dialog"></div><figcaption>Age confirmation · IT, DE, FR, EN</figcaption></figure>
+  </div>
+</section>
+
+<section id="stories">
+  <div class="head">
+    <div><p class="eyebrow">Boutiques &amp; service</p><h2>The physical house, online</h2></div>
+    <p class="lede">The boutiques page carries addresses, hours and structured store data, so the shops appear correctly in search. The FAQ is ARVI's own sixteen answers, also published as structured data for answer engines.</p>
+  </div>
+  <div class="grid-2">
+    <figure><div class="plate"><img src="img/boutiques.webp" width="1200" height="1667" loading="lazy" alt="Boutiques page with Melano, Lugano and Zurich"></div><figcaption>Arvino Melano · Lugano · Zurich</figcaption></figure>
+    <figure><div class="plate"><img src="img/faq.webp" width="1200" height="1250" loading="lazy" alt="FAQ page with accordion questions"></div><figcaption>FAQ · 16 real questions</figcaption></figure>
+  </div>
+</section>
+
+<section id="responsive">
+  <div class="head">
+    <div><p class="eyebrow">Responsive</p><h2>375 to 1920 pixels</h2></div>
+    <p class="lede">The first screen at five widths. The QA run found no horizontal overflow on any of the seven pages at six widths.</p>
+  </div>
+  <figure><div class="plate wide-scroll"><img src="img/responsive.webp" width="2000" height="330" loading="lazy" alt="Homepage first screen at 375, 768, 1024, 1440 and 1920 pixels"></div><figcaption>375 · 768 · 1024 · 1440 · 1920</figcaption></figure>
+</section>
+
+<section id="system">
+  <div class="head">
+    <div><p class="eyebrow">Design system</p><h2>ARVI's own palette, refined</h2></div>
+    <p class="lede">The palette starts from ARVI's existing web colours (bronze #998A65 and the light golds) and the boutiques' oak, ink and brass. Bronze is used only for labels, rules and icons.</p>
+  </div>
+  <div class="swatches">
+    <div class="sw"><i style="background:#F5F3EE"></i><b>Stone</b><span>#F5F3EE · ground</span></div>
+    <div class="sw"><i style="background:#EDE9E1"></i><b>Oak mist</b><span>#EDE9E1 · niches</span></div>
+    <div class="sw"><i style="background:#DDD6C8"></i><b>Linen</b><span>#DDD6C8 · hairlines</span></div>
+    <div class="sw"><i style="background:#998A65"></i><b>Bronze</b><span>#998A65 · ARVI accent</span></div>
+    <div class="sw"><i style="background:#6E6246"></i><b>Bronze text</b><span>#6E6246 · AA labels</span></div>
+    <div class="sw"><i style="background:#1C1A17"></i><b>Ink</b><span>#1C1A17 · text, dark bands</span></div>
+  </div>
+  <div class="typespec">
+    <span class="u">Newsreader · display &nbsp;/&nbsp; Inter · interface</span>
+    <span class="d">Champagne le Mesnil 1999</span>
+  </div>
+</section>
+
+<section id="verified">
+  <div class="head">
+    <div><p class="eyebrow">Verified</p><h2>What was measured</h2></div>
+    <p class="lede">These checks ran against the theme rendered locally with the real catalogue. Checkout, apps and live filtering still need testing on the store, as an unpublished theme.</p>
+  </div>
+  <dl class="facts">
+    <div><dt>Theme Check</dt><dd>0 errors</dd><small>Shopify CLI 3.94</small></div>
+    <div><dt>Accessibility</dt><dd>0</dd><small>axe violations, 7 pages × 2 widths</small></div>
+    <div><dt>Overflow</dt><dd>0 px</dd><small>7 pages × 6 widths</small></div>
+    <div><dt>Desktop Lighthouse</dt><dd>97–98</dd><small>performance · A11y 100 · SEO 100</small></div>
+    <div><dt>Layout shift</dt><dd>0.000</dd><small>CLS, mobile median</small></div>
+    <div><dt>Mobile Lighthouse</dt><dd>61–80</dd><small>local lab; LCP target to confirm on Shopify</small></div>
+  </dl>
+</section>
+
+<section id="next">
+  <div class="head">
+    <div><p class="eyebrow">Next steps</p><h2>To production</h2></div>
+  </div>
+  <ul class="plain">
+    <li><b>Install</b><span>Upload the theme to the store as unpublished, merge the WIP-only sections (critic data, discount display) and test checkout end to end.</span></li>
+    <li><b>Photography</b><span>Commission high-resolution boutique and cellar images (current originals are 660 px) and photograph products that have no image.</span></li>
+    <li><b>Decisions</b><span>Confirm the price-on-request policy, the catalogue-size claim (5,000 or 10,000+), the hero campaign, and the age-gate wording.</span></li>
+    <li><b>Launch</b><span>301 redirects from arvi.ch URLs, collection SEO descriptions, then Core Web Vitals measured on Shopify.</span></li>
+  </ul>
+</section>
+
+<footer>Prepared for ARVI SA, Via Pedemonte di Sopra 1, 6818 Melano. All photographs are ARVI's own assets or catalogue images; no stock imagery was used.</footer>
+
+</div>
