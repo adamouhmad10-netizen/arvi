@@ -47,3 +47,17 @@ if (!customElements.get('arvi-request-price')) {
   };
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', start) : start();
 })();
+
+/* ARVI a11y patch for upstream Dawn 16: the quantity <label> uses aria-labelledby on itself, which leaves the
+   input without a computable accessible name. Give the input an explicit name from the visible label. */
+(() => {
+  const name = () =>
+    document.querySelectorAll('.quantity__input').forEach((input) => {
+      if (input.hasAttribute('aria-label')) return;
+      const hidden = input.id && document.getElementById(input.id.replace('Quantity-', 'quantity-label-'));
+      const text = (hidden && hidden.textContent.trim()) || 'Quantity';
+      input.setAttribute('aria-label', text);
+    });
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', name) : name();
+  document.addEventListener('product-info:loaded', name);
+})();

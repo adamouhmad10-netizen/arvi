@@ -10,7 +10,8 @@
     <dialog class="arvi-age color-{{ section.settings.color_scheme }}" aria-labelledby="ArviAgeTitle" aria-describedby="ArviAgeText" data-nosnippet>
       <div class="arvi-age__panel">
         {%- if settings.logo != blank -%}
-          {{ settings.logo | image_url: width: 160 | image_tag: width: 80, height: null, loading: 'eager', alt: shop.name, class: 'arvi-age__logo' }}
+          {%- assign logo_h = 80 | divided_by: settings.logo.aspect_ratio | round -%}
+          {{ settings.logo | image_url: width: 160 | image_tag: width: 80, height: logo_h, loading: 'eager', alt: shop.name, class: 'arvi-age__logo' }}
         {%- endif -%}
         <div data-arvi-age-step="ask">
           <p class="arvi-eyebrow">{{ shop.name }}</p>

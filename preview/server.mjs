@@ -2,6 +2,7 @@
 // Usage (from repo root): node preview/server.mjs [port]
 // Renders theme/ Liquid files with real catalogue data captured from the ARVI Shopify preview.
 import http from 'node:http';
+import zlib from 'node:zlib';
 import fs from 'node:fs';
 import path from 'node:path';
 import { reloadLocales, createEngine, schemaOf, defaultsFrom, resolveSetting, globalSettings, resolveURL, THEME } from './shopify.mjs';
@@ -77,7 +78,8 @@ function baseGlobals(req, url) {
     all_products: data.allProductsProxy,
     pages: {},
     blogs: {},
-    content_for_header: '',
+    // Stand-in for Shopify's content_for_header (defines window.Shopify on real stores)
+    content_for_header: '<script>window.Shopify = window.Shopify || { designMode: false, routes: { root: "/" }, locale: "en", currency: { active: "CHF", rate: "1.0" } };</script>',
     powered_by_link: '<a target="_blank" rel="nofollow" href="https://www.shopify.com">Powered by Shopify</a>',
     current_page: Number(url.searchParams.get('page') || 1),
     current_tags: null,
@@ -207,8 +209,10 @@ const server = http.createServer(async (req, res) => {
         res.writeHead(404);
         return res.end();
       }
-      res.writeHead(200, { 'content-type': MIME[path.extname(f)] || 'application/octet-stream', 'cache-control': 'max-age=60' });
-      return fs.createReadStream(f).pipe(res);
+      const type = MIME[path.extname(f)] || 'application/octet-stream';
+      const gz = /text|javascript|json|svg/.test(type) && /gzip/.test(req.headers['accept-encoding'] || '');
+      res.writeHead(200, { 'content-type': type, 'cache-control': 'max-age=3600', ...(gz ? { 'content-encoding': 'gzip' } : {}) });
+      return gz ? fs.createReadStream(f).pipe(zlib.createGzip()).pipe(res) : fs.createReadStream(f).pipe(res);
     }
     reloadLocales(); // pick up locale edits without restarting
     const g = baseGlobals(req, url);
@@ -248,6 +252,7 @@ const server = http.createServer(async (req, res) => {
       c.__page = null;
       g.collection = c;
       g.page_title = c.title;
+      g.page_description = `${c.title}: ${c.products_count} references from ARVI's cellar. Fine and rare wines delivered in Switzerland.`;
       g.request.page_type = 'collection';
       templateName = 'collection';
     } else if (url.pathname === '/search') {
@@ -280,6 +285,10 @@ const server = http.createServer(async (req, res) => {
     const [tname, suffix] = templateName.split('.');
     g.template = { name: tname, suffix: suffix || null, directory: null, toString: () => templateName };
     const html = await renderPage(templateName, g, engine);
+    if (/gzip/.test(req.headers['accept-encoding'] || '')) {
+      res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'content-encoding': 'gzip' });
+      return res.end(zlib.gzipSync(html));
+    }
     res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
     res.end(html);
   } catch (e) {

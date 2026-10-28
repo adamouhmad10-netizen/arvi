@@ -954,8 +954,7 @@ html.arvi-age-open {
 }
 
 .arvi-age::backdrop {
-  background: rgba(20, 18, 15, 0.62);
-  backdrop-filter: blur(6px);
+  background: rgba(20, 18, 15, 0.72);
 }
 
 .arvi-age__panel {

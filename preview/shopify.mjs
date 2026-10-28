@@ -211,11 +211,13 @@ export function createEngine(ctxGlobals) {
     const [o] = kw(args);
     const img = (urlObj && urlObj.__img) || null;
     const base = String(urlObj).replace(/([?&])width=\d+&?/, '$1').replace(/[?&]$/, '');
-    const maxW = img && img.width ? img.width : 2000;
+    const reqW = Number((String(urlObj).match(/[?&]width=(\d+)/) || [])[1]) || 0;
+    const maxW = Math.min(img && img.width ? img.width : 2000, reqW || 99999);
     const widths = String(o.widths || '352, 832, 1200, 1920')
       .split(',')
       .map((w) => parseInt(w))
       .filter((w) => w && w <= maxW);
+    if (!widths.length && maxW < 99999) widths.push(maxW);
     const join = base.includes('?') ? '&' : '?';
     const srcset = widths.map((w) => `${base}${join}width=${w} ${w}w`).join(', ');
     let width = o.width !== undefined ? o.width : img ? img.width : undefined;
