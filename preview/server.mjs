@@ -34,7 +34,8 @@ function baseGlobals(req, url) {
       permanent_domain: 'myarvi.myshopify.com',
       currency: 'CHF',
       money_format: 'CHF {{amount}}',
-      enabled_payment_types: ['visa', 'master', 'american_express', 'twint', 'apple_pay'],
+      // Verified from ARVI's FAQ ("credit card (Visa & MasterCard)"). On Shopify this list comes from the store's payment settings.
+      enabled_payment_types: (process.env.PREVIEW_PAYMENT_TYPES || 'visa,master').split(','),
       'customer_accounts_enabled?': true,
       customer_accounts_enabled: true,
       brand: { logo: null },

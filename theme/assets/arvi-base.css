@@ -1150,6 +1150,32 @@ a.arvi-vintage:hover {
   padding-top: 2.4rem;
 }
 
+/* Payment icons: Shopify's official SVGs (shop.enabled_payment_types), shown at their native 38:24
+   proportion, never recoloured. One row; wraps neatly on narrow screens. */
+.footer .list-payment {
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+}
+
+.footer .list-payment__item {
+  padding: 0;
+}
+
+.footer .list-payment__item .icon {
+  display: block;
+  width: 4.2rem;
+  height: auto;
+  aspect-ratio: 38 / 24;
+  border-radius: 0.3rem;
+}
+
+@media screen and (max-width: 749px) {
+  .footer__payment {
+    margin-top: 2.4rem;
+  }
+}
+
 .copyright__content,
 .policies {
   font-size: 1.15rem;

@@ -259,7 +259,14 @@ export function createEngine(ctxGlobals) {
   engine.registerFilter('model_viewer_tag', () => '');
   engine.registerFilter('metafield_tag', (m) => (m ? String(m.value ?? m) : ''));
   engine.registerFilter('metafield_text', (m) => (m ? String(m.value ?? m) : ''));
-  engine.registerFilter('payment_type_svg_tag', (t) => `<svg class="icon icon--full-color" viewBox="0 0 38 24" width="38" height="24" role="img" aria-label="${t}"><rect width="38" height="24" rx="3" fill="#F2EEE6"/><text x="19" y="15" font-size="7" text-anchor="middle" fill="#1C1A17" font-family="Arial">${String(t).slice(0, 6).toUpperCase()}</text></svg>`);
+  // Same SVGs Shopify outputs: activemerchant/payment_icons (MIT, Shopify Inc.), vendored in preview/payment-icons/.
+  engine.registerFilter('payment_type_svg_tag', (t, ...args) => {
+    const file = path.join(path.dirname(new URL(import.meta.url).pathname), 'payment-icons', `${t}.svg`);
+    if (!fs.existsSync(file)) return '';
+    const cls = kw(args)[0].class;
+    const svg = fs.readFileSync(file, 'utf8').trim();
+    return cls ? svg.replace('<svg ', `<svg class="${cls}" `) : svg;
+  });
   engine.registerFilter('payment_button', () => '');
   engine.registerFilter('payment_terms', () => '');
   engine.registerFilter('login_button', () => '');
