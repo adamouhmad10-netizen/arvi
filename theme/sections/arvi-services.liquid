@@ -1,0 +1,73 @@
+{{ 'arvi-sections.css' | asset_url | stylesheet_tag }}
+
+<div class="arvi-services color-{{ section.settings.color_scheme }} gradient arvi-pad--{{ section.settings.padding }}">
+  <div class="page-width">
+    {%- render 'arvi-section-header',
+      eyebrow: section.settings.eyebrow,
+      heading: section.settings.heading,
+      text: section.settings.text,
+      id: section.id
+    -%}
+    <ul class="arvi-services__grid arvi-services__grid--{{ section.blocks.size }}" role="list">
+      {%- for block in section.blocks -%}
+        <li class="arvi-service scroll-trigger animate--slide-in" data-cascade style="--animation-order: {{ forloop.index }};" {{ block.shopify_attributes }}>
+          <a class="arvi-service__link" href="{{ block.settings.link | default: '#' }}">
+            <div class="arvi-service__media">
+              {%- render 'arvi-image',
+                image: block.settings.image,
+                fallback: block.settings.fallback_image,
+                alt: block.settings.image_alt,
+                sizes: '(min-width: 990px) 24vw, (min-width: 750px) 45vw, 80vw',
+                class: 'arvi-service__img'
+              -%}
+            </div>
+            {%- if block.settings.kicker != blank -%}
+              <p class="arvi-micro">{{ block.settings.kicker }}</p>
+            {%- endif -%}
+            <h3 class="arvi-display arvi-display--s arvi-service__title">{{ block.settings.title }}</h3>
+            <div class="arvi-body arvi-service__text">{{ block.settings.text }}</div>
+            {%- if block.settings.link_label != blank -%}
+              <span class="arvi-link arvi-link--small" aria-hidden="true">{{ block.settings.link_label }}</span>
+            {%- endif -%}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ARVI · Services & stories",
+  "tag": "section",
+  "class": "section arvi-section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Beyond the bottle" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Services for collectors and professionals" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" },
+    {
+      "type": "select", "id": "padding", "label": "Vertical spacing", "default": "l",
+      "options": [{ "value": "s", "label": "Small" }, { "value": "m", "label": "Medium" }, { "value": "l", "label": "Large" }]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service or story",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "fallback_image", "label": "Bundled fallback image", "info": "arvi-wine-vault-detail, arvi-en-primeur, arvi-horeca, arvi-events-table, arvi-consultant, arvi-bottles" },
+        { "type": "text", "id": "image_alt", "label": "Image description (alt text)" },
+        { "type": "text", "id": "kicker", "label": "Kicker" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Wine Vault" },
+        { "type": "richtext", "id": "text", "label": "Text" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Learn more" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ARVI · Services & stories", "blocks": [{ "type": "service" }, { "type": "service" }, { "type": "service" }, { "type": "service" }] }]
+}
+{% endschema %}

@@ -527,5 +527,50 @@
       "expanded": "Formular für den Empfänger des Gutscheins erweitert",
       "collapsed": "Formular für den Empfänger des Gutscheins minimiert"
     }
+  },
+  "arvi": {
+    "product": {
+      "price_on_request": "Preis auf Anfrage",
+      "price_on_request_note": "Dieser Wein ist auf Anfrage erhältlich. Unsere Berater bestätigen Preis, Verfügbarkeit und Zustand.",
+      "enquire": "Anfrage zu diesem Wein",
+      "enquiry_subject": "Anfrage: {{ product }}",
+      "all_vintages": "Alle Jahrgänge",
+      "vintage": "Jahrgang",
+      "producer": "Produzent",
+      "origin": "Herkunft",
+      "colour": "Farbe",
+      "grapes": "Rebsorten",
+      "alcohol": "Alkohol",
+      "all_from_producer": "Alle Weine von {{ producer }}",
+      "owc_short": "OHK"
+    },
+    "formato": {
+      "packaging": "Verpackung",
+      "single_bottle": "Einzelflasche",
+      "case_of": "Originalholzkiste à %n%"
+    },
+    "collections": {
+      "references": "{{ number }} Referenzen"
+    },
+    "boutiques": {
+      "address": "Adresse",
+      "hours": "Öffnungszeiten",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "directions": "Wegbeschreibung"
+    },
+    "breadcrumbs": {
+      "label": "Brotkrumen-Navigation",
+      "home": "Startseite"
+    },
+    "age_gate": {
+      "title": "Sind Sie mindestens 18 Jahre alt?",
+      "text": "Da wir edle Weine und Spirituosen verkaufen, müssen Sie in Ihrem Land das gesetzliche Mindestalter für den Alkoholkonsum erreicht haben, um unsere Website zu besuchen.",
+      "confirm": "Ja, ich bin mindestens 18",
+      "decline": "Nein",
+      "denied_title": "Es tut uns leid",
+      "denied_text": "Sie müssen das gesetzliche Mindestalter erreicht haben, um diese Website zu besuchen.",
+      "back": "Zurück"
+    }
   }
 }

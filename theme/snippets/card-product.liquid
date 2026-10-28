@@ -167,6 +167,8 @@
                 <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
                 <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
               {%- endif -%}
+              {%- comment -%} ARVI: bottle formats line (e.g. 75 cl · 150 cl) {%- endcomment -%}
+              {%- render 'arvi-card-meta', product: card_product -%}
 
               <span class="caption-large light">{{ block.settings.description | escape }}</span>
 

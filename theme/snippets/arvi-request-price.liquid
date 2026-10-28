@@ -1,0 +1,49 @@
+{%- comment -%}
+  Enquiry action for wines without a published price (variant price CHF 0.00).
+  Rendered in the product form via a Custom Liquid block. assets/arvi-product.js keeps it in sync
+  with variant changes and hides the native Add to cart (via CSS :has) while the selected variant has no price.
+
+  Accepts:
+  - product: {Object}
+  - section_id: {String}
+{%- endcomment -%}
+{%- if settings.arvi_request_price_enabled -%}
+  {%- liquid
+    assign variant = product.selected_or_first_available_variant
+    assign zero_ids = ''
+    for v in product.variants
+      if v.price == 0
+        assign zero_ids = zero_ids | append: v.id | append: ','
+      endif
+    endfor
+    assign subject = 'arvi.product.enquiry_subject' | t: product: product.title
+    capture body
+      echo product.title
+      echo ' — '
+      echo variant.title
+      echo ' — '
+      echo shop.url | append: product.url
+    endcapture
+  -%}
+  {%- if zero_ids != blank -%}
+    <arvi-request-price
+      class="arvi-request{% if variant.price != 0 %} hidden{% endif %}"
+      data-zero-variants="{{ zero_ids }}"
+      data-section="{{ section_id }}"
+    >
+      <p class="arvi-request__note arvi-body">{{ 'arvi.product.price_on_request_note' | t }}</p>
+      {%- if settings.arvi_request_price_page != blank -%}
+        <a class="button button--full-width arvi-button" href="{{ settings.arvi_request_price_page }}?product={{ product.handle | url_encode }}">
+          {{- 'arvi.product.enquire' | t -}}
+        </a>
+      {%- else -%}
+        <a
+          class="button button--full-width arvi-button"
+          href="mailto:{{ settings.arvi_request_price_email }}?subject={{ subject | url_encode }}&body={{ body | url_encode }}"
+        >
+          {{- 'arvi.product.enquire' | t -}}
+        </a>
+      {%- endif -%}
+    </arvi-request-price>
+  {%- endif -%}
+{%- endif -%}

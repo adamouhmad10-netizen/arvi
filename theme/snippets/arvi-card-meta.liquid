@@ -1,0 +1,53 @@
+{%- comment -%}
+  Bottle formats for product cards, derived from the "Formato" option (values such as "75.00", "150.00",
+  "OWC 6 × 75.00"). Original wooden cases are summarised as "OWC". Hidden when disabled in Theme settings > ARVI.
+
+  Accepts:
+  - product: {Object}
+{%- endcomment -%}
+{%- if settings.arvi_card_show_format and product.options_with_values.size > 0 -%}
+  {%- liquid
+    assign keyed = ''
+    assign has_case = false
+    for option in product.options_with_values
+      assign oname = option.name | downcase
+      if oname == 'formato' or oname == 'format' or oname == 'size' or oname == 'grösse' or oname == 'taille'
+        for value in option.values
+          assign v = value | append: ''
+          if v contains 'OWC'
+            assign has_case = true
+          else
+            assign n = v | plus: 0
+            if n > 0
+              assign label = v | strip | remove: '.00'
+              if label contains '.'
+                assign last_char = label | slice: -1, 1
+                if last_char == '0'
+                  assign label = label | remove_last: '0'
+                endif
+              endif
+              # Sort key: centilitres x10 offset by 1,000,000 so string sort equals numeric sort
+              assign key = n | times: 10 | round | plus: 1000000 | append: ''
+              assign keyed = keyed | append: key | append: '~' | append: label | append: ' cl|'
+            endif
+          endif
+        endfor
+      endif
+    endfor
+    assign sorted = keyed | split: '|' | uniq | sort
+    assign list = ''
+    for k in sorted limit: 3
+      assign lbl = k | split: '~' | last
+      assign list = list | append: lbl | append: '|'
+    endfor
+    assign list = list | split: '|'
+    assign extra = sorted.size | minus: 3
+  -%}
+  {%- if list.size > 0 -%}
+    <p class="arvi-card-meta">
+      {{- list | join: ' · ' -}}
+      {%- if extra > 0 %} · +{{ extra }}{% endif -%}
+      {%- if has_case %} · {{ 'arvi.product.owc_short' | t }}{% endif -%}
+    </p>
+  {%- endif -%}
+{%- endif -%}

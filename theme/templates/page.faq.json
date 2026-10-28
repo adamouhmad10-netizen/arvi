@@ -1,0 +1,159 @@
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "arvi-breadcrumbs",
+      "settings": {
+        "enable_schema": true
+      }
+    },
+    "faq": {
+      "type": "arvi-faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How does Arvi store its wines?",
+            "answer": "<p>All wines are stored in a state-of-the-art temperature- and humidity-controlled cellar, located in our warehouse in Melano and/or a trusted external warehouse.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Where does ARVI purchase its wines?",
+            "answer": "<p>ARVI only buys from reliable and secure suppliers. About 95% of ARVI’s stock comes from producers, négociants and/or important traders based in Europe. ARVI also buys older stock from private cellars but only if the bottles are guaranteed provenance and kept in immaculate conditions.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Are the wines ready for delivery?",
+            "answer": "<p>ARVI is one of the largest stockholders of wine in the world, with close to a million bottles ready to be delivered. All wines offered are in stock and ready for delivery, excluding En Primeur, new releases and wines in transit. The estimated delivery time will be confirmed before the final sale by one of our wine consultants.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "How can I pay?",
+            "answer": "<p>ARVI accepts payment by bank transfer or by credit card (Visa &amp; MasterCard). The wines will be fully confirmed upon receipt of payment. Payment needs to be in full, with no deductions nor bank charges. Credit, Debit and/or PostFinance cards are accepted in our ARVINO Luxury Wines Shops.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "What are the payment terms?",
+            "answer": "<p>Payment must be made in full upon receipt of invoice and always prior to shipment/collection. ARVI is not able to offer credit terms to companies, restaurants and/or hotels. This company policy allows ARVI to offer incredible prices as it avoids any credit risks.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Does ARVI offer discounts for larger orders?",
+            "answer": "<p>The prices are net and the best possible prices ARVI can offer. The strategy is to work on very tight margins which do not allow any further price deductions.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Does ARVI pay for shipping orders?",
+            "answer": "<p>ARVI works on tight margins and offers the very best price from the beginning. This is the reason why ARVI cannot cover shipping costs. Many competitors calculate the shipping costs together with the price of the bottle and do not charge for transport. However, ARVI keeps these two costs separate. Wines can be picked up at our headquarters in Melano or shipped using your own external transporter without any charge. The shipping costs within Switzerland do not greatly affect the final price of the wine and can be optimized by placing larger orders.</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Can I pick up my wines personally at ARVI's premises?",
+            "answer": "<p>Yes, of course. You are more than welcome to visit our headquarters in Melano and pick up your order. This will also give you the opportunity to meet your wine consultant personally. However, it is not possible to pick-up your orders from our ARVINO – Luxury Wine Shops in Lugano and Zurich, unless all of the bottles you have ordered are available/in stock in that location.</p>"
+          }
+        },
+        "q9": {
+          "type": "question",
+          "settings": {
+            "question": "Does ARVI ship outside of Switzerland?",
+            "answer": "<p>ARVI can help you arrange shipping outside of Switzerland depending on the destination country. For more information, please contact your wine consultant.</p>"
+          }
+        },
+        "q10": {
+          "type": "question",
+          "settings": {
+            "question": "How long are the conditions, wine availability and prices valid?",
+            "answer": "<p>The prices published on the website at the moment of purchase are valid. Changes in the assortment, vintage, prices and availability of the wines remain subject to final confirmation. ARVI cannot be held responsible for technical glitches, obvious mistakes and/or typing errors in publications.</p>"
+          }
+        },
+        "q11": {
+          "type": "question",
+          "settings": {
+            "question": "How long can I keep the wines in your warehouse without additional costs?",
+            "answer": "<p>Purchased bottles can remain in ARVI’s warehouse for a maximum of 60 days after the date of invoice. After these 60 days you will be charged for the Wine Vault storage service.For more information, please refer to our “Wine Vault” page.</p>"
+          }
+        },
+        "q12": {
+          "type": "question",
+          "settings": {
+            "question": "Can I store my wines for a longer period of time at ARVI?",
+            "answer": "<p>ARVI offers a storage service called the “Wine Vault” which gives our clients the opportunity to store their wines in perfect aging conditions. If you don’t have enough space at home, or purchased these wines as an investment, ARVI’s Wine Vault is a great option. Our temperature- and humidity-controlled warehouse guarantees the best and most protected conditions for your valuable wine collection.</p>"
+          }
+        },
+        "q13": {
+          "type": "question",
+          "settings": {
+            "question": "What happens if I buy a defective bottle?",
+            "answer": "<p>Nowadays, unfortunately not even producers take responsibility for defective or corked bottles. According to the provisions of the Association of Swiss Wine Commerce, defective bottles will only be replaced if it is a Swiss or foreign wine bottled in Switzerland and within a year following the purchase of the goods. Foreign wines bottled in the production country or elsewhere will not be replaced nor credited. ARVI must be notified of any defects or irregularities no later than 8 days after the collection or the receipt of the goods. However, ARVI reserves the right to make exceptions to these rules. All exceptions need to be approved by management</p>"
+          }
+        },
+        "q14": {
+          "type": "question",
+          "settings": {
+            "question": "Do I have to pay VAT?",
+            "answer": "<p>Wines delivered within Switzerland are subject to 8.1% Swiss VAT. If wines are exported, Swiss VAT does not apply, but they may be subject to VAT and/or duty of the destination country.</p>"
+          }
+        },
+        "q15": {
+          "type": "question",
+          "settings": {
+            "question": "What are the conditions for older bottles?",
+            "answer": "<p>Photographs of older and/or imperfect bottles will be sent before final confirmation upon client’s request.</p>"
+          }
+        },
+        "q16": {
+          "type": "question",
+          "settings": {
+            "question": "Can I buy En Primeur wines?",
+            "answer": "<p>Yes, of course. Our En Primeur page explains how the campaign works, and our consultants are happy to advise you.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9",
+        "q10",
+        "q11",
+        "q12",
+        "q13",
+        "q14",
+        "q15",
+        "q16"
+      ],
+      "settings": {
+        "eyebrow": "Customer service",
+        "heading": "Frequently asked questions",
+        "heading_tag": "h1",
+        "text": "<p>Can't find your answer? Call us on <a href=\"tel:+41916496888\">+41 91 649 68 88</a> or write to <a href=\"mailto:info@arvi.ch\">info@arvi.ch</a>.</p>",
+        "open_first": true,
+        "enable_schema": true,
+        "color_scheme": "scheme-1",
+        "padding": "l"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "faq"
+  ]
+}

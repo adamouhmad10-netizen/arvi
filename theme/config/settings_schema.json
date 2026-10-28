@@ -1466,5 +1466,92 @@
         "label": "t:settings_schema.customer_accounts.settings.customer_account_menu.label"
       }
     ]
+  },
+  {
+    "name": "ARVI",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Typography"
+      },
+      {
+        "type": "select",
+        "id": "arvi_display_font",
+        "label": "Display typeface",
+        "default": "newsreader",
+        "options": [
+          {
+            "value": "newsreader",
+            "label": "ARVI editorial serif (Newsreader, self-hosted)"
+          },
+          {
+            "value": "theme",
+            "label": "Use the heading font selected under Typography"
+          }
+        ],
+        "info": "Newsreader is an open-source (SIL OFL) serif chosen as a web successor to ARVI's Minion. It is served from the theme, with no third-party font requests."
+      },
+      {
+        "type": "header",
+        "content": "Accent"
+      },
+      {
+        "type": "color",
+        "id": "arvi_accent_color",
+        "label": "Bronze accent (decorative)",
+        "default": "#998A65",
+        "info": "ARVI brand bronze. Used for rules, icons and focus details. Not used for small text."
+      },
+      {
+        "type": "color",
+        "id": "arvi_accent_text_color",
+        "label": "Bronze accent (text)",
+        "default": "#6E6246",
+        "info": "A darker bronze for small labels. It meets WCAG AA contrast on the light schemes."
+      },
+      {
+        "type": "header",
+        "content": "Pricing"
+      },
+      {
+        "type": "checkbox",
+        "id": "arvi_request_price_enabled",
+        "label": "Show \"Price on request\" for wines priced CHF 0.00",
+        "default": true,
+        "info": "Zero-priced variants cannot be added to the cart. An enquiry button is shown instead."
+      },
+      {
+        "type": "text",
+        "id": "arvi_request_price_email",
+        "label": "Enquiry email",
+        "default": "info@arvi.ch"
+      },
+      {
+        "type": "url",
+        "id": "arvi_request_price_page",
+        "label": "Enquiry page (optional)",
+        "info": "When set, the enquiry button links to this page (e.g. the contact page) instead of opening an email."
+      },
+      {
+        "type": "header",
+        "content": "Product cards"
+      },
+      {
+        "type": "checkbox",
+        "id": "arvi_card_show_format",
+        "label": "Show bottle format on cards (e.g. 75 cl)",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Product page"
+      },
+      {
+        "type": "richtext",
+        "id": "arvi_image_disclaimer",
+        "label": "Product image note",
+        "default": "<p>The product image is for illustrative purposes only and may not exactly reflect the actual characteristics of the wine.</p>"
+      }
+    ]
   }
 ]

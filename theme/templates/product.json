@@ -1,17 +1,28 @@
 {
   "sections": {
+    "breadcrumbs": {
+      "type": "arvi-breadcrumbs",
+      "settings": {
+        "enable_schema": true
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
         "vendor": {
-          "type": "text",
+          "type": "custom_liquid",
           "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
+            "custom_liquid": "{% render 'arvi-pdp-vendor', product: product %}"
           }
         },
         "title": {
           "type": "title"
+        },
+        "origin": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'arvi-wine-facts', product: product, mode: 'origin' %}"
+          }
         },
         "price": {
           "type": "price"
@@ -20,7 +31,7 @@
           "type": "variant_picker",
           "settings": {
             "picker_type": "button",
-            "swatch_shape": "circle"
+            "swatch_shape": "none"
           }
         },
         "quantity_selector": {
@@ -29,12 +40,43 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
           }
         },
-        "description": {
-          "type": "description"
+        "request_price": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'arvi-request-price', product: product, section_id: section.id %}{% render 'arvi-pdp-scripts' %}"
+          }
+        },
+        "facts": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'arvi-wine-facts', product: product, mode: 'list' %}"
+          }
+        },
+        "delivery": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Delivery & pick-up",
+            "icon": "truck",
+            "content": "<p>All wines offered are in stock and ready for delivery, excluding En Primeur, new releases and wines in transit. Shipping costs within Switzerland are calculated separately from the price of the wine.</p><p>You are welcome to pick up your order at our Melano headquarters by appointment. Prices include 8.1% Swiss VAT.</p>"
+          }
+        },
+        "storage": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Storage & provenance",
+            "icon": "lock",
+            "content": "<p>All wines are stored in our temperature- and humidity-controlled cellar. About 95% of our stock comes from producers, négociants and important traders based in Europe; older bottles are bought from private cellars only with guaranteed provenance.</p><p>Purchased bottles can remain in our warehouse for up to 60 days after invoice; longer storage is available in our Wine Vault.</p>"
+          }
+        },
+        "note": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"arvi-pdp-note\">{{ settings.arvi_image_disclaimer }}</div>"
+          }
         },
         "share": {
           "type": "share",
@@ -46,11 +88,16 @@
       "block_order": [
         "vendor",
         "title",
+        "origin",
         "price",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "description",
+        "request_price",
+        "facts",
+        "delivery",
+        "storage",
+        "note",
         "share"
       ],
       "settings": {
@@ -58,21 +105,65 @@
         "color_scheme": "scheme-1",
         "media_position": "left",
         "gallery_layout": "stacked",
-        "media_size": "large",
+        "media_size": "medium",
         "constrain_to_viewport": true,
         "media_fit": "contain",
         "image_zoom": "lightbox",
         "mobile_thumbnails": "hide",
         "hide_variants": true,
         "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "padding_top": 16,
+        "padding_bottom": 40
+      }
+    },
+    "profile": {
+      "type": "arvi-wine-profile",
+      "blocks": {
+        "vintages": {
+          "type": "vintages",
+          "settings": {
+            "heading": "All vintages"
+          }
+        },
+        "critic_1": {
+          "type": "critic",
+          "settings": {
+            "source": "",
+            "score": "",
+            "review": ""
+          }
+        },
+        "critic_2": {
+          "type": "critic",
+          "settings": {
+            "source": "",
+            "score": "",
+            "review": ""
+          }
+        },
+        "producer": {
+          "type": "producer",
+          "settings": {
+            "heading": "Producer"
+          }
+        }
+      },
+      "block_order": [
+        "vintages",
+        "critic_1",
+        "critic_2",
+        "producer"
+      ],
+      "settings": {
+        "critics_heading": "Critics' scores",
+        "color_scheme": "scheme-1",
+        "padding": "s"
       }
     },
     "disclosures": {
       "type": "disclosures",
       "settings": {
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 0
       }
     },
@@ -84,19 +175,21 @@
         "products_to_show": 4,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
-        "image_ratio": "square",
+        "image_ratio": "portrait",
         "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
+        "show_secondary_image": false,
+        "show_vendor": true,
         "show_rating": false,
         "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 28
+        "padding_top": 48,
+        "padding_bottom": 80
       }
     }
   },
   "order": [
+    "breadcrumbs",
     "main",
+    "profile",
     "disclosures",
     "related-products"
   ]

@@ -1,0 +1,61 @@
+{%- comment -%}
+  Lists the other vintages of the same wine. A sibling is a product from the same producer whose title
+  matches once the trailing vintage ("2015", "NV") is removed.
+  Producer collections follow the store convention `produttore-<vendor handle>`.
+
+  Accepts:
+  - product: {Object}
+  - heading: {String}
+  - max: {Number} products scanned in the producer collection (default 50; Shopify limit without pagination)
+{%- endcomment -%}
+{%- liquid
+  assign words = product.title | split: ' '
+  assign last_word = words | last
+  assign last_num = last_word | plus: 0
+  if last_word == 'NV' or last_num > 1800
+    assign base = product.title | remove_last: last_word | strip
+  else
+    assign base = product.title
+  endif
+  assign handle = 'produttore-' | append: product.vendor | handleize
+  assign col = collections[handle]
+  assign entries = ''
+  if col != blank
+    for p in col.products limit: 50
+      assign pw = p.title | split: ' ' | last
+      assign pbase = p.title | remove_last: pw | strip
+      if pbase == base
+        assign state = 'available'
+        if p.id == product.id
+          assign state = 'current'
+        elsif p.available == false
+          assign state = 'unavailable'
+        endif
+        assign entries = entries | append: pw | append: '~' | append: p.url | append: '~' | append: state | append: '^'
+      endif
+    endfor
+  endif
+  assign list = entries | split: '^' | sort | reverse
+-%}
+{%- if list.size > 1 -%}
+  <nav class="arvi-vintages" aria-label="{{ heading | default: 'arvi.product.all_vintages' | t | escape }}">
+    <h2 class="arvi-eyebrow">{{ heading | default: 'arvi.product.all_vintages' | t }}</h2>
+    <ul class="arvi-vintages__list" role="list">
+      {%- for e in list -%}
+        {%- assign parts = e | split: '~' -%}
+        <li>
+          {%- if parts[2] == 'current' -%}
+            <span class="arvi-vintage arvi-vintage--selected" aria-current="page">{{ parts[0] }}</span>
+          {%- else -%}
+            <a class="arvi-vintage{% if parts[2] == 'unavailable' %} arvi-vintage--unavailable{% endif %}" href="{{ parts[1] }}">
+              {{- parts[0] -}}
+              {%- if parts[2] == 'unavailable' -%}
+                <span class="visually-hidden"> ({{ 'products.product.sold_out' | t }})</span>
+              {%- endif -%}
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+{%- endif -%}

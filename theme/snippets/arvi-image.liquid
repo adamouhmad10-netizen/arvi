@@ -1,0 +1,126 @@
+{%- comment -%}
+  Responsive image with a bundled-asset fallback.
+  Uses the merchant's image (Shopify CDN, automatic WebP/AVIF) when set; otherwise falls back to an
+  optimized ARVI image shipped in /assets as `<fallback>-<width>.webp`.
+
+  Accepts:
+  - image: {Object} image object from an image_picker (optional)
+  - fallback: {String} asset base name, e.g. 'arvi-cellar' (optional)
+  - fallback_widths: {String} comma list of available widths, e.g. '750,1100,1500,1920'
+  - fallback_ratio: {Number} width / height of the fallback image (e.g. 1.777)
+  - alt: {String} alt text (falls back to image.alt)
+  - sizes: {String} sizes attribute
+  - widths: {String} widths for Shopify images (default '375,550,750,1100,1500,1780,2000')
+  - loading: {String} 'lazy' (default) or 'eager'
+  - priority: {Boolean} sets fetchpriority=high (LCP images)
+  - class: {String} class attribute
+{%- endcomment -%}
+{%- liquid
+  assign img_loading = loading | default: 'lazy'
+  assign img_sizes = sizes | default: '100vw'
+  assign img_class = class | default: ''
+  if priority
+    assign img_fetch = 'high'
+  else
+    assign img_fetch = 'auto'
+  endif
+-%}
+{%- if image != blank -%}
+  {%- liquid
+    assign img_widths = widths | default: '375, 550, 750, 1100, 1500, 1780, 2000'
+    assign img_alt = alt | default: image.alt | escape
+    assign focal = image.presentation.focal_point | default: '50% 50%'
+    assign img_style = 'object-position: ' | append: focal | append: ';'
+  -%}
+  {{
+    image
+    | image_url: width: 2000
+    | image_tag:
+      widths: img_widths,
+      sizes: img_sizes,
+      loading: img_loading,
+      fetchpriority: img_fetch,
+      alt: img_alt,
+      class: img_class,
+      style: img_style
+  }}
+{%- elsif fallback != blank -%}
+  {%- liquid
+    if fallback_widths == blank
+      case fallback
+        when 'arvi-hero-autumn'
+          assign fallback_widths = '750,1100,1500,1874'
+          assign fallback_ratio = 1.3329
+        when 'arvi-hero-autumn-wide'
+          assign fallback_widths = '960,1440,1920'
+          assign fallback_ratio = 4.0
+        when 'arvi-cellar'
+          assign fallback_widths = '750,1100,1500,1920'
+          assign fallback_ratio = 1.7778
+        when 'arvi-vault'
+          assign fallback_widths = '750,1100,1500,1920'
+          assign fallback_ratio = 1.7778
+        when 'arvi-boutique-melano'
+          assign fallback_widths = '480,660'
+          assign fallback_ratio = 1.0
+        when 'arvi-boutique-lugano'
+          assign fallback_widths = '480,660'
+          assign fallback_ratio = 1.0
+        when 'arvi-boutique-zurich'
+          assign fallback_widths = '480,660'
+          assign fallback_ratio = 1.0
+        when 'arvi-consultant'
+          assign fallback_widths = '480,600'
+          assign fallback_ratio = 0.9091
+        when 'arvi-bottles'
+          assign fallback_widths = '480,600'
+          assign fallback_ratio = 0.9091
+        when 'arvi-events'
+          assign fallback_widths = '500'
+          assign fallback_ratio = 1.1111
+        when 'arvi-events-table'
+          assign fallback_widths = '480,600'
+          assign fallback_ratio = 0.9091
+        when 'arvi-horeca'
+          assign fallback_widths = '480,600'
+          assign fallback_ratio = 0.9091
+        when 'arvi-en-primeur'
+          assign fallback_widths = '480,600'
+          assign fallback_ratio = 0.9091
+        when 'arvi-wine-vault-detail'
+          assign fallback_widths = '480,600'
+          assign fallback_ratio = 0.9091
+      endcase
+    endif
+    assign w_list = fallback_widths | split: ','
+    assign w_max = w_list | last | strip | plus: 0
+    assign w_ratio = fallback_ratio | default: 1.0
+    assign h_max = w_max | divided_by: w_ratio | round
+    assign w_mid = w_list | first | strip
+    capture srcset
+      for w in w_list
+        assign w_clean = w | strip
+        assign file = fallback | append: '-' | append: w_clean | append: '.webp'
+        echo file | asset_url | append: ' ' | append: w_clean | append: 'w'
+        unless forloop.last
+          echo ', '
+        endunless
+      endfor
+    endcapture
+    assign default_src = fallback | append: '-' | append: w_mid | append: '.webp' | asset_url
+  -%}
+  <img
+    src="{{ default_src }}"
+    srcset="{{ srcset }}"
+    sizes="{{ img_sizes }}"
+    width="{{ w_max }}"
+    height="{{ h_max }}"
+    alt="{{ alt | escape }}"
+    loading="{{ img_loading }}"
+    fetchpriority="{{ img_fetch }}"
+    decoding="async"
+    {% if img_class != blank %}
+      class="{{ img_class }}"
+    {% endif %}
+  >
+{%- endif -%}

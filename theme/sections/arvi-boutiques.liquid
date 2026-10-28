@@ -1,0 +1,160 @@
+{{ 'arvi-sections.css' | asset_url | stylesheet_tag }}
+
+<div class="arvi-boutiques color-{{ section.settings.color_scheme }} gradient arvi-pad--{{ section.settings.padding }}">
+  <div class="page-width">
+    {%- render 'arvi-section-header',
+      eyebrow: section.settings.eyebrow,
+      heading: section.settings.heading,
+      text: section.settings.text,
+      link_label: section.settings.link_label,
+      link_url: section.settings.link_url,
+      id: section.id,
+      heading_tag: section.settings.heading_tag
+    -%}
+
+    <ul class="arvi-boutiques__grid" role="list">
+      {%- for block in section.blocks -%}
+        <li class="arvi-boutique scroll-trigger animate--slide-in" data-cascade style="--animation-order: {{ forloop.index }};" {{ block.shopify_attributes }}>
+          <article aria-labelledby="Boutique-{{ block.id }}">
+            <div class="arvi-boutique__media">
+              {%- render 'arvi-image',
+                image: block.settings.image,
+                fallback: block.settings.fallback_image,
+                alt: block.settings.image_alt,
+                sizes: '(min-width: 990px) 30vw, (min-width: 750px) 45vw, 90vw',
+                class: 'arvi-boutique__img'
+              -%}
+            </div>
+            <div class="arvi-boutique__body">
+              {%- if block.settings.kicker != blank -%}
+                <p class="arvi-micro">{{ block.settings.kicker }}</p>
+              {%- endif -%}
+              <h3 class="arvi-display arvi-display--m" id="Boutique-{{ block.id }}">{{ block.settings.name }}</h3>
+              <dl class="arvi-boutique__facts">
+                {%- if block.settings.address != blank -%}
+                  <div>
+                    <dt>{% render 'arvi-icon', icon: 'map-pin', size: 18 %}<span class="visually-hidden">{{ 'arvi.boutiques.address' | t }}</span></dt>
+                    <dd>{{ block.settings.address }}</dd>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.hours != blank -%}
+                  <div>
+                    <dt>{% render 'arvi-icon', icon: 'clock', size: 18 %}<span class="visually-hidden">{{ 'arvi.boutiques.hours' | t }}</span></dt>
+                    <dd>{{ block.settings.hours }}</dd>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.phone != blank -%}
+                  <div>
+                    <dt>{% render 'arvi-icon', icon: 'phone', size: 18 %}<span class="visually-hidden">{{ 'arvi.boutiques.phone' | t }}</span></dt>
+                    <dd><a href="tel:{{ block.settings.phone | remove: ' ' }}">{{ block.settings.phone }}</a></dd>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.email != blank -%}
+                  <div>
+                    <dt>{% render 'arvi-icon', icon: 'mail', size: 18 %}<span class="visually-hidden">{{ 'arvi.boutiques.email' | t }}</span></dt>
+                    <dd><a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a></dd>
+                  </div>
+                {%- endif -%}
+              </dl>
+              {%- if block.settings.note != blank -%}
+                <div class="arvi-meta rte">{{ block.settings.note }}</div>
+              {%- endif -%}
+              {%- if block.settings.map_url != blank -%}
+                <a class="arvi-link" href="{{ block.settings.map_url }}" target="_blank" rel="noopener">
+                  {{- 'arvi.boutiques.directions' | t -}}
+                  <span class="visually-hidden"> ({{ block.settings.name }}, {{ 'accessibility.link_messages.new_window' | t }})</span>
+                </a>
+              {%- endif -%}
+            </div>
+          </article>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{%- if section.settings.enable_schema -%}
+  {%- for block in section.blocks -%}
+    {%- if block.settings.schema_street != blank -%}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "LiquorStore",
+          "name": {{ block.settings.name | json }},
+          "parentOrganization": { "@type": "Organization", "name": {{ shop.name | json }}, "url": {{ shop.url | json }} },
+          {%- if block.settings.image != blank -%}
+            "image": {{ block.settings.image | image_url: width: 1200 | prepend: 'https:' | json }},
+          {%- elsif block.settings.fallback_image != blank -%}
+            {%- assign img_file = block.settings.fallback_image | append: '-660.webp' -%}
+            "image": {{ img_file | asset_url | prepend: 'https:' | json }},
+          {%- endif -%}
+          {%- if block.settings.phone != blank -%}"telephone": {{ block.settings.phone | json }},{%- endif -%}
+          {%- if block.settings.email != blank -%}"email": {{ block.settings.email | json }},{%- endif -%}
+          {%- if block.settings.schema_hours != blank -%}"openingHours": {{ block.settings.schema_hours | split: '|' | json }},{%- endif -%}
+          "currenciesAccepted": "CHF",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": {{ block.settings.schema_street | json }},
+            "postalCode": {{ block.settings.schema_postcode | json }},
+            "addressLocality": {{ block.settings.schema_city | json }},
+            "addressCountry": "CH"
+          }
+        }
+      </script>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ARVI · Boutiques",
+  "tag": "section",
+  "class": "section arvi-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Arvino Luxury Wine Shops" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Visit us in Melano, Lugano and Zurich" },
+    {
+      "type": "select", "id": "heading_tag", "label": "Heading tag", "default": "h2",
+      "options": [{ "value": "h1", "label": "H1 (use on the boutiques page)" }, { "value": "h2", "label": "H2" }]
+    },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Our sommeliers and wine consultants welcome you for personal advice, tastings and pick-ups by appointment.</p>" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Discover our shops" },
+    { "type": "url", "id": "link_url", "label": "Link" },
+    {
+      "type": "checkbox", "id": "enable_schema", "label": "Output store structured data (LiquorStore)", "default": true,
+      "info": "Enable on one page only (e.g. the boutiques page) to avoid duplicate structured data."
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" },
+    {
+      "type": "select", "id": "padding", "label": "Vertical spacing", "default": "l",
+      "options": [{ "value": "s", "label": "Small" }, { "value": "m", "label": "Medium" }, { "value": "l", "label": "Large" }]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "boutique",
+      "name": "Boutique",
+      "settings": [
+        { "type": "text", "id": "kicker", "label": "Kicker", "default": "Arvino" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Melano" },
+        { "type": "image_picker", "id": "image", "label": "Photograph" },
+        { "type": "text", "id": "fallback_image", "label": "Bundled fallback image", "info": "arvi-boutique-melano, arvi-boutique-lugano, arvi-boutique-zurich" },
+        { "type": "text", "id": "image_alt", "label": "Image description (alt text)" },
+        { "type": "inline_richtext", "id": "address", "label": "Address" },
+        { "type": "richtext", "id": "hours", "label": "Opening hours" },
+        { "type": "text", "id": "phone", "label": "Telephone" },
+        { "type": "text", "id": "email", "label": "Email" },
+        { "type": "richtext", "id": "note", "label": "Note" },
+        { "type": "url", "id": "map_url", "label": "Directions link (e.g. Google Maps)" },
+        { "type": "header", "content": "Structured data" },
+        { "type": "text", "id": "schema_street", "label": "Street" },
+        { "type": "text", "id": "schema_postcode", "label": "Postcode" },
+        { "type": "text", "id": "schema_city", "label": "City" },
+        { "type": "text", "id": "schema_hours", "label": "Opening hours (schema.org format)", "info": "Separate entries with |, e.g. Mo-Fr 08:30-12:30|Mo-Fr 13:00-18:00" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ARVI · Boutiques", "blocks": [{ "type": "boutique" }, { "type": "boutique" }, { "type": "boutique" }] }]
+}
+{% endschema %}

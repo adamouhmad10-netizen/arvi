@@ -1,0 +1,332 @@
+{
+ "arvi-hero-autumn": {
+  "source": "assets-library/arvi-original/Autumn_mobile2.png",
+  "orig": [
+   1874,
+   1406
+  ],
+  "files": [
+   [
+    "arvi-hero-autumn-750.webp",
+    750,
+    563,
+    45
+   ],
+   [
+    "arvi-hero-autumn-1100.webp",
+    1100,
+    825,
+    68
+   ],
+   [
+    "arvi-hero-autumn-1500.webp",
+    1500,
+    1125,
+    98
+   ],
+   [
+    "arvi-hero-autumn-1874.webp",
+    1874,
+    1406,
+    127
+   ]
+  ]
+ },
+ "arvi-hero-autumn-wide": {
+  "source": "assets-library/arvi-original/Autumn2.png",
+  "orig": [
+   1920,
+   480
+  ],
+  "files": [
+   [
+    "arvi-hero-autumn-wide-960.webp",
+    960,
+    240,
+    32
+   ],
+   [
+    "arvi-hero-autumn-wide-1440.webp",
+    1440,
+    360,
+    59
+   ],
+   [
+    "arvi-hero-autumn-wide-1920.webp",
+    1920,
+    480,
+    85
+   ]
+  ]
+ },
+ "arvi-cellar": {
+  "source": "assets-library/wip-shopify/AS_Background.png",
+  "orig": [
+   1920,
+   1080
+  ],
+  "files": [
+   [
+    "arvi-cellar-750.webp",
+    750,
+    422,
+    68
+   ],
+   [
+    "arvi-cellar-1100.webp",
+    1100,
+    619,
+    145
+   ],
+   [
+    "arvi-cellar-1500.webp",
+    1500,
+    844,
+    261
+   ],
+   [
+    "arvi-cellar-1920.webp",
+    1920,
+    1080,
+    408
+   ]
+  ]
+ },
+ "arvi-vault": {
+  "source": "assets-library/wip-shopify/WV_Background.png",
+  "orig": [
+   1920,
+   1080
+  ],
+  "files": [
+   [
+    "arvi-vault-750.webp",
+    750,
+    422,
+    56
+   ],
+   [
+    "arvi-vault-1100.webp",
+    1100,
+    619,
+    107
+   ],
+   [
+    "arvi-vault-1500.webp",
+    1500,
+    844,
+    173
+   ],
+   [
+    "arvi-vault-1920.webp",
+    1920,
+    1080,
+    244
+   ]
+  ]
+ },
+ "arvi-boutique-melano": {
+  "source": "assets-library/arvi-original/Melano.png",
+  "orig": [
+   660,
+   660
+  ],
+  "files": [
+   [
+    "arvi-boutique-melano-480.webp",
+    480,
+    480,
+    42
+   ],
+   [
+    "arvi-boutique-melano-660.webp",
+    660,
+    660,
+    68
+   ]
+  ]
+ },
+ "arvi-boutique-lugano": {
+  "source": "assets-library/arvi-original/Lugano.png",
+  "orig": [
+   660,
+   660
+  ],
+  "files": [
+   [
+    "arvi-boutique-lugano-480.webp",
+    480,
+    480,
+    54
+   ],
+   [
+    "arvi-boutique-lugano-660.webp",
+    660,
+    660,
+    91
+   ]
+  ]
+ },
+ "arvi-boutique-zurich": {
+  "source": "assets-library/arvi-original/Zurigo.png",
+  "orig": [
+   660,
+   660
+  ],
+  "files": [
+   [
+    "arvi-boutique-zurich-480.webp",
+    480,
+    480,
+    39
+   ],
+   [
+    "arvi-boutique-zurich-660.webp",
+    660,
+    660,
+    65
+   ]
+  ]
+ },
+ "arvi-consultant": {
+  "source": "assets-library/arvi-original/Shops_01.png",
+  "orig": [
+   600,
+   660
+  ],
+  "files": [
+   [
+    "arvi-consultant-480.webp",
+    480,
+    528,
+    16
+   ],
+   [
+    "arvi-consultant-600.webp",
+    600,
+    660,
+    22
+   ]
+  ]
+ },
+ "arvi-bottles": {
+  "source": "assets-library/arvi-original/AS_01.png",
+  "orig": [
+   600,
+   660
+  ],
+  "files": [
+   [
+    "arvi-bottles-480.webp",
+    480,
+    528,
+    12
+   ],
+   [
+    "arvi-bottles-600.webp",
+    600,
+    660,
+    16
+   ]
+  ]
+ },
+ "arvi-events": {
+  "source": "assets-library/arvi-original/Events_Corporate.png",
+  "orig": [
+   500,
+   450
+  ],
+  "files": [
+   [
+    "arvi-events-500.webp",
+    500,
+    450,
+    26
+   ]
+  ]
+ },
+ "arvi-events-table": {
+  "source": "assets-library/arvi-original/Events_01.png",
+  "orig": [
+   600,
+   660
+  ],
+  "files": [
+   [
+    "arvi-events-table-480.webp",
+    480,
+    528,
+    35
+   ],
+   [
+    "arvi-events-table-600.webp",
+    600,
+    660,
+    49
+   ]
+  ]
+ },
+ "arvi-horeca": {
+  "source": "assets-library/arvi-original/horeca_2.png",
+  "orig": [
+   600,
+   660
+  ],
+  "files": [
+   [
+    "arvi-horeca-480.webp",
+    480,
+    528,
+    12
+   ],
+   [
+    "arvi-horeca-600.webp",
+    600,
+    660,
+    17
+   ]
+  ]
+ },
+ "arvi-en-primeur": {
+  "source": "assets-library/arvi-original/WIEP_660_01.png",
+  "orig": [
+   600,
+   660
+  ],
+  "files": [
+   [
+    "arvi-en-primeur-480.webp",
+    480,
+    528,
+    18
+   ],
+   [
+    "arvi-en-primeur-600.webp",
+    600,
+    660,
+    25
+   ]
+  ]
+ },
+ "arvi-wine-vault-detail": {
+  "source": "assets-library/arvi-original/WV_01.png",
+  "orig": [
+   600,
+   660
+  ],
+  "files": [
+   [
+    "arvi-wine-vault-detail-480.webp",
+    480,
+    528,
+    26
+   ],
+   [
+    "arvi-wine-vault-detail-600.webp",
+    600,
+    660,
+    36
+   ]
+  ]
+ }
+}

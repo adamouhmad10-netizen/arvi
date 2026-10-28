@@ -1,0 +1,49 @@
+{%- comment -%}
+  Age confirmation. Compatible with the WIP theme: same cookie name (arvi_age_ok, 90 days, shared on *.arvi.ch),
+  so visitors who already confirmed are not asked again after the theme switch.
+  Search engines and accessibility audit tools are not interrupted (crawler allow-list), and the dialog
+  content carries data-nosnippet so it never appears in search results.
+{%- endcomment -%}
+{%- if section.settings.enabled -%}
+  {{ 'arvi-sections.css' | asset_url | stylesheet_tag }}
+  <template id="ArviAgeGateTemplate">
+    <dialog class="arvi-age color-{{ section.settings.color_scheme }}" aria-labelledby="ArviAgeTitle" aria-describedby="ArviAgeText" data-nosnippet>
+      <div class="arvi-age__panel">
+        {%- if settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 160 | image_tag: width: 80, height: null, loading: 'eager', alt: shop.name, class: 'arvi-age__logo' }}
+        {%- endif -%}
+        <div data-arvi-age-step="ask">
+          <p class="arvi-eyebrow">{{ shop.name }}</p>
+          <h2 class="arvi-display arvi-display--m" id="ArviAgeTitle">{{ 'arvi.age_gate.title' | t }}</h2>
+          <p class="arvi-body" id="ArviAgeText">{{ 'arvi.age_gate.text' | t }}</p>
+          <div class="arvi-age__actions">
+            <button type="button" class="button arvi-button" data-arvi-age="yes">{{ 'arvi.age_gate.confirm' | t }}</button>
+            <button type="button" class="button button--secondary arvi-button" data-arvi-age="no">{{ 'arvi.age_gate.decline' | t }}</button>
+          </div>
+        </div>
+        <div data-arvi-age-step="denied" hidden>
+          <h2 class="arvi-display arvi-display--m">{{ 'arvi.age_gate.denied_title' | t }}</h2>
+          <p class="arvi-body">{{ 'arvi.age_gate.denied_text' | t }}</p>
+          <button type="button" class="button button--secondary arvi-button" data-arvi-age="back">{{ 'arvi.age_gate.back' | t }}</button>
+        </div>
+      </div>
+    </dialog>
+  </template>
+  <script src="{{ 'arvi-age-gate.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ARVI · Age confirmation",
+  "tag": "div",
+  "class": "arvi-age-section",
+  "limit": 1,
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Ask visitors to confirm their age", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" },
+    { "type": "paragraph", "content": "Texts are edited in Theme settings > Edit default theme content (search for 'age_gate'), per language." }
+  ],
+  "enabled_on": { "groups": ["footer"] },
+  "presets": [{ "name": "ARVI · Age confirmation" }]
+}
+{% endschema %}

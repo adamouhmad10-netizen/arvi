@@ -1,0 +1,110 @@
+{{ 'arvi-sections.css' | asset_url | stylesheet_tag }}
+
+<div class="arvi-tiles color-{{ section.settings.color_scheme }} gradient arvi-pad--{{ section.settings.padding }}">
+  <div class="page-width">
+    {%- render 'arvi-section-header',
+      eyebrow: section.settings.eyebrow,
+      heading: section.settings.heading,
+      text: section.settings.text,
+      link_label: section.settings.link_label,
+      link_url: section.settings.link_url,
+      id: section.id
+    -%}
+
+    <ul class="arvi-tiles__grid arvi-tiles__grid--{{ section.blocks.size }}" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign col = block.settings.collection
+          assign title = block.settings.title | default: col.title
+          assign bottle = block.settings.product.featured_media
+          if bottle == blank and col != blank
+            for p in col.products limit: 12
+              if p.featured_media != blank and p.available
+                assign bottle = p.featured_media
+                break
+              endif
+            endfor
+          endif
+          if bottle == blank and col != blank
+            assign bottle = col.products.first.featured_media
+          endif
+        -%}
+        <li class="arvi-tile{% if forloop.first %} arvi-tile--lead{% endif %} scroll-trigger animate--slide-in" data-cascade style="--animation-order: {{ forloop.index }};" {{ block.shopify_attributes }}>
+          <a class="arvi-tile__link" href="{{ col.url | default: '#' }}">
+            <div class="arvi-tile__niche">
+              {%- if block.settings.image != blank -%}
+                {%- render 'arvi-image', image: block.settings.image, sizes: '(min-width: 990px) 33vw, 50vw', class: 'arvi-tile__photo' -%}
+              {%- elsif bottle != blank -%}
+                {{
+                  bottle
+                  | image_url: width: 800
+                  | image_tag:
+                    widths: '240, 360, 480, 640, 800',
+                    sizes: '(min-width: 990px) 22vw, 40vw',
+                    loading: 'lazy',
+                    alt: '',
+                    class: 'arvi-tile__bottle'
+                }}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'arvi-tile__placeholder' }}
+              {%- endif -%}
+            </div>
+            <div class="arvi-tile__text">
+              {%- if block.settings.kicker != blank -%}
+                <p class="arvi-micro">{{ block.settings.kicker }}</p>
+              {%- endif -%}
+              <h3 class="arvi-display arvi-display--m arvi-tile__title">{{ title | escape }}</h3>
+              {%- if section.settings.show_count and col.products_count > 0 -%}
+                <p class="arvi-meta">
+                  {%- capture n_fmt -%}{% render 'arvi-number', n: col.products_count %}{%- endcapture -%}
+                  {{- 'arvi.collections.references' | t: number: n_fmt -}}
+                </p>
+              {%- endif -%}
+            </div>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ARVI · Collections",
+  "tag": "section",
+  "class": "section arvi-section",
+  "max_blocks": 7,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The cellar" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Explore the great regions" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Over ten thousand labels, from the most prestigious Bordeaux classifications to Burgundy, the Rhône, Champagne and Italy's great estates.</p>" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "All wines" },
+    { "type": "url", "id": "link_url", "label": "Link" },
+    { "type": "checkbox", "id": "show_count", "label": "Show number of references", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" },
+    {
+      "type": "select", "id": "padding", "label": "Vertical spacing", "default": "l",
+      "options": [{ "value": "s", "label": "Small" }, { "value": "m", "label": "Medium" }, { "value": "l", "label": "Large" }]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "title", "label": "Title override" },
+        { "type": "text", "id": "kicker", "label": "Kicker", "info": "e.g. France, Italy" },
+        { "type": "product", "id": "product", "label": "Featured bottle (optional)", "info": "Otherwise the first available bottle with a photo is shown." },
+        { "type": "image_picker", "id": "image", "label": "Photograph (optional)", "info": "Replaces the bottle with an editorial photograph." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ARVI · Collections",
+      "blocks": [{ "type": "collection" }, { "type": "collection" }, { "type": "collection" }, { "type": "collection" }]
+    }
+  ]
+}
+{% endschema %}

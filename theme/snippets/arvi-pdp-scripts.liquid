@@ -1,0 +1,16 @@
+{%- comment -%}
+  Product-page scripts for ARVI: price-on-request sync and the Formato -> Size/Packaging split
+  (the latter preserved from the WIP theme). Labels are translatable (locales: arvi.formato.*).
+{%- endcomment -%}
+<script>
+  window.arviFormato = window.arviFormato || {
+    etichette: {
+      confezione: {{ 'arvi.formato.packaging' | t | json }},
+      bottiglia: {{ 'arvi.formato.single_bottle' | t | json }},
+      cassa: {{ 'arvi.formato.case_of' | t | json }},
+      esauritoBreve: {{ 'products.product.sold_out' | t | json }}
+    }
+  };
+</script>
+<script src="{{ 'arvi-variant-formato.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'arvi-product.js' | asset_url }}" defer="defer"></script>

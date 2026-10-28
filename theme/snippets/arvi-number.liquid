@@ -1,0 +1,17 @@
+{%- comment -%} Formats an integer with thousands separators (e.g. 16792 -> 16,792). Accepts: n, sep (default ',') {%- endcomment -%}
+{%- liquid
+  assign s = n | round | append: ''
+  assign sp = sep | default: ','
+  assign len = s.size
+  assign out = ''
+  for i in (1..len)
+    assign idx = len | minus: i
+    assign ch = s | slice: idx, 1
+    assign out = ch | append: out
+    assign rem = i | modulo: 3
+    if rem == 0 and i < len
+      assign out = sp | append: out
+    endif
+  endfor
+  echo out
+-%}

@@ -1,0 +1,81 @@
+{{ 'arvi-sections.css' | asset_url | stylesheet_tag }}
+
+<div class="arvi-producers color-{{ section.settings.color_scheme }} gradient arvi-pad--{{ section.settings.padding }}">
+  <div class="page-width">
+    {%- render 'arvi-section-header',
+      eyebrow: section.settings.eyebrow,
+      heading: section.settings.heading,
+      text: section.settings.text,
+      link_label: section.settings.link_label,
+      link_url: section.settings.link_url,
+      id: section.id
+    -%}
+
+    <ol class="arvi-index" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign col = block.settings.collection
+          assign name = block.settings.name | default: col.title
+          assign bottle = block.settings.product.featured_media
+          if bottle == blank and col != blank
+            for p in col.products limit: 12
+              if p.featured_media != blank
+                assign bottle = p.featured_media
+                break
+              endif
+            endfor
+          endif
+        -%}
+        <li class="arvi-index__item" {{ block.shopify_attributes }}>
+          <a class="arvi-index__link" href="{{ col.url | default: '#' }}">
+            <span class="arvi-index__num arvi-meta" aria-hidden="true">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            <span class="arvi-index__name arvi-display">{{ name | escape }}</span>
+            {%- if block.settings.region != blank -%}
+              <span class="arvi-index__region arvi-meta">{{ block.settings.region }}</span>
+            {%- endif -%}
+            <span class="arvi-index__thumb" aria-hidden="true">
+              {%- if bottle != blank -%}
+                {{ bottle | image_url: width: 360 | image_tag: widths: '180, 360', sizes: '120px', loading: 'lazy', alt: '' }}
+              {%- endif -%}
+            </span>
+            <span class="arvi-index__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ARVI · Producers index",
+  "tag": "section",
+  "class": "section arvi-section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Icons" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Timeless excellence" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "link_label", "label": "Link label" },
+    { "type": "url", "id": "link_url", "label": "Link" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-3" },
+    {
+      "type": "select", "id": "padding", "label": "Vertical spacing", "default": "l",
+      "options": [{ "value": "s", "label": "Small" }, { "value": "m", "label": "Medium" }, { "value": "l", "label": "Large" }]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "producer",
+      "name": "Producer",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Producer collection" },
+        { "type": "text", "id": "name", "label": "Name override" },
+        { "type": "text", "id": "region", "label": "Region", "info": "e.g. Pomerol, Bordeaux" },
+        { "type": "product", "id": "product", "label": "Bottle shown (optional)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ARVI · Producers index", "blocks": [{ "type": "producer" }, { "type": "producer" }, { "type": "producer" }] }]
+}
+{% endschema %}

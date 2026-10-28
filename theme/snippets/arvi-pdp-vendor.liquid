@@ -1,0 +1,12 @@
+{%- comment -%} Producer line on the product page, linked to the producer collection when it exists. {%- endcomment -%}
+{%- liquid
+  assign producer_handle = 'produttore-' | append: product.vendor | handleize
+  assign producer = collections[producer_handle]
+-%}
+<p class="arvi-pdp-vendor">
+  {%- if producer != blank -%}
+    <a href="{{ producer.url }}">{{ product.vendor }}</a>
+  {%- else -%}
+    {{ product.vendor }}
+  {%- endif -%}
+</p>

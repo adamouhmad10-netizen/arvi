@@ -1,0 +1,43 @@
+{%- comment -%}
+  Compact wine facts for the product information column. Reads the store's `arvi` metafields.
+  Confirmed keys (used by storefront filters): annata, colore, regione, produttore.
+  Other keys (sottoregione, nazione, alcol, uvaggio, classificazione) are read only if they exist.
+  Empty values are never rendered.
+
+  Accepts:
+  - product: {Object}
+  - mode: {String} 'origin' (one line: sub-region · region · country) or 'list' (definition list)
+{%- endcomment -%}
+{%- liquid
+  assign m = product.metafields.arvi
+  assign origin_parts = ''
+  assign origin_keys = 'sottoregione,regione,nazione' | split: ','
+  for key in origin_keys
+    assign v = m[key].value | default: m[key]
+    if v != blank
+      assign origin_parts = origin_parts | append: v | append: '|'
+    endif
+  endfor
+  assign origin = origin_parts | split: '|' | uniq
+-%}
+{%- if mode == 'origin' -%}
+  {%- if origin.size > 0 -%}
+    <p class="arvi-origin arvi-micro">{{ origin | join: ' · ' }}</p>
+  {%- endif -%}
+{%- else -%}
+  {%- capture rows -%}
+    {%- assign vintage = m.annata.value | default: m.annata -%}
+    {%- if vintage != blank -%}<div><dt>{{ 'arvi.product.vintage' | t }}</dt><dd>{{ vintage }}</dd></div>{%- endif -%}
+    {%- if product.vendor != blank -%}<div><dt>{{ 'arvi.product.producer' | t }}</dt><dd>{{ product.vendor }}</dd></div>{%- endif -%}
+    {%- if origin.size > 0 -%}<div><dt>{{ 'arvi.product.origin' | t }}</dt><dd>{{ origin | join: ', ' }}</dd></div>{%- endif -%}
+    {%- assign colour = m.colore.value | default: m.colore -%}
+    {%- if colour != blank -%}<div><dt>{{ 'arvi.product.colour' | t }}</dt><dd>{{ colour }}</dd></div>{%- endif -%}
+    {%- assign grapes = m.uvaggio.value | default: m.uvaggio -%}
+    {%- if grapes != blank -%}<div><dt>{{ 'arvi.product.grapes' | t }}</dt><dd>{{ grapes }}</dd></div>{%- endif -%}
+    {%- assign alc = m.alcol.value | default: m.alcol -%}
+    {%- if alc != blank -%}<div><dt>{{ 'arvi.product.alcohol' | t }}</dt><dd>{{ alc }}</dd></div>{%- endif -%}
+  {%- endcapture -%}
+  {%- if rows != blank -%}
+    <dl class="arvi-facts">{{ rows }}</dl>
+  {%- endif -%}
+{%- endif -%}

@@ -38,6 +38,33 @@
   if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
+
+  # ARVI: wines without a published price (CHF 0.00) read "Price on request" instead of a zero price.
+  # Products whose variants are partly priced show "From <lowest published price>".
+  if settings.arvi_request_price_enabled
+    if target == product and price == 0
+      assign arvi_min_price = 0
+      for arvi_variant in product.variants
+        if arvi_variant.price > 0
+          if arvi_min_price == 0 or arvi_variant.price < arvi_min_price
+            assign arvi_min_price = arvi_variant.price
+          endif
+        endif
+      endfor
+      if arvi_min_price > 0
+        if settings.currency_code_enabled
+          assign arvi_money = arvi_min_price | money_with_currency
+        else
+          assign arvi_money = arvi_min_price | money
+        endif
+        assign money_price = 'products.product.price.from_price_html' | t: price: arvi_money
+      else
+        assign money_price = 'arvi.product.price_on_request' | t
+      endif
+    elsif price == 0
+      assign money_price = 'arvi.product.price_on_request' | t
+    endif
+  endif
 -%}
 
 {%- unless target == null and placeholder == null -%}

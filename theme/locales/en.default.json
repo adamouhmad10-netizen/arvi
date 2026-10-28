@@ -274,7 +274,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
@@ -527,6 +526,51 @@
       "max_characters": "{{ max_chars }} characters max",
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
+    }
+  },
+  "arvi": {
+    "product": {
+      "price_on_request": "Price on request",
+      "price_on_request_note": "This wine is offered on request. Our consultants will confirm price, availability and condition.",
+      "enquire": "Enquire about this wine",
+      "enquiry_subject": "Enquiry: {{ product }}",
+      "all_vintages": "All vintages",
+      "vintage": "Vintage",
+      "producer": "Producer",
+      "origin": "Origin",
+      "colour": "Colour",
+      "grapes": "Grapes",
+      "alcohol": "Alcohol",
+      "all_from_producer": "All wines from {{ producer }}",
+      "owc_short": "OWC"
+    },
+    "formato": {
+      "packaging": "Packaging",
+      "single_bottle": "Single bottle",
+      "case_of": "Original case of %n%"
+    },
+    "collections": {
+      "references": "{{ number }} references"
+    },
+    "boutiques": {
+      "address": "Address",
+      "hours": "Opening hours",
+      "phone": "Telephone",
+      "email": "Email",
+      "directions": "Directions"
+    },
+    "breadcrumbs": {
+      "label": "Breadcrumb",
+      "home": "Home"
+    },
+    "age_gate": {
+      "title": "Are you 18 or older?",
+      "text": "As we sell fine wines and spirits, you must be of legal drinking age in your country to visit our website.",
+      "confirm": "Yes, I am 18 or older",
+      "decline": "No",
+      "denied_title": "We're sorry",
+      "denied_text": "You must be of legal drinking age to visit this website.",
+      "back": "Back"
     }
   }
 }

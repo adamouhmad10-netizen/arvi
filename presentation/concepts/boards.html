@@ -1,0 +1,63 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}body{font-family:Inter;background:#ddd}
+.board{width:1600px;padding:72px;margin:0 0 40px;position:relative}
+.k{font:500 11px Inter;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+.row{display:flex;gap:32px}.sw{width:150px}.sw i{display:block;height:96px;border-radius:2px;margin-bottom:10px;border:1px solid rgba(0,0,0,.08)}
+.sw b{display:block;font:500 12px Inter}.sw small{font:400 11px Inter;opacity:.65}
+.hero{display:grid;grid-template-columns:1fr 1fr;height:560px;margin-top:40px}
+.hero .img{background-size:cover;background-position:center}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:40px}
+.card{padding:28px 24px 26px}.card .b{height:300px;background-size:contain;background-repeat:no-repeat;background-position:center bottom;margin-bottom:22px}
+.notes{columns:3;gap:40px;margin-top:40px;font:400 14px/1.6 Inter}
+.notes p{break-inside:avoid;margin-bottom:12px}
+/* A */
+.A{background:#F5F3EE;color:#1C1A17}.A h1,.A .serif{font-family:Newsreader;font-weight:300;font-optical-sizing:auto}
+.A .hero .txt{background:#1C1A17;color:#F5F3EE;padding:64px;display:flex;flex-direction:column;justify-content:flex-end}
+.A .hero h2{font:300 76px/0.98 Newsreader;letter-spacing:-.02em}.A .btn{display:inline-block;border:1px solid #F5F3EE;padding:15px 28px;font:500 11px Inter;letter-spacing:.16em;text-transform:uppercase;margin-top:32px}
+.A .cards{background:#DDD6C8}.A .card{background:#EDE9E1}.A .card .p{font:500 10px Inter;letter-spacing:.16em;text-transform:uppercase;color:#7A6E55}.A .card .t{font:400 22px/1.15 Newsreader;margin:6px 0 10px}.A .card .m{font:400 12px Inter;color:#6b665d;display:flex;justify-content:space-between}
+/* B */
+.B{background:#fff;color:#0d0d0d}.B h1,.B .serif{font-family:'Inter Tight';font-weight:500;letter-spacing:-.03em}
+.B .hero{grid-template-columns:1.2fr .8fr}.B .hero .txt{padding:64px 0 64px 64px;display:flex;flex-direction:column;justify-content:center}
+.B .hero h2{font:500 84px/0.95 'Inter Tight';letter-spacing:-.045em}.B .btn{display:inline-block;background:#0d0d0d;color:#fff;padding:16px 30px;font:500 13px 'Inter Tight';margin-top:32px;border-radius:40px}
+.B .cards{gap:20px}.B .card{background:#F4F4F2;border-radius:6px}.B .card .p{font:500 12px 'Inter Tight';color:#888}.B .card .t{font:500 19px/1.2 'Inter Tight';margin:4px 0 10px;letter-spacing:-.01em}.B .card .m{font:500 13px 'Inter Tight'}
+/* C */
+.C{background:#17110F;color:#EADFCB}.C h1,.C .serif{font-family:'Cormorant Garamond';font-weight:400}
+.C .hero .txt{padding:64px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:radial-gradient(circle at 50% 40%,#3a1d19,#17110F 70%)}
+.C .hero h2{font:italic 400 80px/1 'Cormorant Garamond'}.C .btn{display:inline-block;border:1px solid #B89A5E;color:#B89A5E;padding:14px 30px;font:500 11px Inter;letter-spacing:.24em;text-transform:uppercase;margin-top:32px}
+.C .cards{gap:24px}.C .card{background:#231916;border:1px solid #3a2a22;text-align:center}.C .card .p{font:italic 400 16px 'Cormorant Garamond';color:#B89A5E}.C .card .t{font:500 24px/1.1 'Cormorant Garamond';margin:6px 0 10px}.C .card .m{font:400 12px Inter;opacity:.7}
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px}
+.head h1{font-size:64px;line-height:1}
+.pick{position:absolute;top:72px;right:72px;font:600 12px Inter;letter-spacing:.14em;text-transform:uppercase;padding:10px 16px;background:#998A65;color:#fff}
+</style></head><body>
+<script>
+const IMG='../../assets-library/arvi-original/';
+const bottles=[
+ ['Maison Salon','Champagne le Mesnil 2013','75 cl','CHF 854.00','https://cdn.shopify.com/s/files/1/0949/2725/7948/files/Champagne_le_Mesnil_Maison_Salon_2007_75.00_53020_1.png?v=1792161594&width=600'],
+ ['De Venoge','Champagne Louis XV Rosé 2012','75 cl','CHF 221.60','https://cdn.shopify.com/s/files/1/0949/2725/7948/files/De_Venoge_Champagne_Louis_XV_Rose_2006_75_41455_c.png?v=1792161171&width=600'],
+ ['Larmandier-Bernier','Longitude Extra-Brut Blanc de Blancs NV','75 cl','CHF 59.45','https://cdn.shopify.com/s/files/1/0949/2725/7948/files/Larmandier-Bernier_Champagne_Longitude_Extra-Brut_Blanc_de_Blancs_0_75_39920.png?v=17&width=600'],
+ ['Krug','Champagne Brut Rosé NV','75 cl','CHF 389.15','https://myarvi.myshopify.com/cdn/shop/files/Krug_Champagne-Brut-Rose_0_75_22035_2a75a9bc-0570-4a71-8ae2-0901e056e36c.png?width=600']];
+const D=[
+ {c:'A',name:'A — Swiss Reserve',sub:'The oak gallery, translated',pick:1,img:'Zurigo.png',h:'Fine &amp; rare wines,<br>kept with care.',
+  pal:[['Stone','#F5F3EE','ARVI secondary-lightgold'],['Oak mist','#EDE9E1','niche ground'],['Linen','#DDD6C8','hairlines, ARVI d6d0c1'],['Bronze','#998A65','ARVI main-gold, accents only'],['Ink','#1C1A17','text, dark panels'],['Cellar','#3B2F27','rare dark surface']],
+  type:'Newsreader Light (display, optical sizes) · Inter (UI) — a contemporary heir to ARVI\'s Minion + Helvetica pairing',
+  notes:['<b>Source:</b> the Melano/Lugano/Zurich interiors — pale oak, lit niches, black leather, one brass accent — and ARVI\'s own CSS tokens (#998a65, #ebe7dd, #f5f4f0).','<b>Layout:</b> 12-column grid with hairline rules; product cells behave like lit niches: one bottle, warm ground, label always legible.','<b>Type:</b> large light serif for statements, tracked micro-caps for producer and metadata; numbers in tabular figures.','<b>Motion:</b> 240ms fades and a 1.03 image lift; nothing moves on its own.','<b>Risk:</b> needs strong photography — mitigated by ARVI\'s real boutique images and transparent bottle PNGs.','<b>Dawn fit:</b> maps directly onto color schemes + one CSS layer; no JS framework.']},
+ {c:'B',name:'B — The Modern Connoisseur',sub:'Gallery-white, product-first',img:'Lugano.png',h:'The world\'s great wines. In stock.',
+  pal:[['White','#FFFFFF',''],['Paper','#F4F4F2','cards'],['Graphite','#0D0D0D','text, buttons'],['Mid grey','#888888','meta'],['Bronze','#998A65','sale/score']],
+  type:'Inter Tight 500 (display) · Inter Tight (UI) — single grotesk family',
+  notes:['<b>Idea:</b> treat the catalogue like an art gallery index; all emphasis on bottles and data.','<b>Strength:</b> fastest, most scalable for 19k SKUs; very clean mobile.','<b>Weakness:</b> loses ARVI\'s serif heritage and the warmth of the boutiques; risks looking like a generic DTC store.','<b>Dawn fit:</b> excellent, minimal CSS.']},
+ {c:'C',name:'C — Heritage Wine Maison',sub:'Cellar-dark, editorial and rich',img:'WIEP_660_01.png',h:'Thirty years of great vintages',
+  pal:[['Cellar','#17110F','ground'],['Oxblood','#3A1D19','glow'],['Cork','#231916','cards'],['Parchment','#EADFCB','text'],['Antique gold','#B89A5E','accents']],
+  type:'Cormorant Garamond italic (display) · Inter (UI)',
+  notes:['<b>Idea:</b> candle-lit cellar; dark surfaces, italic serif, gold rules.','<b>Strength:</b> dramatic, strong heritage cues.','<b>Weakness:</b> contradicts the bright oak boutiques; dark UI lowers legibility of labels and prices; gold-on-black is a wine-site cliché; heavier on contrast compliance.','<b>Dawn fit:</b> fine, but every app embed and checkout handoff would clash.']}];
+for(const d of D){
+ const s=document.createElement('section');s.className='board '+d.c;s.id=d.c;
+ s.innerHTML=`${d.pick?'<div class="pick">Selected direction</div>':''}<div class="head"><div><div class="k">ARVI · Art direction</div><h1>${d.name}</h1><div class="serif" style="font-size:26px;margin-top:10px;opacity:.8">${d.sub}</div></div></div>
+ <div class="row">${d.pal.map(p=>`<div class="sw"><i style="background:${p[1]}"></i><b>${p[0]} ${p[1]}</b><small>${p[2]}</small></div>`).join('')}</div>
+ <p class="k" style="margin-top:28px;letter-spacing:.08em;text-transform:none;font-size:14px">${d.type}</p>
+ <div class="hero"><div class="txt"><div class="k" style="margin-bottom:20px">Arvino · Melano · Lugano · Zürich</div><h2>${d.h}</h2><div><span class="btn">Discover the collection</span></div></div><div class="img" style="background-image:url(${IMG+d.img})"></div></div>
+ <div class="cards">${bottles.map(b=>`<div class="card"><div class="b" style="background-image:url('${b[4]}')"></div><div class="p">${b[0]}</div><div class="t">${b[1]}</div><div class="m"><span>${b[2]}</span><span>${b[3]}</span></div></div>`).join('')}</div>
+ <div class="notes">${d.notes.map(n=>`<p>${n}</p>`).join('')}</div>`;
+ document.body.appendChild(s);}
+</script></body></html>

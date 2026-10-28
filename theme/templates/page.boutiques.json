@@ -1,0 +1,144 @@
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "arvi-breadcrumbs",
+      "settings": {
+        "enable_schema": true
+      }
+    },
+    "boutiques": {
+      "type": "arvi-boutiques",
+      "blocks": {
+        "b1": {
+          "type": "boutique",
+          "settings": {
+            "kicker": "Arvino · Headquarters",
+            "name": "Melano",
+            "fallback_image": "arvi-boutique-melano",
+            "image_alt": "Wall of lit oak bottle niches in the Arvino Melano wine shop",
+            "address": "Via Pedemonte di Sopra 1, 6818 Melano",
+            "hours": "<p>Monday – Friday<br>8.30 – 12.30 · 13.00 – 18.00</p>",
+            "phone": "+41 91 649 68 88",
+            "email": "arvino.melano@arvi.ch",
+            "note": "<p>Our cellar of more than 10,000 labels is in the same building. Pick-ups by appointment.</p>",
+            "map_url": "https://www.google.com/maps/search/?api=1&query=Via+Pedemonte+di+Sopra+1+6818+Melano",
+            "schema_street": "Via Pedemonte di Sopra 1",
+            "schema_postcode": "6818",
+            "schema_city": "Melano",
+            "schema_hours": "Mo-Fr 08:30-12:30|Mo-Fr 13:00-18:00"
+          }
+        },
+        "b2": {
+          "type": "boutique",
+          "settings": {
+            "kicker": "Arvino",
+            "name": "Lugano",
+            "fallback_image": "arvi-boutique-lugano",
+            "image_alt": "Arvino Lugano with oak barrels used as display tables and leather armchairs",
+            "address": "Via Emilio Bossi 1, 6900 Lugano",
+            "hours": "<p>Tuesday – Saturday<br>10.00 – 19.00</p>",
+            "phone": "+41 91 924 94 88",
+            "email": "arvino.lugano@arvi.ch",
+            "note": "<p>Sommeliers on hand and regular open tastings.</p>",
+            "map_url": "https://www.google.com/maps/search/?api=1&query=Via+Emilio+Bossi+1+6900+Lugano",
+            "schema_street": "Via Emilio Bossi 1",
+            "schema_postcode": "6900",
+            "schema_city": "Lugano",
+            "schema_hours": "Tu-Sa 10:00-19:00"
+          }
+        },
+        "b3": {
+          "type": "boutique",
+          "settings": {
+            "kicker": "Arvino",
+            "name": "Zurich",
+            "fallback_image": "arvi-boutique-zurich",
+            "image_alt": "Arvino Zurich with a long oak tasting table beneath brass pendant lights",
+            "address": "Sankt Annagasse 9, 8001 Zürich",
+            "hours": "<p>Monday – Saturday<br>10.00 – 18.00</p>",
+            "phone": "+41 43 810 08 88",
+            "email": "arvino.zurich@arvi.ch",
+            "note": "<p>Private and corporate events for up to 40 guests standing or 18 seated.</p>",
+            "map_url": "https://www.google.com/maps/search/?api=1&query=Sankt+Annagasse+9+8001+Zurich",
+            "schema_street": "Sankt Annagasse 9",
+            "schema_postcode": "8001",
+            "schema_city": "Zürich",
+            "schema_hours": "Mo-Sa 10:00-18:00"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "eyebrow": "Melano · Lugano · Zurich",
+        "heading": "Arvino Luxury Wine Shops",
+        "heading_tag": "h1",
+        "text": "<p>Discover the world of fine wines in our Arvino Luxury Wine Shops, strategically located in Melano (within our headquarters), Lugano and Zurich. We offer a curated selection of the finest wines from around the globe, with an expert and dedicated team always on hand to guide you.</p>",
+        "link_label": "",
+        "link_url": "shopify://pages/i-nostri-negozi",
+        "enable_schema": true,
+        "color_scheme": "scheme-1",
+        "padding": "l"
+      }
+    },
+    "services": {
+      "type": "arvi-values",
+      "blocks": {
+        "v1": {
+          "type": "value",
+          "settings": {
+            "icon": "wine",
+            "title": "Outstanding wine selection",
+            "text": "<p>We offer a selection of the finest wines from all over the world.</p>"
+          }
+        },
+        "v2": {
+          "type": "value",
+          "settings": {
+            "icon": "truck",
+            "title": "Accurate delivery",
+            "text": "<p>We provide precise and timely delivery. Every wine offered is in stock in our cellars, apart from En Primeur, new releases and wines in transit.</p>"
+          }
+        },
+        "v3": {
+          "type": "value",
+          "settings": {
+            "icon": "user-round",
+            "title": "Professional advice",
+            "text": "<p>Benefit from the expert guidance of our consultants to choose the perfect wine.</p>"
+          }
+        },
+        "v4": {
+          "type": "value",
+          "settings": {
+            "icon": "shield-check",
+            "title": "Quality and authenticity",
+            "text": "<p>We ensure every bottle you buy is authentic and of the highest quality. On request, we send photographs of older bottles before confirmation.</p>",
+            "link_label": "Read our FAQ",
+            "link": "shopify://pages/faq"
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4"
+      ],
+      "settings": {
+        "eyebrow": "Why buy from us",
+        "heading": "Trust, passion, expertise, respect",
+        "color_scheme": "scheme-2",
+        "padding": "l"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "boutiques",
+    "services"
+  ]
+}

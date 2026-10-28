@@ -1,0 +1,75 @@
+{{ 'arvi-sections.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign products_to_show = section.settings.products_to_show
+  if section.settings.product_list != blank
+    assign source = section.settings.product_list
+  else
+    assign source = section.settings.collection.products
+  endif
+-%}
+
+<div class="arvi-showcase color-{{ section.settings.color_scheme }} gradient arvi-pad--{{ section.settings.padding }}">
+  <div class="page-width">
+    {%- render 'arvi-section-header',
+      eyebrow: section.settings.eyebrow,
+      heading: section.settings.heading,
+      text: section.settings.text,
+      link_label: section.settings.link_label,
+      link_url: section.settings.collection.url,
+      id: section.id
+    -%}
+
+    <ul class="arvi-shelf grid product-grid grid--2-col-tablet-down grid--4-col-desktop" role="list" aria-labelledby="ArviHeading-{{ section.id }}">
+      {%- if source != blank -%}
+        {%- for product in source limit: products_to_show -%}
+          <li class="grid__item scroll-trigger animate--slide-in" data-cascade style="--animation-order: {{ forloop.index }};">
+            {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: 'portrait',
+              show_secondary_image: false,
+              show_vendor: true,
+              lazy_load: true,
+              skip_styles: true,
+              section_id: section.id,
+              quick_add: section.settings.quick_add
+            %}
+          </li>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..4) -%}
+          <li class="grid__item">{% render 'card-product', show_vendor: true, placeholder_image: 'product-1' %}</li>
+        {%- endfor -%}
+      {%- endif -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ARVI · Featured wines",
+  "tag": "section",
+  "class": "section arvi-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Selection" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Prestigious Champagne" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "product_list", "id": "product_list", "label": "Or hand-pick wines", "limit": 12, "info": "Overrides the collection when set." },
+    { "type": "range", "id": "products_to_show", "label": "Number of wines", "min": 2, "max": 12, "step": 1, "default": 4 },
+    { "type": "text", "id": "link_label", "label": "Collection link label", "default": "View the collection" },
+    {
+      "type": "select", "id": "quick_add", "label": "Quick add", "default": "none",
+      "options": [{ "value": "none", "label": "None" }, { "value": "standard", "label": "Standard" }]
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" },
+    {
+      "type": "select", "id": "padding", "label": "Vertical spacing", "default": "l",
+      "options": [{ "value": "s", "label": "Small" }, { "value": "m", "label": "Medium" }, { "value": "l", "label": "Large" }]
+    }
+  ],
+  "presets": [{ "name": "ARVI · Featured wines" }]
+}
+{% endschema %}

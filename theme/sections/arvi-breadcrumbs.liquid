@@ -1,0 +1,72 @@
+{%- comment -%}
+  Breadcrumb trail + BreadcrumbList structured data for product and collection templates.
+  The middle crumb on product pages is the collection the visitor came from; otherwise the
+  region collection (arvi.regione metafield, e.g. "Champagne" -> /collections/champagne),
+  otherwise the producer collection.
+  Note: the WIP theme ships its own `arvi-breadcrumb` section; keep only one of the two on a template.
+{%- endcomment -%}
+{%- liquid
+  assign crumbs_names = ''
+  assign crumbs_urls = ''
+  if template.name == 'product'
+    assign mid = collection
+    if mid == blank
+      assign region = product.metafields.arvi.regione.value | default: product.metafields.arvi.regione | handleize
+      if region != blank
+        assign mid = collections[region]
+      endif
+    endif
+    if mid == blank
+      assign producer_handle = 'produttore-' | append: product.vendor | handleize
+      assign mid = collections[producer_handle]
+    endif
+    if mid != blank and mid.handle != 'all'
+      assign crumbs_names = mid.title
+      assign crumbs_urls = mid.url
+    endif
+    assign current = product.title
+  elsif template.name == 'collection'
+    assign current = collection.title
+  elsif template.name == 'page'
+    assign current = page.title
+  endif
+-%}
+{%- if current != blank -%}
+  <nav class="arvi-crumbs page-width" aria-label="{{ 'arvi.breadcrumbs.label' | t }}">
+    <ol role="list">
+      <li><a href="{{ routes.root_url }}">{{ 'arvi.breadcrumbs.home' | t }}</a></li>
+      {%- if crumbs_names != blank -%}
+        <li><a href="{{ crumbs_urls }}">{{ crumbs_names }}</a></li>
+      {%- endif -%}
+      <li aria-current="page">{{ current }}</li>
+    </ol>
+  </nav>
+  {%- if section.settings.enable_schema -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": {{ 'arvi.breadcrumbs.home' | t | json }}, "item": {{ shop.url | append: routes.root_url | json }} }
+          {%- if crumbs_names != blank -%},
+            { "@type": "ListItem", "position": 2, "name": {{ crumbs_names | json }}, "item": {{ shop.url | append: crumbs_urls | json }} }
+          {%- endif -%},
+          { "@type": "ListItem", "position": {% if crumbs_names != blank %}3{% else %}2{% endif %}, "name": {{ current | json }} }
+        ]
+      }
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ARVI · Breadcrumbs",
+  "tag": "div",
+  "class": "arvi-crumbs-section",
+  "enabled_on": { "templates": ["product", "collection", "page"] },
+  "settings": [
+    { "type": "checkbox", "id": "enable_schema", "label": "Output BreadcrumbList structured data", "default": true }
+  ],
+  "presets": [{ "name": "ARVI · Breadcrumbs" }]
+}
+{% endschema %}

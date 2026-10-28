@@ -539,5 +539,50 @@
       "expanded": "Formulaire de destinataire de carte-cadeau agrandi",
       "collapsed": "Formulaire de destinataire de carte-cadeau réduit"
     }
+  },
+  "arvi": {
+    "product": {
+      "price_on_request": "Prix sur demande",
+      "price_on_request_note": "Ce vin est proposé sur demande. Nos conseillers confirmeront le prix, la disponibilité et l'état.",
+      "enquire": "Demander des informations",
+      "enquiry_subject": "Demande : {{ product }}",
+      "all_vintages": "Tous les millésimes",
+      "vintage": "Millésime",
+      "producer": "Producteur",
+      "origin": "Origine",
+      "colour": "Couleur",
+      "grapes": "Cépages",
+      "alcohol": "Alcool",
+      "all_from_producer": "Tous les vins de {{ producer }}",
+      "owc_short": "CBO"
+    },
+    "formato": {
+      "packaging": "Conditionnement",
+      "single_bottle": "Bouteille seule",
+      "case_of": "Caisse bois d'origine de %n%"
+    },
+    "collections": {
+      "references": "{{ number }} références"
+    },
+    "boutiques": {
+      "address": "Adresse",
+      "hours": "Heures d'ouverture",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "directions": "Itinéraire"
+    },
+    "breadcrumbs": {
+      "label": "Fil d'Ariane",
+      "home": "Accueil"
+    },
+    "age_gate": {
+      "title": "Avez-vous 18 ans ou plus ?",
+      "text": "Comme nous vendons des vins fins et des spiritueux, vous devez avoir l'âge légal de consommation d'alcool dans votre pays pour visiter notre site.",
+      "confirm": "Oui, j'ai 18 ans ou plus",
+      "decline": "Non",
+      "denied_title": "Nous sommes désolés",
+      "denied_text": "Vous devez avoir l'âge légal de consommation d'alcool pour visiter ce site.",
+      "back": "Retour"
+    }
   }
 }

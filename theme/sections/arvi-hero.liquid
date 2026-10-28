@@ -1,0 +1,226 @@
+{{ 'arvi-sections.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign heading_tag = section.settings.heading_tag
+  if section.settings.eyebrow_as_h1
+    assign heading_tag = 'h2'
+  endif
+-%}
+
+<section
+  class="arvi-hero arvi-hero--{{ section.settings.layout }} arvi-hero--{{ section.settings.height }} color-{{ section.settings.color_scheme }} gradient"
+  aria-labelledby="ArviHeroHeading-{{ section.id }}"
+>
+  <div class="arvi-hero__media{% if section.settings.image_mobile != blank %} arvi-hero__media--has-mobile{% endif %}">
+    <div class="arvi-hero__media-desktop">
+      {%- render 'arvi-image',
+        image: section.settings.image,
+        fallback: section.settings.fallback_image,
+        alt: section.settings.image_alt,
+        sizes: '(min-width: 990px) 56vw, 100vw',
+        loading: 'eager',
+        priority: true,
+        class: 'arvi-hero__img'
+      -%}
+    </div>
+    {%- if section.settings.image_mobile != blank -%}
+      <div class="arvi-hero__media-mobile">
+        {%- render 'arvi-image',
+          image: section.settings.image_mobile,
+          alt: section.settings.image_alt,
+          sizes: '100vw',
+          loading: 'eager',
+          class: 'arvi-hero__img'
+        -%}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.caption != blank -%}
+      <p class="arvi-hero__caption arvi-micro">{{ section.settings.caption }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="arvi-hero__content">
+    <div class="arvi-hero__inner">
+      {%- if section.settings.eyebrow != blank -%}
+        {%- if section.settings.eyebrow_as_h1 -%}
+          <h1 class="arvi-eyebrow arvi-hero__eyebrow">{{ section.settings.eyebrow }}</h1>
+        {%- else -%}
+          <p class="arvi-eyebrow arvi-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <{{ heading_tag }} id="ArviHeroHeading-{{ section.id }}" class="arvi-display arvi-display--xl arvi-hero__heading">
+          {{- section.settings.heading -}}
+        </{{ heading_tag }}>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="arvi-lede arvi-hero__text">{{ section.settings.text }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label_1 != blank or section.settings.button_label_2 != blank -%}
+        <div class="arvi-actions">
+          {%- if section.settings.button_label_1 != blank -%}
+            <a
+              class="button arvi-button"
+              {% if section.settings.button_link_1 != blank %}
+                href="{{ section.settings.button_link_1 }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+            >
+              {{- section.settings.button_label_1 -}}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.button_label_2 != blank -%}
+            <a
+              class="arvi-link"
+              {% if section.settings.button_link_2 != blank %}
+                href="{{ section.settings.button_link_2 }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+            >
+              {{- section.settings.button_label_2 -}}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ARVI · Editorial hero",
+  "tag": "div",
+  "class": "section arvi-section",
+  "limit": 2,
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "split-left", "label": "Text left, image right" },
+        { "value": "split-right", "label": "Image left, text right" },
+        { "value": "overlay", "label": "Full-bleed image, text overlay" }
+      ],
+      "default": "split-left"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Height",
+      "options": [
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" },
+        { "value": "screen", "label": "First screen" }
+      ],
+      "default": "large"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-3"
+    },
+    { "type": "header", "content": "Media" },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (desktop)",
+      "info": "Landscape or square image, at least 1800 px wide. Set a focal point in Files so the crop stays on the subject."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (mobile, optional)",
+      "info": "Portrait 4:5 recommended. Falls back to the desktop image."
+    },
+    {
+      "type": "text",
+      "id": "fallback_image",
+      "label": "Bundled fallback image",
+      "default": "arvi-hero-autumn",
+      "info": "Used only when no image is selected. Bundled: arvi-hero-autumn, arvi-cellar, arvi-vault"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image description (alt text)",
+      "default": "A bottle of Barolo resting against an old tree above autumn vineyards"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Image caption",
+      "default": "Autumn selection"
+    },
+    { "type": "header", "content": "Text" },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Your Premium Wine Shop in Switzerland"
+    },
+    {
+      "type": "checkbox",
+      "id": "eyebrow_as_h1",
+      "label": "Use the eyebrow as the page H1",
+      "default": true,
+      "info": "Recommended on the homepage. Keeps one descriptive H1 for search engines while the campaign headline stays large."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hidden Treasures of Autumn"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag (when the eyebrow is not the H1)",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>A selection of great wines for truffle season, game dining and autumn's finest flavours.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Primary button label",
+      "default": "Explore Piedmont"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Secondary link label",
+      "default": "Visit our boutiques"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Secondary link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ARVI · Editorial hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,83 @@
+{{ 'arvi-sections.css' | asset_url | stylesheet_tag }}
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+
+<div class="arvi-faq color-{{ section.settings.color_scheme }} gradient arvi-pad--{{ section.settings.padding }}">
+  <div class="page-width arvi-faq__grid">
+    <div class="arvi-faq__intro">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="arvi-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <{{ section.settings.heading_tag }} class="arvi-display arvi-display--l">{{ section.settings.heading }}</{{ section.settings.heading_tag }}>
+      {%- if section.settings.text != blank -%}
+        <div class="arvi-body rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+    <div class="arvi-faq__list">
+      {%- for block in section.blocks -%}
+        <details class="arvi-faq__item" {{ block.shopify_attributes }}{% if section.settings.open_first and forloop.first %} open{% endif %}>
+          <summary>
+            <h3 class="arvi-faq__q">{{ block.settings.question }}</h3>
+            <span class="arvi-faq__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="arvi-faq__a rte">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.enable_schema and section.blocks.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in section.blocks -%}
+          {
+            "@type": "Question",
+            "name": {{ block.settings.question | strip_html | json }},
+            "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | strip | json }} }
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ARVI · FAQ",
+  "tag": "section",
+  "class": "section arvi-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Customer service" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently asked questions" },
+    {
+      "type": "select", "id": "heading_tag", "label": "Heading tag", "default": "h1",
+      "options": [{ "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }]
+    },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "checkbox", "id": "open_first", "label": "Open the first answer", "default": false },
+    {
+      "type": "checkbox", "id": "enable_schema", "label": "Output FAQPage structured data", "default": true,
+      "info": "Only use for genuine customer questions answered on this page."
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" },
+    {
+      "type": "select", "id": "padding", "label": "Vertical spacing", "default": "l",
+      "options": [{ "value": "s", "label": "Small" }, { "value": "m", "label": "Medium" }, { "value": "l", "label": "Large" }]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ARVI · FAQ", "blocks": [{ "type": "question" }, { "type": "question" }] }]
+}
+{% endschema %}

@@ -1,75 +1,440 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero": {
+      "type": "arvi-hero",
+      "settings": {
+        "layout": "split-left",
+        "height": "large",
+        "color_scheme": "scheme-3",
+        "fallback_image": "arvi-hero-autumn",
+        "image_alt": "A bottle of Barolo resting against an old tree above autumn vineyards in the Langhe",
+        "caption": "Autumn selection · Piedmont",
+        "eyebrow": "Your Premium Wine Shop in Switzerland",
+        "eyebrow_as_h1": true,
+        "heading": "Hidden Treasures of Autumn",
+        "heading_tag": "h1",
+        "text": "<p>A selection of great wines for truffle season, game dining and autumn's finest flavours.</p>",
+        "button_label_1": "Explore Piedmont",
+        "button_link_1": "shopify://collections/piemonte",
+        "button_label_2": "Visit our boutiques",
+        "button_link_2": "shopify://pages/i-nostri-negozi"
+      }
+    },
+    "regions": {
+      "type": "arvi-collection-tiles",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "c1": {
+          "type": "collection",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "collection": "champagne",
+            "kicker": "France",
+            "title": "Champagne",
+            "product": "maison-salon-champagne-le-mesnil-2013"
           }
         },
-        "button": {
-          "type": "buttons",
+        "c2": {
+          "type": "collection",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "collection": "bordeaux",
+            "kicker": "France",
+            "title": "Bordeaux",
+            "product": "chateau-latour-ex-chateau-release-2026-2019"
+          }
+        },
+        "c3": {
+          "type": "collection",
+          "settings": {
+            "collection": "burgundy",
+            "kicker": "France",
+            "title": "Burgundy"
+          }
+        },
+        "c4": {
+          "type": "collection",
+          "settings": {
+            "collection": "toscana",
+            "kicker": "Italy",
+            "title": "Tuscany"
+          }
+        },
+        "c5": {
+          "type": "collection",
+          "settings": {
+            "collection": "piemonte",
+            "kicker": "Italy",
+            "title": "Piedmont"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "eyebrow": "The cellar",
+        "heading": "Explore the great regions",
+        "text": "<p>Over ten thousand labels, from the most prestigious Bordeaux classifications to Burgundy, the Rhône, Champagne and Italy's great estates.</p>",
+        "link_label": "All wines",
+        "link_url": "shopify://collections/wines",
+        "show_count": true,
+        "color_scheme": "scheme-1",
+        "padding": "l"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "champagne": {
+      "type": "arvi-product-showcase",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
+        "eyebrow": "Selection",
+        "heading": "Prestigious Champagne",
+        "text": "<p>Grandes marques and growers, from Krug's multi-vintage Grande Cuvée to Salon's single-cru Blanc de Blancs.</p>",
+        "collection": "champagne",
+        "product_list": [
+          "krug-champagne-brut-grande-cuvee-edition-172-nv",
+          "maison-salon-champagne-le-mesnil-2013",
+          "dom-perignon-champagne-brut-dom-perignon-2006",
+          "de-venoge-champagne-louis-xv-rose-2012"
+        ],
+        "products_to_show": 4,
+        "link_label": "View all Champagne",
         "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "color_scheme": "scheme-1",
+        "padding": "s"
+      }
+    },
+    "heritage": {
+      "type": "arvi-heritage",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "30+",
+            "label": "Years in fine and rare wines"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "10,000+",
+            "label": "Labels in our cellars, ready for delivery"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "value": "27 L",
+            "label": "Large formats, from the 150 cl Magnum up to 27 litres"
+          }
+        },
+        "q": {
+          "type": "quote",
+          "settings": {
+            "quote": "Everything we do, we do because we love wine. And we love it because wine punctuates the best moments of our lives, not only at the table.",
+            "author": "Paolo Cattaneo, Chairman of ARVI"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "q"
+      ],
+      "settings": {
+        "eyebrow": "Our cellar",
+        "heading": "Every bottle owned, stored and traced by ARVI",
+        "text": "<p>All wines we offer are owned by our company and stored in our temperature- and humidity-controlled cellars. Every single case is checked upon receipt by our professional staff, photographed and registered, which guarantees full traceability.</p>",
+        "link_label": "About ARVI",
+        "link_url": "shopify://pages/chi-siamo",
+        "fallback_image": "arvi-cellar",
+        "image_alt": "Original wooden wine cases stacked on shelves in the ARVI cellar",
+        "caption": "The ARVI cellar, Melano",
+        "color_scheme": "scheme-2",
+        "padding": "l"
+      }
+    },
+    "icons": {
+      "type": "arvi-producers",
+      "blocks": {
+        "p1": {
+          "type": "producer",
+          "settings": {
+            "collection": "produttore-chateau-petrus",
+            "name": "Château Pétrus",
+            "region": "Pomerol"
+          }
+        },
+        "p2": {
+          "type": "producer",
+          "settings": {
+            "collection": "produttore-chateau-ausone",
+            "name": "Château Ausone",
+            "region": "Saint-Émilion"
+          }
+        },
+        "p3": {
+          "type": "producer",
+          "settings": {
+            "collection": "produttore-chateau-lafite-rothschild",
+            "name": "Château Lafite Rothschild",
+            "region": "Pauillac"
+          }
+        },
+        "p4": {
+          "type": "producer",
+          "settings": {
+            "collection": "produttore-chateau-mouton-rothschild",
+            "name": "Château Mouton Rothschild",
+            "region": "Pauillac"
+          }
+        },
+        "p5": {
+          "type": "producer",
+          "settings": {
+            "collection": "produttore-chateau-latour",
+            "name": "Château Latour",
+            "region": "Pauillac"
+          }
+        },
+        "p6": {
+          "type": "producer",
+          "settings": {
+            "collection": "produttore-krug",
+            "name": "Krug",
+            "region": "Champagne"
+          }
+        },
+        "p7": {
+          "type": "producer",
+          "settings": {
+            "collection": "produttore-maison-salon",
+            "name": "Salon",
+            "region": "Le Mesnil-sur-Oger, Champagne"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7"
+      ],
+      "settings": {
+        "eyebrow": "Icons",
+        "heading": "Timeless excellence",
+        "text": "<p>Rare vintages from the estates that define their appellations, kept in perfect condition in our cellars.</p>",
+        "color_scheme": "scheme-3",
+        "padding": "l"
+      }
+    },
+    "boutiques": {
+      "type": "arvi-boutiques",
+      "blocks": {
+        "b1": {
+          "type": "boutique",
+          "settings": {
+            "kicker": "Arvino · Headquarters",
+            "name": "Melano",
+            "fallback_image": "arvi-boutique-melano",
+            "image_alt": "Wall of lit oak bottle niches in the Arvino Melano wine shop",
+            "address": "Via Pedemonte di Sopra 1, 6818 Melano",
+            "hours": "<p>Monday – Friday<br>8.30 – 12.30 · 13.00 – 18.00</p>",
+            "phone": "+41 91 649 68 88",
+            "email": "arvino.melano@arvi.ch",
+            "note": "<p>Our cellar of more than 10,000 labels is in the same building. Pick-ups by appointment.</p>",
+            "map_url": "https://www.google.com/maps/search/?api=1&query=Via+Pedemonte+di+Sopra+1+6818+Melano",
+            "schema_street": "Via Pedemonte di Sopra 1",
+            "schema_postcode": "6818",
+            "schema_city": "Melano",
+            "schema_hours": "Mo-Fr 08:30-12:30|Mo-Fr 13:00-18:00"
+          }
+        },
+        "b2": {
+          "type": "boutique",
+          "settings": {
+            "kicker": "Arvino",
+            "name": "Lugano",
+            "fallback_image": "arvi-boutique-lugano",
+            "image_alt": "Arvino Lugano with oak barrels used as display tables and leather armchairs",
+            "address": "Via Emilio Bossi 1, 6900 Lugano",
+            "hours": "<p>Tuesday – Saturday<br>10.00 – 19.00</p>",
+            "phone": "+41 91 924 94 88",
+            "email": "arvino.lugano@arvi.ch",
+            "note": "<p>Sommeliers on hand and regular open tastings.</p>",
+            "map_url": "https://www.google.com/maps/search/?api=1&query=Via+Emilio+Bossi+1+6900+Lugano",
+            "schema_street": "Via Emilio Bossi 1",
+            "schema_postcode": "6900",
+            "schema_city": "Lugano",
+            "schema_hours": "Tu-Sa 10:00-19:00"
+          }
+        },
+        "b3": {
+          "type": "boutique",
+          "settings": {
+            "kicker": "Arvino",
+            "name": "Zurich",
+            "fallback_image": "arvi-boutique-zurich",
+            "image_alt": "Arvino Zurich with a long oak tasting table beneath brass pendant lights",
+            "address": "Sankt Annagasse 9, 8001 Zürich",
+            "hours": "<p>Monday – Saturday<br>10.00 – 18.00</p>",
+            "phone": "+41 43 810 08 88",
+            "email": "arvino.zurich@arvi.ch",
+            "note": "<p>Private and corporate events for up to 40 guests standing or 18 seated.</p>",
+            "map_url": "https://www.google.com/maps/search/?api=1&query=Sankt+Annagasse+9+8001+Zurich",
+            "schema_street": "Sankt Annagasse 9",
+            "schema_postcode": "8001",
+            "schema_city": "Zürich",
+            "schema_hours": "Mo-Sa 10:00-18:00"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "eyebrow": "Arvino Luxury Wine Shops",
+        "heading": "Visit us in Melano, Lugano and Zurich",
+        "heading_tag": "h2",
+        "text": "<p>A curated selection of the finest wines from around the globe, with an expert team on hand to guide you and pick-ups by appointment.</p>",
+        "link_label": "Discover our shops",
+        "link_url": "shopify://pages/i-nostri-negozi",
+        "enable_schema": false,
+        "color_scheme": "scheme-1",
+        "padding": "l"
+      }
+    },
+    "values": {
+      "type": "arvi-values",
+      "blocks": {
+        "v1": {
+          "type": "value",
+          "settings": {
+            "icon": "wine",
+            "title": "Outstanding wine selection",
+            "text": "<p>We offer a selection of the finest wines from all over the world.</p>"
+          }
+        },
+        "v2": {
+          "type": "value",
+          "settings": {
+            "icon": "truck",
+            "title": "Accurate delivery",
+            "text": "<p>We provide precise and timely delivery. Every wine offered is in stock in our cellars, apart from En Primeur, new releases and wines in transit.</p>"
+          }
+        },
+        "v3": {
+          "type": "value",
+          "settings": {
+            "icon": "user-round",
+            "title": "Professional advice",
+            "text": "<p>Benefit from the expert guidance of our consultants to choose the perfect wine.</p>"
+          }
+        },
+        "v4": {
+          "type": "value",
+          "settings": {
+            "icon": "shield-check",
+            "title": "Quality and authenticity",
+            "text": "<p>We ensure every bottle you buy is authentic and of the highest quality. On request, we send photographs of older bottles before confirmation.</p>",
+            "link_label": "Read our FAQ",
+            "link": "shopify://pages/faq"
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4"
+      ],
+      "settings": {
+        "eyebrow": "Why buy from us",
+        "heading": "Trust, passion, expertise, respect",
+        "color_scheme": "scheme-2",
+        "padding": "l"
+      }
+    },
+    "services": {
+      "type": "arvi-services",
+      "blocks": {
+        "sv1": {
+          "type": "service",
+          "settings": {
+            "fallback_image": "arvi-wine-vault-detail",
+            "image_alt": "Silver bottle cradle and hygrometer in the ARVI Wine Vault",
+            "kicker": "Storage",
+            "title": "Wine Vault",
+            "text": "<p>Store your wines in a secured, temperature- and humidity-controlled vault, fully insured.</p>",
+            "link": "shopify://pages/la-wine-vault",
+            "link_label": "Discover the Vault"
+          }
+        },
+        "sv2": {
+          "type": "service",
+          "settings": {
+            "fallback_image": "arvi-en-primeur",
+            "image_alt": "Barrels in a Bordeaux château cellar",
+            "kicker": "Bordeaux",
+            "title": "En Primeur",
+            "text": "<p>Secure the new Bordeaux vintage before it is bottled, with our vintage reports.</p>",
+            "link": "shopify://pages/che-cose-en-primeur",
+            "link_label": "What is En Primeur?"
+          }
+        },
+        "sv3": {
+          "type": "service",
+          "settings": {
+            "fallback_image": "arvi-horeca",
+            "image_alt": "A sommelier pouring red wine into a glass",
+            "kicker": "Professionals",
+            "title": "Horeca",
+            "text": "<p>Free wine-list consultancy, staff training and technical sheets for restaurants and hotels.</p>",
+            "link": "shopify://pages/horeca",
+            "link_label": "Services for Horeca"
+          }
+        },
+        "sv4": {
+          "type": "service",
+          "settings": {
+            "fallback_image": "arvi-events-table",
+            "image_alt": "A long table set for a wine dinner in an Arvino boutique",
+            "kicker": "Tastings & dinners",
+            "title": "Events",
+            "text": "<p>Tastings, blind tastings and dinners with producers, in our boutiques and exceptional locations.</p>",
+            "link": "shopify://pages/eventi",
+            "link_label": "Our events"
+          }
+        }
+      },
+      "block_order": [
+        "sv1",
+        "sv2",
+        "sv3",
+        "sv4"
+      ],
+      "settings": {
+        "eyebrow": "Beyond the bottle",
+        "heading": "Services for collectors and professionals",
+        "color_scheme": "scheme-1",
+        "padding": "l"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "hero",
+    "regions",
+    "champagne",
+    "heritage",
+    "icons",
+    "boutiques",
+    "values",
+    "services"
   ]
 }

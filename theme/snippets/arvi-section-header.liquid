@@ -1,0 +1,30 @@
+{%- comment -%}
+  Shared editorial section header.
+  Accepts: eyebrow, heading, text, link_label, link_url, id, align ('split' default | 'center'), heading_tag (default 'h2')
+{%- endcomment -%}
+{%- liquid
+  assign tag = heading_tag | default: 'h2'
+  assign hdr_align = align | default: 'split'
+-%}
+{%- if heading != blank or eyebrow != blank -%}
+  <header class="arvi-head arvi-head--{{ hdr_align }}">
+    <div class="arvi-head__titles">
+      {%- if eyebrow != blank -%}
+        <p class="arvi-eyebrow">{{ eyebrow }}</p>
+      {%- endif -%}
+      {%- if heading != blank -%}
+        <{{ tag }} class="arvi-display arvi-display--l" id="ArviHeading-{{ id }}">{{ heading }}</{{ tag }}>
+      {%- endif -%}
+    </div>
+    {%- if text != blank or link_label != blank -%}
+      <div class="arvi-head__aside">
+        {%- if text != blank -%}
+          <div class="arvi-body rte">{{ text }}</div>
+        {%- endif -%}
+        {%- if link_label != blank and link_url != blank -%}
+          <a class="arvi-link" href="{{ link_url }}">{{ link_label }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </header>
+{%- endif -%}
