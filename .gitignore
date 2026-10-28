@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+research/raw/
+.env
+*.log
+.shopify/
